@@ -1,0 +1,537 @@
+VERSION "HNPBNYYYYYYYYYYYYYYYYYYYYYYYYYYYNNNNNNNNNN/4/%%%/4/'%**4NNN///"
+
+
+NS_ :
+    NS_DESC_
+    CM_
+    BA_DEF_
+    BA_
+    VAL_
+    CAT_DEF_
+    CAT_
+    FILTER
+    BA_DEF_DEF_
+    EV_DATA_
+    ENVVAR_DATA_
+    SGTYPE_
+    SGTYPE_VAL_
+    BA_DEF_SGTYPE_
+    BA_SGTYPE_
+    SIG_TYPE_REF_
+    VAL_TABLE_
+    SIG_GROUP_
+    SIG_VALTYPE_
+    SIGTYPE_VALTYPE_
+
+BS_:
+
+BU_: ABS CabController1 Engine Microautobox NULL ServiceTool TesterECU ePark_DECU
+
+BO_ 2564423760 UDS_TX :8 ePark_DECU
+ SG_ Data : 0|64@1+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 2559310416 XCP_TX :8 ePark_DECU
+BO_ 2566852688 SEC_TX :8 ePark_DECU
+ SG_ sec_Tx_buf07 : 0|64@1+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 2566849104 XPURT_FEEDBACK :8 ePark_DECU
+ SG_ sEPB_PCM_inhibit_status_fbk : 0|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ sEPB_PCM_manual_status_fbk : 2|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ sEPB_MABX_detected : 4|1@1+ (1,0) [0|1] "" Vector__XXX
+
+BO_ 2566850128 DECU_HMI :8 ePark_DECU
+ SG_ TractorParkStatus : 0|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ TrailerParkStatus : 2|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ SeatBeltStatusInMotion : 4|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ ARA_State : 8|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ AutoTrailerReleaseState : 10|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ ParkAtSpeedXBR : 12|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ ParkAtSpeedEASYellowButtonPull : 14|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ ParkAtSpeedEASRedButtonPull : 16|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ ParkAtSpeedModulation : 18|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ TractorParkbrkRel_SLS_status : 20|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ TractorParkbrkRel_Ignition_statu : 22|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ TractorParkBrkRelOCC1Status : 24|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ TractorParkBrkRelOCC2Status : 26|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ ParkBrkRelYellowButtonStatus : 28|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ TrailerParkbrkRel_SLS_status : 30|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ TrailerParkbrkRel_Ignition_statu : 32|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ TrailerParkBrkRelOCC1Status : 34|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ TrailerParkBrkRelOCC2Status : 36|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ ParkBrkRelRedButtonStatus : 38|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ DECUBattery1VoltageValue : 48|8@1+ (0.128,0) [0|250] "Volt" Vector__XXX
+ SG_ DECUBattery2VoltageValue : 56|8@1+ (0.128,0) [0|250] "Volt" Vector__XXX
+
+BO_ 2349075280 XBR_IntelliPark :8 ePark_DECU
+ SG_ ExternalAccelerationDemand : 0|16@1+ (0.00048828125,-15.687) [-9.99998828125|10.05469921875] "m/s2" Vector__XXX
+ SG_ EBIMode : 16|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ XBRPriority : 18|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ XBRControlMode : 20|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ XBRUrgency : 24|8@1+ (0.4,0) [0|100] "%" Vector__XXX
+ SG_ XBRMessageCounter : 56|4@1+ (1,0) [0|15] "" Vector__XXX
+ SG_ XBRMessageChecksum : 60|4@1+ (1,0) [0|15] "" Vector__XXX
+
+BO_ 2566834768 DM1 :0 ePark_DECU
+
+BO_ 2566835024 DM2 :0 ePark_DECU
+BO_ 2566835280 DM3 :0 ePark_DECU
+BO_ 2566837072 DM11 :0 ePark_DECU
+BO_ 2565537616 PGNREQ_TX :3 ePark_DECU
+BO_ 2564444410 UDS_RX :8 TesterECU
+ SG_ Data : 0|64@1+ (1,0) [0|0] "" ePark_DECU
+
+BO_ 2564509946 UDS_Func1 :8 TesterECU
+ SG_ Data : 0|64@1+ (1,0) [0|0] "" ePark_DECU
+
+BO_ 2564554746 UDS_Func2 :8 TesterECU
+ SG_ Data : 0|64@1+ (1,0) [0|0] "" ePark_DECU
+
+BO_ 2559332602 XCP_RX :8 TesterECU
+BO_ 2566844672 CCVS1 :8 Engine
+ SG_ ParkingBrakeSwitch : 2|2@1+ (1,0) [0|3] "" ePark_DECU
+ SG_ ParkingBrkRelInhiReq : 6|2@1+ (1,0) [0|3] "" ePark_DECU
+ SG_ WheelBasedVehSpeed : 8|16@1+ (0.00390625,0) [0|250.99609375] "km/h" ePark_DECU
+ SG_ BrakeSwitch : 28|2@1+ (1,0) [0|3] "" ePark_DECU
+ SG_ CruiseControlAccelerateSwitch : 38|2@1+ (1,0) [0|3] "" ePark_DECU
+
+BO_ 2566831883 EBC2 :8 ABS
+ SG_ FrontAxleSpeed : 0|16@1+ (0.00390625,0) [0|250.99609375] "km/h" ePark_DECU
+ SG_ FrontAxleLeftWheelSpeed : 16|8@1+ (0.0625,-7.8125) [-7.8125|7.8125 ] "km/h" ePark_DECU
+ SG_ FrontAxleRightWheelSpeed : 24|8@1+ (0.0625,-7.8125) [-7.8125|7.8125 ] "km/h" ePark_DECU
+ SG_ RearAxle1LeftWheelSpeed : 32|8@1+ (0.0625,-7.8125) [-7.8125|7.8125 ] "km/h" ePark_DECU
+ SG_ RearAxle1RightWheelSpeed : 40|8@1+ (0.0625,-7.8125) [-7.8125|7.8125 ] "km/h" ePark_DECU
+ SG_ RearAxle2LeftWheelSpeed : 48|8@1+ (0.0625,-7.8125) [-7.8125|7.8125 ] "km/h" ePark_DECU
+ SG_ RearAxle2RightWheelSpeed : 56|8@1+ (0.0625,-7.8125) [-7.8125|7.8125 ] "km/h" ePark_DECU
+
+BO_ 2566861049 SEC_RX :8 ServiceTool
+ SG_ sec_Rx_buf07 : 0|64@1+ (1,0) [0|0] "" ePark_DECU
+
+BO_ 2566827520 AIR1 :8 Engine
+ SG_ PneumSupPressure : 0|8@1+ (8,0) [0|2000] "kPa" ePark_DECU
+ SG_ ParkTrailerAirPres : 8|8@1+ (8,0) [0|2000] "kPa" ePark_DECU
+ SG_ ServBrakeCircuit1 : 16|8@1+ (8,0) [0|2000] "kPa" ePark_DECU
+ SG_ ServBrakeCircuit2 : 24|8@1+ (8,0) [0|2000] "kPa" ePark_DECU
+
+BO_ 2565865984 ETC1 :8 Engine
+ SG_ TransDriveEngaged : 0|2@1+ (1,0) [0|3] "" ePark_DECU
+ SG_ TransShiftInProc : 4|2@1+ (1,0) [0|3] "" ePark_DECU
+
+BO_ 2565866752 ETC2 :8 Engine
+ SG_ TransSelectGear : 0|8@1+ (1,-125) [-125|126] "gear" ePark_DECU
+ SG_ TransCurrentGear : 24|8@1+ (1,-125) [-125|126] "gear" ePark_DECU
+
+BO_ 2566802944 DC1 :8 Engine
+ SG_ PositionOfDoors : 0|4@1+ (1,0) [0|2] "" ePark_DECU
+ SG_ RampWheelChairLiftPosition : 4|2@1+ (1,0) [0|3] "" ePark_DECU
+ SG_ Status2OfDoors : 6|2@1+ (1,0) [0|3] "" ePark_DECU
+
+BO_ 2565865739 EBC1 :8 ABS
+ SG_ ABS_Active : 4|2@1+ (1,0) [0|3] "" ePark_DECU
+ SG_ EBSbrakeswitch : 6|2@1+ (1,0) [0|3] "" ePark_DECU
+ SG_ HillHolderSwitch : 20|2@1+ (1,0) [0|3] "" ePark_DECU
+ SG_ ABSFullyOp : 40|2@1+ (1,0) [0|3] "" ePark_DECU
+ SG_ AmberWarningSignal : 44|2@1+ (1,0) [0|3] "" ePark_DECU
+ SG_ TrailerABSStat : 60|2@1+ (1,0) [0|3] "" ePark_DECU
+ SG_ ABSWarningSig : 62|2@1+ (1,0) [0|3] "" ePark_DECU
+
+BO_ 2566767627 EBC5 :8 ABS
+ SG_ Hillholdermode : 5|3@1+ (1,0) [0|2] "" ePark_DECU
+ SG_ XBRSysState : 10|2@1+ (1,0) [0|3] "" ePark_DECU
+ SG_ XBRActiveControlMode : 12|4@1+ (1,0) [0|3] "" ePark_DECU
+ SG_ XBRAccLimit : 16|8@1+ (0.1,-12.5) [-10|10] "m/s2" ePark_DECU
+ SG_ EmergencyBrakeAct : 26|2@1+ (1,0) [0|3] "" ePark_DECU
+
+BO_ 2565866496 EEC1 :8 Engine
+ SG_ DriverDemEng : 8|8@1+ (1,-125) [-125|125] "%" ePark_DECU
+ SG_ EngineSpeed : 24|16@1+ (0.125,0) [0|8031.875] "rpm" ePark_DECU
+ SG_ EngDemPerTorque : 56|8@1+ (1,-125) [-125|125] "%" ePark_DECU
+
+BO_ 2565866240 EEC2 :8 Engine
+ SG_ Accelerator_Pedal_Position_1 : 8|8@1+ (0.4,0) [0|100] "" ePark_DECU
+
+BO_ 2566841600 HOURS :8 Engine
+ SG_ Total_Engine_Hours : 0|32@1+ (0.05,0) [0|210554060.75] "" ePark_DECU
+
+BO_ 2550222848 TC1_ENG :8 Engine
+ SG_ TransRequestGear : 16|8@1+ (1,-125) [-64|64] "gear" ePark_DECU
+
+BO_ 2566849788 PROP_B_XPURT :8 Microautobox
+ SG_ inhibit_park_manual : 0|2@1+ (1,0) [0|3] "" ePark_DECU
+ SG_ inhibit_unpark_manual : 2|2@1+ (1,0) [0|3] "" ePark_DECU
+ SG_ park_manual : 4|2@1+ (1,0) [0|3] "" ePark_DECU
+ SG_ unpark_manual : 6|2@1+ (1,0) [0|3] "" ePark_DECU
+ SG_ Prop_B_XPURTMessageCounter : 56|4@1+ (1,0) [0|15] "" ePark_DECU
+ SG_ Prop_B_XPURTMessageChecksum : 60|4@1+ (1,0) [0|15] "" ePark_DECU
+
+BO_ 2564837376 CM1 :8 Engine
+ SG_ SeatBeltSwitch : 30|2@1+ (1,0) [0|3] "" ePark_DECU
+ SG_ ParkBrakeCommand : 32|2@1+ (1,0) [0|3] "" ePark_DECU
+
+BO_ 2566851068 DECU_IND_LED :8 Microautobox
+ SG_ IndLedCommand : 0|3@1+ (1,0) [0|7] "" ePark_DECU
+
+BO_ 2566841856 TD :8 Engine
+ SG_ SECONDS : 0|8@1+ (0.25,0) [0|59.75] "sec" ePark_DECU
+ SG_ MINUTE : 8|8@1+ (1,0) [0|59] "mins" ePark_DECU
+ SG_ HOURS : 16|8@1+ (1,0) [0|23] "hrs" ePark_DECU
+ SG_ MONTH : 24|8@1+ (1,0) [1|12] "months" ePark_DECU
+ SG_ DAY : 32|8@1+ (0.25,0) [0.25|31.75] "days" ePark_DECU
+ SG_ YEAR : 40|8@1+ (1,1985) [1985|2235] "yr" ePark_DECU
+
+BO_ 2298375691 HRW :8 ABS
+ SG_ HRWFrontLeftSpd : 0|16@1+ (0.00390625,0) [0|250.99609375] "km/h" ePark_DECU
+ SG_ HRWFrontRightSpd : 16|16@1+ (0.00390625,0) [0|250.99609375] "km/h" ePark_DECU
+ SG_ HRWRearLeftSpd : 32|16@1+ (0.00390625,0) [0|250.99609375] "km/h" ePark_DECU
+ SG_ HRWRearRightSpd : 48|16@1+ (0.00390625,0) [0|250.99609375] "km/h" ePark_DECU
+
+BO_ 2563833600 CL :8 CabController1
+ SG_ Illumination_Brightness_Percent : 0|8@1+ (0.4,0) [0|102] "%" ePark_DECU
+
+BO_ 2564772090 DM13 :8 TesterECU
+ SG_ J19391 : 0|2@1+ (1,0) [0|3] "" ePark_DECU
+
+BO_ 2565799760 ACL_TX :8 ePark_DECU
+ SG_ Identity_Number : 0|21@1+ (1,0) [0|2097151] "" Vector__XXX
+ SG_ Manufacturer_Code : 21|11@1+ (1,0) [0|2047] "" Vector__XXX
+ SG_ ECU_Instance : 32|3@1+ (1,0) [0|7] "" Vector__XXX
+ SG_ Function_Instance : 35|5@1+ (1,0) [0|31] "" Vector__XXX
+ SG_ Function : 40|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ Reserved : 48|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Vehicle_System : 49|7@1+ (1,0) [0|127] "" Vector__XXX
+ SG_ Vehicle_System_Instance : 56|4@1+ (1,0) [0|15] "" Vector__XXX
+ SG_ Industry_Group : 60|3@1+ (1,0) [0|7] "" Vector__XXX
+ SG_ Arbitary_Address_Claim : 63|1@1+ (1,0) [0|1] "" Vector__XXX
+
+BO_ 2566767952 ECUID :32 ePark_DECU
+ SG_ ECU_Part_Num : 0|96@1+ (1,0) [0|4294967295] "" Vector__XXX
+ SG_ ECU_Serial_Num : 96|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ ECU_location : 104|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ ECU_Type : 112|88@1+ (1,0) [0|16777215] "" Vector__XXX
+ SG_ ECU_Manufacturer_Name : 200|56@1+ (1,0) [0|72057594037927935] "" Vector__XXX
+
+BO_ 2566843216 CI :19 ePark_DECU
+ SG_ Make : 0|36@1+ (1,0) [0|68719476735] "" Vector__XXX
+ SG_ Model : 48|88@1+ (1,0) [0|16777215] "" Vector__XXX
+ SG_ Serial_Number : 136|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ Unit_Number : 144|8@1+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 2566838864 SWID :121 ePark_DECU
+ SG_ num_of_soft_iden : 0|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ AuC_Drive_K_Num : 8|96@1+ (1,0) [0|4294967295] "" Vector__XXX
+ SG_ AuC_Drive_BX_Num : 104|64@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ AuC_MainBSL_K_Num : 168|96@1+ (1,0) [0|4294967295] "" Vector__XXX
+ SG_ AuC_MainBSL_BX_Num : 264|64@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ AuC_InitBSL_K_Num : 328|96@1+ (1,0) [0|4294967295] "" Vector__XXX
+ SG_ AuC_InitBSL_BX_Num : 424|64@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ BuC_Drive_K_Num : 488|96@1+ (1,0) [0|4294967295] "" Vector__XXX
+ SG_ BuC_Drive_BX_Num : 584|64@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ BuC_MainBSL_K_Num : 648|96@1+ (1,0) [0|4294967295] "" Vector__XXX
+ SG_ BuC_MainBSL_BX_Num : 744|64@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ BuC_InitBSL_K_Num : 808|96@1+ (1,0) [0|4294967295] "" Vector__XXX
+ SG_ BuC_InitBSL_BX_Num : 904|64@1+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 2565668432 TPCM_Tx :8 ePark_DECU
+ SG_ SequenceNumber : 0|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ DataBytes : 8|56@1+ (1,0) [0|72057594037927935] "" Vector__XXX
+
+BO_ 2565602896 TPDT_Tx :8 ePark_DECU
+ SG_ SequenceNumber : 0|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ DataBytes : 8|56@1+ (1,0) [0|72057594037927935] "" Vector__XXX
+
+BO_ 2565406288 ACKM :8 ePark_DECU
+ SG_ Data : 0|64@1+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 2565799678 ACL_Rx :8 NULL
+ SG_ Data : 0|64@1+ (1,0) [0|0] "" ePark_DECU
+
+BO_ 2632777470 TPCM_Rx :8 NULL
+ SG_ Data : 0|64@1+ (1,0) [0|0] "" ePark_DECU
+
+BO_ 2632711934 TPDT_Rx :8 NULL
+ SG_ Data : 0|64@1+ (1,0) [0|0] "" ePark_DECU
+
+BO_ 2565537534 RQST_Rx :3 NULL
+ SG_ Data : 0|64@1+ (1,0) [0|0] "" ePark_DECU
+
+CM_ "This database file is auto-generated by can_procdb.pl";
+
+BA_DEF_ BO_ "GenMsgCycleTime" INT 0 3600000;
+BA_DEF_ BO_ "GenMsgCycleTimeFast" INT 0 3600000;
+BA_DEF_ BO_ "GenMsgDelayTime" INT 0 1000;
+BA_DEF_ BO_ "GenMsgFastOnStart" INT 0 100000;
+BA_DEF_ BO_ "GenMsgILSupport" ENUM "No","Yes";
+BA_DEF_ BO_ "GenMsgNrOfRepetition" INT 0 1000000;
+BA_DEF_ BO_ "GenMsgRequestable" INT 0 1;
+BA_DEF_ BO_ "GenMsgSendType" ENUM "cyclic","NotUsed","NotUsed","NotUsed","NotUsed","NotUsed","NotUsed","IfActive","noMsgSendType";
+BA_DEF_ BO_ "GenMsgStartDelayTime" INT 0 100000;
+BA_DEF_ BO_ "GenMsgTimeOut_BrakeSystemCtl" INT 0 0;
+BA_DEF_ BO_ "VFrameFormat" ENUM "StandardCAN","ExtendedCAN","reserved","J1939PG";
+BA_DEF_ "BusType" STRING ;
+BA_DEF_ "DatabaseVersion" STRING ;
+BA_DEF_ "GenEnvVarEndingDsp" STRING ;
+BA_DEF_ "GenEnvVarEndingSnd" STRING ;
+BA_DEF_ "GenEnvVarPrefix" STRING ;
+BA_DEF_ "ProtocolType" STRING ;
+BA_DEF_ "SAE_J1939_21_SpecVersion" STRING ;
+BA_DEF_ "SAE_J1939_71_SpecVersion" STRING ;
+BA_DEF_ "SAE_J1939_73_SpecVersion" STRING ;
+BA_DEF_ "SAE_J1939_75_SpecVersion" STRING ;
+BA_DEF_ "SAE_J1939_81_SpecVersion" STRING ;
+BA_DEF_ SG_ "GenSigEVName" STRING ;
+BA_DEF_ SG_ "GenSigILSupport" ENUM "No","Yes";
+BA_DEF_ SG_ "GenSigInactiveValue" INT 0 0;
+BA_DEF_ SG_ "GenSigSendType" ENUM "Cyclic","OnWrite","OnWriteWithRepetition","OnChange","OnChangeWithRepetition","IfActive","IfActiveWithRepetition","NoSigSendType";
+BA_DEF_ SG_ "GenSigStartValue" INT 0 10000;
+BA_DEF_ SG_ "SPN" INT 0 524287;
+BA_DEF_ SG_ "SigType" ENUM "Default","Range","RangeSigned","ASCII","Discrete","Control","ReferencePGN","DTC","StringDelimiter","StringLength","StringLengthControl";
+BA_DEF_ SG_ "SystemSignalLongSymbol" STRING ;
+BA_DEF_ BU_ "ECU" STRING ;
+BA_DEF_ BU_ "NmJ1939AAC" INT 0 1;
+BA_DEF_ BU_ "NmJ1939ECUInstance" INT 0 3;
+BA_DEF_ BU_ "NmJ1939Function" INT 0 255;
+BA_DEF_ BU_ "NmJ1939FunctionInstance" INT 0 7;
+BA_DEF_ BU_ "NmJ1939IdentityNumber" INT 0 2097151;
+BA_DEF_ BU_ "NmJ1939IndustryGroup" INT 0 7;
+BA_DEF_ BU_ "NmJ1939ManufacturerCode" INT 0 2047;
+BA_DEF_ BU_ "NmJ1939System" INT 0 127;
+BA_DEF_ BU_ "NmJ1939SystemInstance" INT 0 15;
+BA_DEF_ BU_ "NmStationAddress" INT 0 255;
+BA_DEF_ BU_ "NodeLayerModules" STRING ;
+BA_DEF_DEF_ "GenMsgCycleTime" 0;
+BA_DEF_DEF_ "GenMsgCycleTimeFast" 0;
+BA_DEF_DEF_ "GenMsgDelayTime" 0;
+BA_DEF_DEF_ "GenMsgFastOnStart" 0;
+BA_DEF_DEF_ "GenMsgILSupport" "Yes";
+BA_DEF_DEF_ "GenMsgNrOfRepetition" 0;
+BA_DEF_DEF_ "GenMsgRequestable" 1;
+BA_DEF_DEF_ "GenMsgSendType" "noMsgSendType";
+BA_DEF_DEF_ "GenMsgStartDelayTime" 0;
+BA_DEF_DEF_ "GenMsgTimeOut_BrakeSystemCtl" 0;
+BA_DEF_DEF_ "VFrameFormat" "J1939PG";
+BA_DEF_DEF_ "BusType" "";
+BA_DEF_DEF_ "DatabaseVersion" "";
+BA_DEF_DEF_ "GenEnvVarEndingDsp" "Dsp_";
+BA_DEF_DEF_ "GenEnvVarEndingSnd" "_";
+BA_DEF_DEF_ "GenEnvVarPrefix" "Env";
+BA_DEF_DEF_ "ProtocolType" "";
+BA_DEF_DEF_ "SAE_J1939_21_SpecVersion" "";
+BA_DEF_DEF_ "SAE_J1939_71_SpecVersion" "";
+BA_DEF_DEF_ "SAE_J1939_73_SpecVersion" "";
+BA_DEF_DEF_ "SAE_J1939_75_SpecVersion" "";
+BA_DEF_DEF_ "SAE_J1939_81_SpecVersion" "";
+BA_DEF_DEF_ "GenSigEVName" "Env@Nodename_@Signame";
+BA_DEF_DEF_ "GenSigILSupport" "Yes";
+BA_DEF_DEF_ "GenSigInactiveValue" 0;
+BA_DEF_DEF_ "GenSigSendType" "NoSigSendType";
+BA_DEF_DEF_ "GenSigStartValue" 0;
+BA_DEF_DEF_ "SPN" 0;
+BA_DEF_DEF_ "SigType" "Default";
+BA_DEF_DEF_ "SystemSignalLongSymbol" "";
+BA_DEF_DEF_ "ECU" "";
+BA_DEF_DEF_ "NmJ1939AAC" 0;
+BA_DEF_DEF_ "NmJ1939ECUInstance" 0;
+BA_DEF_DEF_ "NmJ1939Function" 0;
+BA_DEF_DEF_ "NmJ1939FunctionInstance" 0;
+BA_DEF_DEF_ "NmJ1939IdentityNumber" 0;
+BA_DEF_DEF_ "NmJ1939IndustryGroup" 0;
+BA_DEF_DEF_ "NmJ1939ManufacturerCode" 0;
+BA_DEF_DEF_ "NmJ1939System" 0;
+BA_DEF_DEF_ "NmJ1939SystemInstance" 0;
+BA_DEF_DEF_ "NmStationAddress" 254;
+BA_DEF_DEF_ "NodeLayerModules" "";
+BA_ "BusType" "CAN";
+BA_ "DatabaseVersion" "7.6";
+BA_ "ProtocolType" "J1939";
+BA_ "SAE_J1939_21_SpecVersion" "2006-10";
+BA_ "SAE_J1939_71_SpecVersion" "2011-09";
+BA_ "SAE_J1939_73_SpecVersion" "2010-10";
+BA_ "SAE_J1939_75_SpecVersion" "2005-10";
+BA_ "SAE_J1939_81_SpecVersion" "2003-05";
+
+BA_ "VFrameFormat" BO_ 2564423760 3;
+BA_ "VFrameFormat" BO_ 2559310416 3;
+BA_ "GenMsgCycleTime" BO_ 2566852688 100;
+BA_ "GenMsgSendType" BO_ 2566852688 0;
+BA_ "VFrameFormat" BO_ 2566852688 3;
+BA_ "GenMsgCycleTime" BO_ 2566849104 10;
+BA_ "GenMsgSendType" BO_ 2566849104 0;
+BA_ "VFrameFormat" BO_ 2566849104 3;
+BA_ "GenMsgCycleTime" BO_ 2566850128 100;
+BA_ "GenMsgSendType" BO_ 2566850128 0;
+BA_ "VFrameFormat" BO_ 2566850128 3;
+BA_ "SystemSignalLongSymbol" SG_ 2566850128 TractorParkbrkRel_Ignition_statu "TractorParkbrkRel_Ignition_status";
+BA_ "SystemSignalLongSymbol" SG_ 2566850128 TrailerParkbrkRel_Ignition_statu "TrailerParkbrkRel_Ignition_status";
+BA_ "GenMsgCycleTime" BO_ 2349075280 200;
+BA_ "GenMsgSendType" BO_ 2349075280 0;
+BA_ "VFrameFormat" BO_ 2349075280 3;
+BA_ "GenSigStartValue" SG_ 2349075280 ExternalAccelerationDemand 11647;
+BA_ "GenMsgCycleTime" BO_ 2566834768 1000;
+BA_ "GenMsgSendType" BO_ 2566834768 0;
+BA_ "VFrameFormat" BO_ 2566834768 3;
+BA_ "VFrameFormat" BO_ 2566835024 3;
+BA_ "VFrameFormat" BO_ 2566835280 3;
+BA_ "VFrameFormat" BO_ 2566837072 3;
+BA_ "VFrameFormat" BO_ 2565537616 3;
+BA_ "VFrameFormat" BO_ 2564444410 3;
+BA_ "VFrameFormat" BO_ 2564509946 3;
+BA_ "VFrameFormat" BO_ 2564554746 3;
+BA_ "VFrameFormat" BO_ 2559332602 3;
+BA_ "GenMsgCycleTime" BO_ 2566844672 100;
+BA_ "GenMsgSendType" BO_ 2566844672 0;
+BA_ "VFrameFormat" BO_ 2566844672 3;
+BA_ "GenMsgCycleTime" BO_ 2566831883 100;
+BA_ "GenMsgSendType" BO_ 2566831883 0;
+BA_ "VFrameFormat" BO_ 2566831883 3;
+BA_ "GenMsgCycleTime" BO_ 2566861049 100;
+BA_ "GenMsgSendType" BO_ 2566861049 0;
+BA_ "VFrameFormat" BO_ 2566861049 3;
+BA_ "GenMsgCycleTime" BO_ 2566827520 1000;
+BA_ "GenMsgSendType" BO_ 2566827520 0;
+BA_ "VFrameFormat" BO_ 2566827520 3;
+BA_ "GenMsgCycleTime" BO_ 2565865984 10;
+BA_ "GenMsgSendType" BO_ 2565865984 0;
+BA_ "VFrameFormat" BO_ 2565865984 3;
+BA_ "GenMsgCycleTime" BO_ 2565866752 100;
+BA_ "GenMsgSendType" BO_ 2565866752 0;
+BA_ "VFrameFormat" BO_ 2565866752 3;
+BA_ "GenMsgCycleTime" BO_ 2566802944 100;
+BA_ "GenMsgSendType" BO_ 2566802944 0;
+BA_ "VFrameFormat" BO_ 2566802944 3;
+BA_ "GenMsgCycleTime" BO_ 2565865739 100;
+BA_ "GenMsgSendType" BO_ 2565865739 0;
+BA_ "VFrameFormat" BO_ 2565865739 3;
+BA_ "GenMsgCycleTime" BO_ 2566767627 100;
+BA_ "GenMsgSendType" BO_ 2566767627 0;
+BA_ "VFrameFormat" BO_ 2566767627 3;
+BA_ "GenSigStartValue" SG_ 2566767627 XBRAccLimit 25;
+BA_ "GenMsgCycleTime" BO_ 2565866496 20;
+BA_ "GenMsgSendType" BO_ 2565866496 0;
+BA_ "VFrameFormat" BO_ 2565866496 3;
+BA_ "GenMsgCycleTime" BO_ 2565866240 50;
+BA_ "GenMsgSendType" BO_ 2565866240 0;
+BA_ "VFrameFormat" BO_ 2565866240 3;
+BA_ "VFrameFormat" BO_ 2566841600 3;
+BA_ "GenMsgCycleTime" BO_ 2550222848 50;
+BA_ "GenMsgSendType" BO_ 2550222848 0;
+BA_ "VFrameFormat" BO_ 2550222848 3;
+BA_ "GenSigStartValue" SG_ 2550222848 TransRequestGear 61;
+BA_ "GenMsgCycleTime" BO_ 2566849788 10;
+BA_ "GenMsgSendType" BO_ 2566849788 0;
+BA_ "VFrameFormat" BO_ 2566849788 3;
+BA_ "GenMsgCycleTime" BO_ 2564837376 1000;
+BA_ "GenMsgSendType" BO_ 2564837376 0;
+BA_ "VFrameFormat" BO_ 2564837376 3;
+BA_ "GenMsgCycleTime" BO_ 2566851068 10;
+BA_ "GenMsgSendType" BO_ 2566851068 0;
+BA_ "VFrameFormat" BO_ 2566851068 3;
+BA_ "VFrameFormat" BO_ 2566841856 3;
+BA_ "GenSigStartValue" SG_ 2566841856 MONTH 1;
+BA_ "GenSigStartValue" SG_ 2566841856 DAY 1;
+BA_ "GenMsgCycleTime" BO_ 2298375691 20;
+BA_ "GenMsgSendType" BO_ 2298375691 0;
+BA_ "VFrameFormat" BO_ 2298375691 3;
+BA_ "GenMsgCycleTime" BO_ 2563833600 5000;
+BA_ "GenMsgSendType" BO_ 2563833600 0;
+BA_ "VFrameFormat" BO_ 2563833600 3;
+BA_ "VFrameFormat" BO_ 2564772090 3;
+BA_ "VFrameFormat" BO_ 2565799760 3;
+BA_ "VFrameFormat" BO_ 2566767952 3;
+BA_ "VFrameFormat" BO_ 2566843216 3;
+BA_ "VFrameFormat" BO_ 2566838864 3;
+BA_ "VFrameFormat" BO_ 2565668432 3;
+BA_ "VFrameFormat" BO_ 2565602896 3;
+BA_ "VFrameFormat" BO_ 2565406288 3;
+BA_ "VFrameFormat" BO_ 2565799678 3;
+BA_ "VFrameFormat" BO_ 2632777470 3;
+BA_ "VFrameFormat" BO_ 2632711934 3;
+BA_ "VFrameFormat" BO_ 2565537534 3;
+BA_ "NmStationAddress" BU_ ABS 11;
+BA_ "NmStationAddress" BU_ CabController1 49;
+BA_ "NmStationAddress" BU_ Engine 0;
+BA_ "NmStationAddress" BU_ Microautobox 252;
+BA_ "NmStationAddress" BU_ NULL 254;
+BA_ "NmStationAddress" BU_ ServiceTool 249;
+BA_ "NmStationAddress" BU_ TesterECU 250;
+BA_ "NmStationAddress" BU_ ePark_DECU 80;
+
+VAL_ 2566849104 sEPB_PCM_inhibit_status_fbk 3 "Not Defined" 2 "Request Applied" 1 "Available, idle" 0 "Not Available" ;
+VAL_ 2566849104 sEPB_PCM_manual_status_fbk 3 "Not Defined" 2 "Request Applied" 1 "Available, idle" 0 "Not Available" ;
+VAL_ 2566849104 sEPB_MABX_detected 1 "MABX detected" 0 "not detected" ;
+VAL_ 2566850128 TractorParkStatus 3 "Not Available" 2 "Error" 1 "Parked" 0 "Un-parked" ;
+VAL_ 2566850128 TrailerParkStatus 3 "Not Available" 2 "Error" 1 "Not-Charged" 0 "Charged" ;
+VAL_ 2566850128 SeatBeltStatusInMotion 3 "Not Available" 2 "Seat Belt is Error" 1 "Seat belt is unbuckled in motion" 0 "Seat belt is buckled in motion" ;
+VAL_ 2566850128 ARA_State 3 "Not Available" 2 "ARA is Error" 1 "ARA in Active state " 0 "ARA in Passive state" ;
+VAL_ 2566850128 AutoTrailerReleaseState 3 "Not Available" 2 "ATBD is Error" 1 "ATBD in Active state " 0 "ATBD in Passive state" ;
+VAL_ 2566850128 ParkAtSpeedXBR 3 "Not Available" 2 "Park At Speed XBR is Error" 1 "Park At Speed XBR is Active" 0 "Park At Speed XBR is Passive" ;
+VAL_ 2566850128 ParkAtSpeedEASYellowButtonPull 3 "Not Available" 2 "Park At Speed EAS is Error" 1 "Park At Speed EAS is Active" 0 "Park At Speed EAS is Passive" ;
+VAL_ 2566850128 ParkAtSpeedEASRedButtonPull 3 "Not Available" 2 "Park At Speed EAS is Error" 1 "Park At Speed EAS is Active" 0 "Park At Speed EAS is Passive" ;
+VAL_ 2566850128 ParkAtSpeedModulation 3 "Not Available" 2 "Park At Speed Modulation is Error" 1 "Park At Speed Modulation is Active" 0 "Park At Speed Modulation is Passive" ;
+VAL_ 2566850128 TractorParkbrkRel_SLS_status 3 "Not Available" 2 "Foot Brake is Error" 1 "Foot Brake is satisfied " 0 "Foot Brake is not satisfied " ;
+VAL_ 2566850128 TractorParkbrkRel_Ignition_statu 3 "Not Available" 2 "Ignition is Error" 1 "Ignition is ON  " 0 "Ignition is OFF " ;
+VAL_ 2566850128 TractorParkBrkRelOCC1Status 3 "Not Available" 2 "OCC1 is Error" 1 "OCC1 is satisfied " 0 "OCC1 is not satisfied " ;
+VAL_ 2566850128 TractorParkBrkRelOCC2Status 3 "Not Available" 2 "OCC2 is Error" 1 "OCC2 is satisfied " 0 "OCC2 is not satisfied " ;
+VAL_ 2566850128 ParkBrkRelYellowButtonStatus 3 "Not Available" 2 "Yellow button is error" 1 "Yellow button push satisfied" 0 "Yellow button push was premature" ;
+VAL_ 2566850128 TrailerParkbrkRel_SLS_status 3 "Not Available" 2 "Foot Brake is Error" 1 "Foot Brake is satisfied " 0 "Foot Brake is not satisfied " ;
+VAL_ 2566850128 TrailerParkbrkRel_Ignition_statu 3 "Not Available" 2 "Ignition is Error" 1 "Ignition is ON  " 0 "Ignition is OFF " ;
+VAL_ 2566850128 TrailerParkBrkRelOCC1Status 3 "Not Available" 2 "OCC1 is Error" 1 "OCC1 is satisfied " 0 "OCC1 is not satisfied " ;
+VAL_ 2566850128 TrailerParkBrkRelOCC2Status 3 "Not Available" 2 "OCC2 is Error" 1 "OCC2 is satisfied " 0 "OCC2 is not satisfied " ;
+VAL_ 2566850128 ParkBrkRelRedButtonStatus 3 "Not Available" 2 "Red button is error" 1 "Red button push satisfied" 0 "Red button push was premature" ;
+VAL_ 2566850128 DECUBattery1VoltageValue 255 "Not Available" 254 "Error" 251 "range=\"253\">RESERVED" 0 "range=\"250\">Voltage in volts" ;
+VAL_ 2566850128 DECUBattery2VoltageValue 255 "Not Available" 254 "Error" 251 "range=\"253\">RESERVED" 0 "range=\"250\">Voltage in volts" ;
+VAL_ 2349075280 ExternalAccelerationDemand 65535 "Not available" 65024 "Error" ;
+VAL_ 2349075280 EBIMode 3 "Not defined" 2 "EBI allowed" 1 "Only EB allowed" 0 "No EBI allowed" ;
+VAL_ 2349075280 XBRPriority 3 "Low" 2 "Medium" 1 "High" 0 "Highest" ;
+VAL_ 2349075280 XBRControlMode 3 "Not defined" 2 "Acc ctrl with maximum mode" 1 "Acc ctrl with addition mode" 0 "Override disabled" ;
+VAL_ 2349075280 XBRUrgency 255 "Not available" 254 "Error" ;
+VAL_ 2566844672 ParkingBrakeSwitch 3 "Not Available" 2 "Error" 1 "Parking brake set" 0 "Parking brake not set" ;
+VAL_ 2566844672 ParkingBrkRelInhiReq 3 "Not Available" 2 "SAE reserved" 1 "Parking brake Inhibit requested" 0 "Parking brake Inhibit not requested" ;
+VAL_ 2566844672 WheelBasedVehSpeed 65535 "Not Available" 65024 "Error" ;
+VAL_ 2566844672 BrakeSwitch 3 "Not available" 2 "Error" 1 "Depressed" 0 "Released" ;
+VAL_ 2566844672 CruiseControlAccelerateSwitch 3 "Not Available" 2 "Error" 1 "Cruise control activator in position \"accelerate" 0 "Cruise control activator not in the position \"accelerate\"" ;
+VAL_ 2566831883 FrontAxleSpeed 65535 "Not Available" 65024 "Error" ;
+VAL_ 2566831883 FrontAxleLeftWheelSpeed 255 "Not Available" 254 "Error" ;
+VAL_ 2566831883 FrontAxleRightWheelSpeed 255 "Not Available" 254 "Error" ;
+VAL_ 2566831883 RearAxle1LeftWheelSpeed 255 "Not Available" 254 "Error" ;
+VAL_ 2566831883 RearAxle1RightWheelSpeed 255 "Not Available" 254 "Error" ;
+VAL_ 2566831883 RearAxle2LeftWheelSpeed 255 "Not Available" 254 "Error" ;
+VAL_ 2566831883 RearAxle2RightWheelSpeed 255 "Not Available" 254 "Error" ;
+VAL_ 2566827520 PneumSupPressure 255 "Not Available" 254 "Error" ;
+VAL_ 2566827520 ParkTrailerAirPres 255 "Not Available" 254 "Error" ;
+VAL_ 2566827520 ServBrakeCircuit1 255 "Not Available" 254 "Error" ;
+VAL_ 2566827520 ServBrakeCircuit2 255 "Not Available" 254 "Error" ;
+VAL_ 2565865984 TransDriveEngaged 3 "Not available" 2 "Error" 1 "Engaged" 0 "Disengaged" ;
+VAL_ 2565865984 TransShiftInProc 3 "Not available" 2 "Error" 1 "In process" 0 "Not in process" ;
+VAL_ 2565866752 TransSelectGear 255 "Not available" 254 "Error" 251 "Park" 125 "Neutral" ;
+VAL_ 2565866752 TransCurrentGear 255 "Not available" 254 "Error" 251 "Park" 125 "Neutral" ;
+VAL_ 2566802944 PositionOfDoors 15 "Not Available" 14 "Error" 2 "All doors closed" 1 "Closing last door" 0 "At least 1 door is open" ;
+VAL_ 2566802944 RampWheelChairLiftPosition 3 "Not Available" 2 "Error" 1 "Outside bus" 0 "Inside bus" ;
+VAL_ 2566802944 Status2OfDoors 3 "Not Available" 2 "Error" 1 "at least 1 bus door enabled" 0 "all bus doors are disabled" ;
+VAL_ 2565865739 ABS_Active 3 "Not Available" 2 "Reserved" 1 "ABS active" 0 "ABS passive but installed" ;
+VAL_ 2565865739 EBSbrakeswitch 3 "Not Available" 2 "Error" 1 "Brake pedal is being pressed" 0 "Brake pedal is not being pressed" ;
+VAL_ 2565865739 HillHolderSwitch 3 "Not Available" 2 "Error" 1 "HSA switch active, HSA mode is active " 0 "HSA switch passive, HSA mode is not active " ;
+VAL_ 2565865739 ABSFullyOp 3 "Not Available" 2 "Reserved" 1 "Fully Operational" 0 "Not Fully Operational" ;
+VAL_ 2565865739 AmberWarningSignal 3 "Not Available" 2 "Reserved" 1 "On" 0 "Off" ;
+VAL_ 2565865739 TrailerABSStat 3 "Not Available" 2 "Reserved" 1 "Trailer ABS Active" 0 "Trailer ABS Status Information Available But Not Active" ;
+VAL_ 2565865739 ABSWarningSig 3 "Take No Action" 2 "Reserved" 1 "ON" 0 "OFF" ;
+VAL_ 2566767627 Hillholdermode 7 "Not Available" 6 "Error" 5 "Reserved " 2 "Active " 1 "Active " 0 "Inactive" ;
+VAL_ 2566767627 XBRSysState 3 "Don't care/take no action" 2 "No external brake demand will be accepted (e.g. because of fault in brake system)" 1 "Only external brake demand of highest XBR Priority (00) will be accepted (e.g. because the temperature limit of thebrake system is exceeded)" 0 "Any external brake demand will be accepted (brake system fully operational)" ;
+VAL_ 2566767627 XBRActiveControlMode 15 "Not available" 3 "Maximum mode of XBR acceleration control being executed" 2 "Addition mode of XBR acceleration control being executed" 1 "Driver's brake demand being executed, no external brake demand" 0 "No brake demand being executed (default mode)" ;
+VAL_ 2566767627 XBRAccLimit 255 "Not Available" 254 "Error" ;
+VAL_ 2566767627 EmergencyBrakeAct 3 "Not Available" 2 "Reserved" 1 "Active" 0 "Inactive" ;
+VAL_ 2565866496 DriverDemEng 255 "Not available" 254 "Error" ;
+VAL_ 2565866496 EngineSpeed 65535 "Not Available" 65024 "Error" ;
+VAL_ 2565866496 EngDemPerTorque 255 "Not available" 254 "Error" ;
+VAL_ 2565866240 Accelerator_Pedal_Position_1 255 "Not avilable" 254 "Error" ;
+VAL_ 2566841600 Total_Engine_Hours 4278190079 "Error" ;
+VAL_ 2550222848 TransRequestGear 255 "Not available" 254 "Error" 251 "Park" 125 "Neutral" ;
+VAL_ 2566849788 inhibit_park_manual 3 "inhibit both park brake commands" 2 "inhibit trailer park brake command" 1 "inhibit tractor park brake command" 0 "no override" ;
+VAL_ 2566849788 inhibit_unpark_manual 3 "inhibit both unpark commands" 2 "inhibit trailer unpark command" 1 "inhibit tractor unpark command" 0 "no override" ;
+VAL_ 2566849788 park_manual 3 "apply both park brake" 2 "apply trailer park brake" 1 "apply tractor park brake" 0 "no override" ;
+VAL_ 2566849788 unpark_manual 3 "release both park brake" 2 "release trailer park brake" 1 "release tractor park brake" 0 "no override" ;
+VAL_ 2564837376 SeatBeltSwitch 3 "Not Available" 2 "Switch state cannot be determined" 1 "Seat Belt is buckled" 0 "Not Buckled" ;
+VAL_ 2564837376 ParkBrakeCommand 3 "Don't care/Take no action" 2 "SAE Reserved" 1 "Park Brake apply requested" 0 "Park Brake apply not requested" ;
+VAL_ 2566851068 IndLedCommand 7 "ON ON ON" 6 "ON ON OFF" 5 "ON OFF ON" 4 "ON OFF OFF" 3 "OFF ON ON" 2 "OFF ON OFF" 1 "OFF OFF ON" 0 "OFF OFF OFF" ;
+VAL_ 2298375691 HRWFrontLeftSpd 65535 "Not available" 65024 "Error" ;
+VAL_ 2298375691 HRWFrontRightSpd 65535 "Not available" 65024 "Error" ;
+VAL_ 2298375691 HRWRearLeftSpd 65535 "Not available" 65024 "Error" ;
+VAL_ 2298375691 HRWRearRightSpd 65535 "Not available" 65024 "Error" ;
