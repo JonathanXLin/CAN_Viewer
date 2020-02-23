@@ -7,3 +7,12 @@ C:\Users\Jonathan\Desktop\CAN_Viewer\CAN_Viewer\obj\Debug\CAN_Viewer.Properties.
 C:\Users\Jonathan\Desktop\CAN_Viewer\CAN_Viewer\obj\Debug\CAN_Viewer.csproj.GenerateResource.cache
 C:\Users\Jonathan\Desktop\CAN_Viewer\CAN_Viewer\obj\Debug\CAN_Viewer.exe
 C:\Users\Jonathan\Desktop\CAN_Viewer\CAN_Viewer\obj\Debug\CAN_Viewer.pdb
+C:\Users\Jonathan\Documents\GitHub\CAN_Viewer\CAN_Viewer\bin\Debug\CAN_Viewer.exe.config
+C:\Users\Jonathan\Documents\GitHub\CAN_Viewer\CAN_Viewer\bin\Debug\CAN_Viewer.exe
+C:\Users\Jonathan\Documents\GitHub\CAN_Viewer\CAN_Viewer\bin\Debug\CAN_Viewer.pdb
+C:\Users\Jonathan\Documents\GitHub\CAN_Viewer\CAN_Viewer\obj\Debug\CAN_Viewer.csprojAssemblyReference.cache
+C:\Users\Jonathan\Documents\GitHub\CAN_Viewer\CAN_Viewer\obj\Debug\CAN_Viewer.Properties.Resources.resources
+C:\Users\Jonathan\Documents\GitHub\CAN_Viewer\CAN_Viewer\obj\Debug\CAN_Viewer.csproj.GenerateResource.cache
+C:\Users\Jonathan\Documents\GitHub\CAN_Viewer\CAN_Viewer\obj\Debug\CAN_Viewer.exe
+C:\Users\Jonathan\Documents\GitHub\CAN_Viewer\CAN_Viewer\obj\Debug\CAN_Viewer.pdb
+C:\Users\Jonathan\Documents\GitHub\CAN_Viewer\CAN_Viewer\obj\Debug\CAN_Viewer.CAN_Viewer_Main.resources
