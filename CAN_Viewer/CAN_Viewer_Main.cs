@@ -74,8 +74,17 @@ namespace CAN_Viewer
             statusStrip_status.Stretch = false;
             statusStrip_status.TabIndex = 0;
 
+            logfile_path = "[no logfile selected]";
+
             status_text.Size = new System.Drawing.Size(109, 17);
-            status_text.Text = "none";
+            status_text.Text = logfile_path;
+
+            // Initialize treeview with logfile and database root nodes
+            TreeNode root_logfile = new TreeNode("CAN Logfiles");
+            treeView_tree.Nodes.Add(root_logfile);
+
+            TreeNode root_database = new TreeNode("CAN Databases");
+            treeView_tree.Nodes.Add(root_database);
         }
 
         private void openToolStripMenuItem_logfile_Click(object sender, EventArgs e)
@@ -123,12 +132,14 @@ namespace CAN_Viewer
                     // Get the path of specified file
                     database_file.path = openFileDialog.FileName;
 
+                    // Add database to treeview
+                    TreeNode new_database_node = new TreeNode(Path.GetFileName(database_file.path));
+                    treeView_tree.Nodes[1].Nodes.Add(new_database_node);
+                    treeView_tree.Nodes[1].Expand();
+
                     // Declare instance of message list and initializes length
                     database_file.message_list = new List<message_format_t>();
                     database_file.num_messages = 0;
-
-                    // Update status bar with file name
-                    status_text.Text = Path.GetFileName(logfile_path) + " | " + Path.GetFileName(database_file.path);
 
                     /* Opens file in notepad */
                     //Process.Start("notepad.exe", database_file.path);
@@ -223,15 +234,6 @@ namespace CAN_Viewer
                             }
                         }
                     }
-
-                    /* Read the contents of the file into a stream
-                    var fileStream = openFileDialog.OpenFile();
-
-                    using (StreamReader reader = new StreamReader(fileStream))
-                    {
-                        fileContent = reader.ReadToEnd();
-                    }
-                    */
                 }
             }
         }

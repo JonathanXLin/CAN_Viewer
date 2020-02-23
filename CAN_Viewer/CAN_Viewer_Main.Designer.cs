@@ -30,9 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CAN_Viewer_Main));
             this.statusStrip_status = new System.Windows.Forms.StatusStrip();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
+            this.checkedListBox_signals = new System.Windows.Forms.CheckedListBox();
             this.menuStrip_menu = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openToolStripMenuItem_logfile = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem_database = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,7 +41,7 @@
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openToolStripMenuItem_logfile = new System.Windows.Forms.ToolStripMenuItem();
+            this.treeView_tree = new System.Windows.Forms.TreeView();
             this.menuStrip_menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,15 +53,15 @@
             this.statusStrip_status.TabIndex = 0;
             this.statusStrip_status.Text = "statusStrip1";
             // 
-            // checkedListBox1
+            // checkedListBox_signals
             // 
-            this.checkedListBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Location = new System.Drawing.Point(0, 24);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(161, 514);
-            this.checkedListBox1.TabIndex = 1;
+            this.checkedListBox_signals.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkedListBox_signals.FormattingEnabled = true;
+            this.checkedListBox_signals.Location = new System.Drawing.Point(8, 207);
+            this.checkedListBox_signals.Name = "checkedListBox_signals";
+            this.checkedListBox_signals.Size = new System.Drawing.Size(185, 319);
+            this.checkedListBox_signals.TabIndex = 1;
             // 
             // menuStrip_menu
             // 
@@ -84,6 +85,16 @@
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "&File";
+            // 
+            // openToolStripMenuItem_logfile
+            // 
+            this.openToolStripMenuItem_logfile.Image = ((System.Drawing.Image)(resources.GetObject("openToolStripMenuItem_logfile.Image")));
+            this.openToolStripMenuItem_logfile.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.openToolStripMenuItem_logfile.Name = "openToolStripMenuItem_logfile";
+            this.openToolStripMenuItem_logfile.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.L)));
+            this.openToolStripMenuItem_logfile.Size = new System.Drawing.Size(217, 22);
+            this.openToolStripMenuItem_logfile.Text = "&Open CAN Logfile";
+            this.openToolStripMenuItem_logfile.Click += new System.EventHandler(this.openToolStripMenuItem_logfile_Click);
             // 
             // openToolStripMenuItem_database
             // 
@@ -117,7 +128,7 @@
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.optionsToolStripMenuItem.Text = "&Options";
             // 
             // helpToolStripMenuItem
@@ -134,22 +145,22 @@
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.aboutToolStripMenuItem.Text = "&About...";
             // 
-            // openToolStripMenuItem_logfile
+            // treeView_tree
             // 
-            this.openToolStripMenuItem_logfile.Image = ((System.Drawing.Image)(resources.GetObject("openToolStripMenuItem_logfile.Image")));
-            this.openToolStripMenuItem_logfile.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.openToolStripMenuItem_logfile.Name = "openToolStripMenuItem_logfile";
-            this.openToolStripMenuItem_logfile.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.L)));
-            this.openToolStripMenuItem_logfile.Size = new System.Drawing.Size(217, 22);
-            this.openToolStripMenuItem_logfile.Text = "&Open CAN Logfile";
-            this.openToolStripMenuItem_logfile.Click += new System.EventHandler(this.openToolStripMenuItem_logfile_Click);
+            this.treeView_tree.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.treeView_tree.Location = new System.Drawing.Point(8, 30);
+            this.treeView_tree.Name = "treeView_tree";
+            this.treeView_tree.Size = new System.Drawing.Size(185, 168);
+            this.treeView_tree.TabIndex = 3;
             // 
             // CAN_Viewer_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 560);
-            this.Controls.Add(this.checkedListBox1);
+            this.Controls.Add(this.treeView_tree);
+            this.Controls.Add(this.checkedListBox_signals);
             this.Controls.Add(this.statusStrip_status);
             this.Controls.Add(this.menuStrip_menu);
             this.MinimumSize = new System.Drawing.Size(500, 300);
@@ -166,7 +177,7 @@
         #endregion
 
         private System.Windows.Forms.StatusStrip statusStrip_status;
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
+        private System.Windows.Forms.CheckedListBox checkedListBox_signals;
         private System.Windows.Forms.MenuStrip menuStrip_menu;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem_database;
@@ -177,6 +188,7 @@
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem_logfile;
+        private System.Windows.Forms.TreeView treeView_tree;
     }
 }
 
