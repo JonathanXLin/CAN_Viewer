@@ -50,6 +50,14 @@ namespace CAN_Viewer
             public int point_number;
 
             public int database_message_index; // Index of database message format, -1 if does not exist
+            public List<logfile_signal_point_t> signal_point_list; // List of signals that are contained in logfile point
+        }
+
+        // Logfile signal, corresponds to single graphical datapoint on GUI
+        public class logfile_signal_point_t
+        {
+            public string name;
+            public double value;
         }
 
         // Database file, which contains message formats
@@ -175,8 +183,60 @@ namespace CAN_Viewer
 
                             new_point.point_number = int.Parse(log_line_words[5 + new_point.num_bytes]);
 
+                            // Initialize signal list
+                            new_point.signal_point_list = new List<logfile_signal_point_t>(); 
+
+                            // Adds logfile point to point list
                             logfile.point_list.Add(new_point);
                             logfile.num_points++;
+
+                            // Matches each point with corresponding message_format in database file
+                            foreach (logfile_point_t curr_point in logfile.point_list)
+                            {
+                                // Finds and stores index of database_file message_list that is used to decode curr_point
+                                curr_point.database_message_index = database_file.message_list.IndexOf(database_file.message_list.Find(x => x.id == curr_point.id));
+
+                                // Convert bytewise data representation into bit array
+                                bool[] data_bit_array = new bool[curr_point.num_bytes * 8];
+
+                                for (int i=0; i<curr_point.num_bytes; i++)
+                                {
+                                    for (int j=0; j<8; j++)
+                                    {
+                                        data_bit_array[(i * 8) + j] = Convert.ToBoolean(curr_point.data[curr_point.num_bytes - i - 1] & (1 << j));
+                                    }
+                                }
+
+                                // Populate signal point list with all signals contained in logfile point
+                                int num_signals = database_file.message_list[curr_point.database_message_index].num_signals; // Number of signals in current point
+
+                                for (int i=0; i<num_signals; i++)
+                                {
+                                    int num_bits = database_file.message_list[curr_point.database_message_index].signal_list[i].length;
+
+                                    bool[] bit_array = new bool[num_bits];
+
+
+                                }
+
+                                /*
+                                string test = "";
+                                for (int i=0; i<curr_point.num_bytes*8; i++)
+                                {
+                                    test += Convert.ToInt32(data_bit_array[i]).ToString();
+                                    if ((i + 1) % 8 == 0)
+                                        test += " ";
+                                }
+                                MessageBox.Show(test);
+                                */
+
+                                /*
+                                if (curr_point.database_message_index != -1)
+                                {
+                                    MessageBox.Show("Timestamp: " + curr_point.timestamp.ToString() + " Message Name: " + database_file.message_list[curr_point.database_message_index].name);
+                                }
+                                */
+                            }
 
                             /*
                             if (new_point.num_bytes == 0)
@@ -190,19 +250,6 @@ namespace CAN_Viewer
                     }
 
                     // MessageBox.Show(logfile.point_list.Find(x => x.id == 419366480).timestamp.ToString());
-
-                    // Matches each point with corresponding message_format in database file
-                    foreach (logfile_point_t curr_point in logfile.point_list)
-                    {
-                        curr_point.database_message_index = database_file.message_list.IndexOf(database_file.message_list.Find(x => x.id == curr_point.id));
-
-                        /*
-                        if (curr_point.database_message_index != -1)
-                        {
-                            MessageBox.Show("Timestamp: " + curr_point.timestamp.ToString() + " Message Name: " + database_file.message_list[curr_point.database_message_index].name);
-                        }
-                        */
-                    }
 
                     /* Opens file in notepad
                     Process.Start("notepad.exe", logfile_path);
