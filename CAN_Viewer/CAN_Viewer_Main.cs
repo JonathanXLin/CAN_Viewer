@@ -56,6 +56,8 @@ namespace CAN_Viewer
             public int length;
             public double scale;
             public double offset;
+            public double min;
+            public double max;
             public string unit;
             public int endian;
         }
@@ -126,7 +128,7 @@ namespace CAN_Viewer
                     database_file.num_messages = 0;
 
                     // Update status bar with file name
-                    status_text.Text = Path.GetFileName(database_file.path);
+                    status_text.Text = Path.GetFileName(logfile_path) + " | " + Path.GetFileName(database_file.path);
 
                     /* Opens file in notepad */
                     //Process.Start("notepad.exe", database_file.path);
@@ -164,27 +166,59 @@ namespace CAN_Viewer
                                 // Continue reading while still parsing new signal formats
                                 if ((char)reader.Peek() == ' ') // If next character is space, according to .dbc format, means there is at least one signal format
                                 {
-                                    //do
-                                    //{
+                                    do
+                                    {
                                         string curr_signal_line = reader.ReadLine();
                                         string[] signal_line_words = curr_signal_line.Split(' ');
 
                                         // Parse signal line and populate signal with new item
                                         signal_format_t new_signal = new signal_format_t();
-                                        new_signal.name = signal_line_words[1];
+                                        new_signal.name = signal_line_words[2];
 
                                         int ampersand_index = signal_line_words[4].IndexOf(@"@");
                                         int pipe_index = signal_line_words[4].IndexOf(@"|");
                                         new_signal.start_bit = Int32.Parse(signal_line_words[4].Remove(pipe_index));
                                         new_signal.length = Int32.Parse((signal_line_words[4].Remove(ampersand_index)).Substring(pipe_index + 1));
-                                        
-                                        if (Equals(signal_line_words[4].Remove(ampersand_index + 1), "@1+"))
-                                            new_signal.endian = little_endian
-                                    
-                                        MessageBox.Show(signal_line_words[4] + " lb: " + new_signal.length.ToString());
 
-                                        //database_file.message_list[database_file.num_messages].signal_list.Add(new_signal);
-                                    //}
+                                        int comma_index = signal_line_words[5].IndexOf(@",");
+                                        int close_brace_index = signal_line_words[5].IndexOf(@")");
+                                        new_signal.scale = Double.Parse((signal_line_words[5].Remove(comma_index)).Remove(0, 1));
+                                        new_signal.offset = Double.Parse((signal_line_words[5].Remove(close_brace_index)).Substring(comma_index + 1));
+
+                                        int pipe2_index = signal_line_words[6].IndexOf(@"|");
+                                        int close_brace2_index = signal_line_words[6].IndexOf(@"]");
+                                        int extra_space_index_compensation_amount = 0;
+                                        if (close_brace2_index == -1) // DBC glitch where space is put before last "]"
+                                        {
+                                            new_signal.min = Double.Parse((signal_line_words[6].Remove(pipe2_index)).Remove(0, 1));
+                                            new_signal.max = Double.Parse(signal_line_words[6].Substring(pipe2_index + 1));
+
+                                            extra_space_index_compensation_amount = 1;
+                                        }
+                                        else
+                                        {
+                                            new_signal.min = Double.Parse((signal_line_words[6].Remove(pipe2_index)).Remove(0, 1));
+                                            new_signal.max = Double.Parse((signal_line_words[6].Remove(close_brace2_index)).Substring(pipe2_index + 1));
+                                        }
+
+                                        int close_quote_index = signal_line_words[7 + extra_space_index_compensation_amount].LastIndexOf("\"");
+                                        new_signal.unit = (signal_line_words[7 + extra_space_index_compensation_amount].Remove(close_quote_index)).Remove(0, 1);
+                                        if (Equals(new_signal.unit, ""))
+                                            new_signal.unit = "none";
+
+                                        if (Equals(signal_line_words[4].Substring(ampersand_index), "@1+"))
+                                            new_signal.endian = 1;
+                                        else if (Equals(signal_line_words[4].Substring(ampersand_index), "@1-"))
+                                            new_signal.endian = 2;
+                                        else
+                                            new_signal.endian = 3;
+
+                                        database_file.message_list[database_file.num_messages - 1].signal_list.Add(new_signal);
+                                        database_file.message_list[database_file.num_messages - 1].num_signals++;
+
+                                        //MessageBox.Show(curr_signal_line + "\t\n" + new_signal.name + " " + new_signal.start_bit + " " + new_signal.length + " " + new_signal.scale + " " + new_signal.offset + " " + new_signal.min + " " + new_signal.max + " " + new_signal.unit + " " + new_signal.endian);
+
+                                    } while ((char)reader.Peek() == ' ');
                                 }
                             }
                         }
