@@ -48,6 +48,8 @@ namespace CAN_Viewer
             public int num_bytes;
             public int[] data;
             public int point_number;
+
+            public int database_message_index; // Index of database message format, -1 if does not exist
         }
 
         // Database file, which contains message formats
@@ -174,6 +176,7 @@ namespace CAN_Viewer
                             new_point.point_number = int.Parse(log_line_words[5 + new_point.num_bytes]);
 
                             logfile.point_list.Add(new_point);
+                            logfile.num_points++;
 
                             /*
                             if (new_point.num_bytes == 0)
@@ -183,22 +186,26 @@ namespace CAN_Viewer
                                     MessageBox.Show(i.ToString());
                             }
                             */
-
-                            
                         }
+                    }
+
+                    // MessageBox.Show(logfile.point_list.Find(x => x.id == 419366480).timestamp.ToString());
+
+                    // Matches each point with corresponding message_format in database file
+                    foreach (logfile_point_t curr_point in logfile.point_list)
+                    {
+                        curr_point.database_message_index = database_file.message_list.IndexOf(database_file.message_list.Find(x => x.id == curr_point.id));
+
+                        /*
+                        if (curr_point.database_message_index != -1)
+                        {
+                            MessageBox.Show("Timestamp: " + curr_point.timestamp.ToString() + " Message Name: " + database_file.message_list[curr_point.database_message_index].name);
+                        }
+                        */
                     }
 
                     /* Opens file in notepad
                     Process.Start("notepad.exe", logfile_path);
-                    */
-
-                    /* Read the contents of the file into a stream
-                    var fileStream = openFileDialog.OpenFile();
-
-                    using (StreamReader reader = new StreamReader(fileStream))
-                    {
-                        fileContent = reader.ReadToEnd();
-                    }
                     */
                 }
             }
