@@ -15,8 +15,12 @@ namespace CAN_Viewer
 {
     public partial class CAN_Viewer_Main : Form
     {
+        // Initial declarations of database and logfile objects, assuming only one of each will be loaded at any time
         database_file_t database_file = new database_file_t();
         logfile_t logfile = new logfile_t();
+
+        // Initial declaration of canvas object with time zero and width zero, populated when logfile is loaded
+        Canvas_t gui = new Canvas_t(0.0, 0.0);
 
         //Status strip label
         private ToolStripStatusLabel status_text = new ToolStripStatusLabel();
@@ -34,10 +38,8 @@ namespace CAN_Viewer
             public List<logfile_point_t> point_list;
             public int num_points;
         }
-
-        // Direction enumeration for logfile point direction
+        // Direction enumeration for logfile point direction, not yet used
         enum Direction { Rx, Tx, unknown };
-
         // Logfile point, corresponds to single line in logfile
         public class logfile_point_t
         {
@@ -51,8 +53,8 @@ namespace CAN_Viewer
 
             public int database_message_index; // Index of database message format, -1 if does not exist
             public List<logfile_signal_point_t> signal_point_list; // List of signals that are contained in logfile point
+            public int num_signal_points;
         }
-
         // Logfile signal, corresponds to single graphical datapoint on GUI
         public class logfile_signal_point_t
         {
@@ -68,7 +70,6 @@ namespace CAN_Viewer
             public List<message_format_t> message_list;
             public int num_messages;
         }
-
         // Database file message format, which contains signal formats
         public class message_format_t
         {
@@ -80,10 +81,8 @@ namespace CAN_Viewer
             public List<signal_format_t> signal_list;
             public int num_signals;
         }
-
-        // Endian enumeration for DBC signal format
+        // Endian enumeration for DBC signal format, not yet used
         enum Endian { little_endian, big_endian, unknown };
-
         // Database file signal format
         public class signal_format_t
         {
@@ -158,6 +157,11 @@ namespace CAN_Viewer
 
                             // Add and populate new logfile point
                             logfile_point_t new_point = new logfile_point_t();
+
+                            // Initialize signal_point list
+                            new_point.signal_point_list = new List<logfile_signal_point_t>();
+                            new_point.num_signal_points = 0;
+
                             new_point.timestamp = Double.Parse(log_line_words[0]);
                             new_point.channel = Int32.Parse(log_line_words[1]);
                             int index_of_x = log_line_words[2].IndexOf(@"x");
@@ -183,13 +187,6 @@ namespace CAN_Viewer
 
                             new_point.point_number = int.Parse(log_line_words[5 + new_point.num_bytes]);
                             //MessageBox.Show(new_point.point_number.ToString());
-
-                            // Initialize signal list
-                            new_point.signal_point_list = new List<logfile_signal_point_t>(); 
-
-                            // Adds logfile point to point list
-                            logfile.point_list.Add(new_point);
-                            logfile.num_points++;
 
                             // Matches point with corresponding message_format in database file
                             // Finds and stores index of database_file message_list that is used to decode curr_point
@@ -236,10 +233,21 @@ namespace CAN_Viewer
 
                                     double final_value = (raw_value * scale) + offset;
 
-                                    MessageBox.Show("Logfile Message #: " + new_point.point_number + " Timestamp: " + new_point.timestamp + " Signal Name <" + database_file.message_list[new_point.database_message_index].signal_list[i].name + ">, value: " + final_value);
+                                    // Add new signal to signal list and store values in new signal
+                                    logfile_signal_point_t new_signal_point = new logfile_signal_point_t();
+                                    new_signal_point.name = database_file.message_list[new_point.database_message_index].signal_list[i].name;
+                                    new_signal_point.value = final_value;
+                                    new_point.signal_point_list.Add(new_signal_point);
+                                    new_point.num_signal_points++;
+
+                                    //MessageBox.Show("Logfile Message #: " + new_point.point_number + " Timestamp: " + new_point.timestamp + " Signal Name <" + database_file.message_list[new_point.database_message_index].signal_list[i].name + ">, value: " + final_value);
                                 }
                                 //MessageBox.Show("Decoding logfile line number <" + new_point.point_number + "> with Timestamp <" + new_point.timestamp + ">");
                             }
+
+                            // Adds logfile point to point list
+                            logfile.point_list.Add(new_point);
+                            logfile.num_points++;
 
                             /*
                             string test = "";
@@ -410,44 +418,39 @@ namespace CAN_Viewer
             g.DrawLines(pen, line_points);
         }
     }
-
-    public class Canvas_Point_t
+    
+    // Canvas class
+    public class Canvas_t
     {
-        public double x_abs; // Absolute x coordinate
-        public double x_rel; // Relative x coordinate in current canvas
-        public double y_rel; // Relative y coordinate in current canvas
+        public double time_start; // Time at start of canvas
+        public double time_end; // Time at end of canvas, can be same as start time
 
-        public double value; // Value of signal at this point
-        public double timestamp; // Timestamp of signal at this point
+        public List<Canvas_Signal_t> signal_list;
 
-        Canvas_Point_t()
+        public Canvas_t()
         {
-            x_abs = 0.0;
-            x_rel = 0.0;
-            y_rel = 0.0;
+            time_start = 0.0;
+            time_end = 0.0;
 
-            value = 0.0;
-            timestamp = 0.0;
+            signal_list = new List<Canvas_Signal_t>();
         }
-        Canvas_Point_t(double x_abs_, double x_rel_, double y_rel_, double value_, double timestamp_)
+        public Canvas_t(double time_start_initial, double time_end_initial)
         {
-            // Check if timestamp_ or x_abs_ are negative, should not happen
-            if (x_abs_ < 0 || timestamp_ < 0)
+            if (time_start_initial <= time_end_initial) // Initial parameters are good
             {
-                throw new ArgumentException("absolute X coordinate or timestamp initial value negative");
+                time_start = time_start_initial;
+                time_end = time_end_initial;
             }
-            else
+            else // Initial parameters are bad, revert to time_start with 0 width
             {
-                x_abs = x_abs_;
-                timestamp = timestamp_;
+                time_start = time_start_initial;
+                time_end = time_start_initial;
             }
 
-            x_rel = x_rel_;
-            y_rel = y_rel_;
-            value = value_;
+            signal_list = new List<Canvas_Signal_t>();
         }
     }
-
+    // Canvas signal class
     public class Canvas_Signal_t
     {
         public string name;
@@ -460,7 +463,7 @@ namespace CAN_Viewer
 
         public List<Canvas_Point_t> point_list;
 
-        Canvas_Signal_t()
+        public Canvas_Signal_t()
         {
             name = "";
             max_val = 0.0;
@@ -472,7 +475,7 @@ namespace CAN_Viewer
 
             point_list = new List<Canvas_Point_t>();
         }
-        Canvas_Signal_t(string name_, double max_val_, double min_val_, string unit_, Point center_, int height_)
+        public Canvas_Signal_t(string name_, double max_val_, double min_val_, string unit_, Point center_, int height_)
         {
             // Check if max_val_ is less than min_val_, should not happen
             if (max_val_ < min_val_)
@@ -492,34 +495,48 @@ namespace CAN_Viewer
                 throw new ArgumentException("height_ less than 0");
             else
                 height = height_;
+
+            name = name_;
+            unit = unit_;
+
+            point_list = new List<Canvas_Point_t>();
         }
     }
-
-    // GUI class
-    public class Canvas_t
+    // Canvas point class
+    public class Canvas_Point_t
     {
-        public double time_start; // Time at start of canvas
-        public double time_end; // Time at end of canvas, can be same as start time
+        public double x_abs; // Absolute x coordinate
+        public double x_rel; // Relative x coordinate in current canvas
+        public double y_rel; // Relative y coordinate in current canvas
 
-        
+        public double value; // Value of signal at this point
+        public double timestamp; // Timestamp of signal at this point
 
-        Canvas_t()
+        public Canvas_Point_t()
         {
-            time_start = 0.0;
-            time_end = 0.0;
+            x_abs = 0.0;
+            x_rel = 0.0;
+            y_rel = 0.0;
+
+            value = 0.0;
+            timestamp = 0.0;
         }
-        Canvas_t(double time_start_initial, double time_end_initial)
+        public Canvas_Point_t(double x_abs_, double x_rel_, double y_rel_, double value_, double timestamp_)
         {
-            if (time_start_initial <= time_end_initial) // Initial parameters are good
+            // Check if timestamp_ or x_abs_ are negative, should not happen
+            if (x_abs_ < 0 || timestamp_ < 0)
             {
-                time_start = time_start_initial;
-                time_end = time_end_initial;
+                throw new ArgumentException("absolute X coordinate or timestamp initial value negative");
             }
-            else // Initial parameters are bad, revert to time_start with 0 width
+            else
             {
-                time_start = time_start_initial;
-                time_end = time_start_initial;
+                x_abs = x_abs_;
+                timestamp = timestamp_;
             }
+
+            x_rel = x_rel_;
+            y_rel = y_rel_;
+            value = value_;
         }
     }
 }
