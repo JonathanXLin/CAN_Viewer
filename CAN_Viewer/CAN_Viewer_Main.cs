@@ -228,13 +228,15 @@ namespace CAN_Viewer
                                     {
                                         raw_value += Convert.ToInt64(data_bit_array[bit_array_index]) * Convert.ToInt64(Math.Pow(2, bit_array_index - start_bit));
                                     }
-
-                                    // Apply sign, scaling, and offset
-                                    int 
-
-                                    double final_value = (raw_value * )
-
                                     //MessageBox.Show("Logfile Message #: " + new_point.point_number + " Timestamp: " + new_point.timestamp + " Signal Value: " + raw_value);
+
+                                    // Apply scaling, and offset (note, endian is not considered because I don't know what it does)
+                                    double scale = database_file.message_list[new_point.database_message_index].signal_list[i].scale;
+                                    double offset = database_file.message_list[new_point.database_message_index].signal_list[i].offset;
+
+                                    double final_value = (raw_value * scale) + offset;
+
+                                    MessageBox.Show("Logfile Message #: " + new_point.point_number + " Timestamp: " + new_point.timestamp + " Signal Name <" + database_file.message_list[new_point.database_message_index].signal_list[i].name + ">, value: " + final_value);
                                 }
                                 //MessageBox.Show("Decoding logfile line number <" + new_point.point_number + "> with Timestamp <" + new_point.timestamp + ">");
                             }
