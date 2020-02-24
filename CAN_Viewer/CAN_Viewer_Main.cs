@@ -182,6 +182,7 @@ namespace CAN_Viewer
                                 new_point.data[i] = int.Parse(log_line_words[5 + i]);
 
                             new_point.point_number = int.Parse(log_line_words[5 + new_point.num_bytes]);
+                            //MessageBox.Show(new_point.point_number.ToString());
 
                             // Initialize signal list
                             new_point.signal_point_list = new List<logfile_signal_point_t>(); 
@@ -190,53 +191,71 @@ namespace CAN_Viewer
                             logfile.point_list.Add(new_point);
                             logfile.num_points++;
 
-                            // Matches each point with corresponding message_format in database file
-                            foreach (logfile_point_t curr_point in logfile.point_list)
+                            // Matches point with corresponding message_format in database file
+                            // Finds and stores index of database_file message_list that is used to decode curr_point
+                            new_point.database_message_index = database_file.message_list.IndexOf(database_file.message_list.Find(x => x.id == new_point.id));
+
+                            // Convert bytewise data representation into bit array
+                            bool[] data_bit_array = new bool[new_point.num_bytes * 8];
+
+                            for (int i=0; i< new_point.num_bytes; i++)
                             {
-                                // Finds and stores index of database_file message_list that is used to decode curr_point
-                                curr_point.database_message_index = database_file.message_list.IndexOf(database_file.message_list.Find(x => x.id == curr_point.id));
-
-                                // Convert bytewise data representation into bit array
-                                bool[] data_bit_array = new bool[curr_point.num_bytes * 8];
-
-                                for (int i=0; i<curr_point.num_bytes; i++)
+                                for (int j=0; j<8; j++)
                                 {
-                                    for (int j=0; j<8; j++)
-                                    {
-                                        data_bit_array[(i * 8) + j] = Convert.ToBoolean(curr_point.data[curr_point.num_bytes - i - 1] & (1 << j));
-                                    }
+                                    data_bit_array[(i * 8) + j] = Convert.ToBoolean(new_point.data[i] & (1 << j));
                                 }
-
-                                // Populate signal point list with all signals contained in logfile point
-                                int num_signals = database_file.message_list[curr_point.database_message_index].num_signals; // Number of signals in current point
-
-                                for (int i=0; i<num_signals; i++)
-                                {
-                                    int num_bits = database_file.message_list[curr_point.database_message_index].signal_list[i].length;
-
-                                    bool[] bit_array = new bool[num_bits];
-
-
-                                }
-
-                                /*
-                                string test = "";
-                                for (int i=0; i<curr_point.num_bytes*8; i++)
-                                {
-                                    test += Convert.ToInt32(data_bit_array[i]).ToString();
-                                    if ((i + 1) % 8 == 0)
-                                        test += " ";
-                                }
-                                MessageBox.Show(test);
-                                */
-
-                                /*
-                                if (curr_point.database_message_index != -1)
-                                {
-                                    MessageBox.Show("Timestamp: " + curr_point.timestamp.ToString() + " Message Name: " + database_file.message_list[curr_point.database_message_index].name);
-                                }
-                                */
                             }
+
+                            // If database message format not found for point
+                            if (new_point.database_message_index == -1)
+                            {
+                                //MessageBox.Show("Not Decoding logfile line number <" + new_point.point_number + "> with Timestamp <" + new_point.timestamp + ">");
+                            }
+                            else
+                            {
+                                // Populate signal point list with all signals contained in logfile point
+                                int num_signals = database_file.message_list[new_point.database_message_index].num_signals; // Number of signals in current point
+
+                                for (int i = 0; i < num_signals; i++)
+                                {
+                                    // Calculate raw value using little endian
+                                    int start_bit = database_file.message_list[new_point.database_message_index].signal_list[i].start_bit;
+                                    int num_bits = database_file.message_list[new_point.database_message_index].signal_list[i].length;
+
+                                    long raw_value = 0; // Raw little-endian value of signal
+
+                                    for (int bit_array_index = start_bit; bit_array_index < start_bit + num_bits; bit_array_index++)
+                                    {
+                                        raw_value += Convert.ToInt64(data_bit_array[bit_array_index]) * Convert.ToInt64(Math.Pow(2, bit_array_index - start_bit));
+                                    }
+
+                                    // Apply sign, scaling, and offset
+                                    int 
+
+                                    double final_value = (raw_value * )
+
+                                    //MessageBox.Show("Logfile Message #: " + new_point.point_number + " Timestamp: " + new_point.timestamp + " Signal Value: " + raw_value);
+                                }
+                                //MessageBox.Show("Decoding logfile line number <" + new_point.point_number + "> with Timestamp <" + new_point.timestamp + ">");
+                            }
+
+                            /*
+                            string test = "";
+                            for (int i=0; i<curr_point.num_bytes*8; i++)
+                            {
+                                test += Convert.ToInt32(data_bit_array[i]).ToString();
+                                if ((i + 1) % 8 == 0)
+                                    test += " ";
+                            }
+                            MessageBox.Show(test);
+                            */
+
+                            /*
+                            if (curr_point.database_message_index != -1)
+                            {
+                                MessageBox.Show("Timestamp: " + curr_point.timestamp.ToString() + " Message Name: " + database_file.message_list[curr_point.database_message_index].name);
+                            }
+                            */
 
                             /*
                             if (new_point.num_bytes == 0)
