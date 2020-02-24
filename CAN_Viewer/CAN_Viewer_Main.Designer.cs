@@ -42,7 +42,13 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.treeView_tree = new System.Windows.Forms.TreeView();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.canvas = new System.Windows.Forms.Panel();
             this.menuStrip_menu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip_status
@@ -55,12 +61,11 @@
             // 
             // checkedListBox_signals
             // 
-            this.checkedListBox_signals.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkedListBox_signals.Dock = System.Windows.Forms.DockStyle.Fill;
             this.checkedListBox_signals.FormattingEnabled = true;
-            this.checkedListBox_signals.Location = new System.Drawing.Point(8, 207);
+            this.checkedListBox_signals.Location = new System.Drawing.Point(0, 0);
             this.checkedListBox_signals.Name = "checkedListBox_signals";
-            this.checkedListBox_signals.Size = new System.Drawing.Size(185, 319);
+            this.checkedListBox_signals.Size = new System.Drawing.Size(179, 356);
             this.checkedListBox_signals.TabIndex = 1;
             // 
             // menuStrip_menu
@@ -147,20 +152,47 @@
             // 
             // treeView_tree
             // 
-            this.treeView_tree.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.treeView_tree.Location = new System.Drawing.Point(8, 30);
+            this.treeView_tree.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeView_tree.Location = new System.Drawing.Point(0, 0);
             this.treeView_tree.Name = "treeView_tree";
-            this.treeView_tree.Size = new System.Drawing.Size(185, 168);
+            this.treeView_tree.Size = new System.Drawing.Size(179, 154);
             this.treeView_tree.TabIndex = 3;
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 24);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.treeView_tree);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.checkedListBox_signals);
+            this.splitContainer1.Size = new System.Drawing.Size(179, 514);
+            this.splitContainer1.SplitterDistance = 154;
+            this.splitContainer1.TabIndex = 4;
+            // 
+            // canvas
+            // 
+            this.canvas.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.canvas.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.canvas.Location = new System.Drawing.Point(179, 24);
+            this.canvas.Name = "canvas";
+            this.canvas.Size = new System.Drawing.Size(805, 514);
+            this.canvas.TabIndex = 5;
+            this.canvas.Paint += new System.Windows.Forms.PaintEventHandler(this.canvas_Paint);
             // 
             // CAN_Viewer_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 560);
-            this.Controls.Add(this.treeView_tree);
-            this.Controls.Add(this.checkedListBox_signals);
+            this.Controls.Add(this.canvas);
+            this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.statusStrip_status);
             this.Controls.Add(this.menuStrip_menu);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -170,6 +202,10 @@
             this.Load += new System.EventHandler(this.CAN_Viewer_Main_Load);
             this.menuStrip_menu.ResumeLayout(false);
             this.menuStrip_menu.PerformLayout();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -190,6 +226,8 @@
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem_logfile;
         private System.Windows.Forms.TreeView treeView_tree;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.Panel canvas;
     }
 }
 

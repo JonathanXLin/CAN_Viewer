@@ -395,5 +395,10 @@ namespace CAN_Viewer
                 }
             }
         }
+
+        private void canvas_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
