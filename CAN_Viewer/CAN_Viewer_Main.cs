@@ -398,7 +398,128 @@ namespace CAN_Viewer
 
         private void canvas_Paint(object sender, PaintEventArgs e)
         {
+            Pen pen = new Pen(Color.White);
+            Graphics g = e.Graphics;
 
+            Point[] line_points =
+            {
+                new Point(0, 0),
+                new Point(canvas.Width, canvas.Height)
+            };
+
+            g.DrawLines(pen, line_points);
+        }
+    }
+
+    public class Canvas_Point_t
+    {
+        public double x_abs; // Absolute x coordinate
+        public double x_rel; // Relative x coordinate in current canvas
+        public double y_rel; // Relative y coordinate in current canvas
+
+        public double value; // Value of signal at this point
+        public double timestamp; // Timestamp of signal at this point
+
+        Canvas_Point_t()
+        {
+            x_abs = 0.0;
+            x_rel = 0.0;
+            y_rel = 0.0;
+
+            value = 0.0;
+            timestamp = 0.0;
+        }
+        Canvas_Point_t(double x_abs_, double x_rel_, double y_rel_, double value_, double timestamp_)
+        {
+            // Check if timestamp_ or x_abs_ are negative, should not happen
+            if (x_abs_ < 0 || timestamp_ < 0)
+            {
+                throw new ArgumentException("absolute X coordinate or timestamp initial value negative");
+            }
+            else
+            {
+                x_abs = x_abs_;
+                timestamp = timestamp_;
+            }
+
+            x_rel = x_rel_;
+            y_rel = y_rel_;
+            value = value_;
+        }
+    }
+
+    public class Canvas_Signal_t
+    {
+        public string name;
+        public double max_val;
+        public double min_val;
+        public string unit;
+
+        public Point center;
+        public int height;
+
+        public List<Canvas_Point_t> point_list;
+
+        Canvas_Signal_t()
+        {
+            name = "";
+            max_val = 0.0;
+            min_val = 0.0;
+            unit = "";
+
+            center = new Point(0, 0);
+            height = 0;
+
+            point_list = new List<Canvas_Point_t>();
+        }
+        Canvas_Signal_t(string name_, double max_val_, double min_val_, string unit_, Point center_, int height_)
+        {
+            // Check if max_val_ is less than min_val_, should not happen
+            if (max_val_ < min_val_)
+                throw new ArgumentException("max_val_ less than min_val_");
+            else
+            {
+                max_val = max_val_;
+                min_val = min_val_;
+            }
+            // Check if center_ has any negative coordinates, should not happen
+            if (center_.X < 0 || center_.Y < 0)
+                throw new ArgumentException("center_ coordinates are negative");
+            else
+                center = center_;
+            // Check if height_ is negative, should not happen
+            if (height_ < 0)
+                throw new ArgumentException("height_ less than 0");
+            else
+                height = height_;
+        }
+    }
+
+    // GUI class
+    public class Canvas_t
+    {
+        public double time_start; // Time at start of canvas
+        public double time_end; // Time at end of canvas, can be same as start time
+
+        
+
+        Canvas_t()
+        {
+            time_start = 0.0;
+            time_end = 0.0;
+        }
+        Canvas_t(double time_start_initial, double time_end_initial)
+        {
+            if (time_start_initial <= time_end_initial) // Initial parameters are good
+            {
+                time_start = time_start_initial;
+                time_end = time_end_initial;
+            }
+            else // Initial parameters are bad, revert to time_start with 0 width
+            {
+                time_start = time_start_initial;
+                time_end = time_start_initial;
+            }
         }
     }
 }
