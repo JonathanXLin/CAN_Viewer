@@ -163,6 +163,7 @@
             this.Controls.Add(this.checkedListBox_signals);
             this.Controls.Add(this.statusStrip_status);
             this.Controls.Add(this.menuStrip_menu);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(500, 300);
             this.Name = "CAN_Viewer_Main";
             this.Text = "CAN Viewer v0.1";
