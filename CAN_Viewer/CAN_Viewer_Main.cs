@@ -22,6 +22,9 @@ namespace CAN_Viewer
         // Initial declaration of canvas object with time zero and width zero, populated when logfile is loaded
         Canvas_t gui = new Canvas_t(0.0, 0.0);
 
+        // Graphics object, initialized in main load
+        Graphics g;
+
         //Status strip label
         private ToolStripStatusLabel status_text = new ToolStripStatusLabel();
 
@@ -120,6 +123,9 @@ namespace CAN_Viewer
 
             TreeNode root_database = new TreeNode("CAN Databases");
             treeView_tree.Nodes.Add(root_database);
+
+            // Initialize graphics object
+            g = canvas.CreateGraphics();
         }
 
         private void openToolStripMenuItem_logfile_Click(object sender, EventArgs e)
@@ -276,6 +282,26 @@ namespace CAN_Viewer
                             }
                             */
                         }
+
+                        // Set initial gui window to entire logfile timeslice, with some padding
+                        if (logfile.num_points != 0)
+                        {
+                            gui.time_start = logfile.point_list[0].timestamp - 0.1 * (logfile.point_list[logfile.num_points - 1].timestamp - logfile.point_list[0].timestamp);
+                            gui.time_end = logfile.point_list[logfile.num_points - 1].timestamp + 0.1 * (logfile.point_list[logfile.num_points - 1].timestamp - logfile.point_list[0].timestamp);
+                        }
+                        else
+                            MessageBox.Show("Logfile empty");
+
+                        // Find first and last indices of logfile point_list in gui timeslice
+                        int start_index = logfile.point_list.IndexOf(logfile.point_list.Find(x => x.timestamp >= gui.time_start));
+                        int end_index = logfile.point_list.IndexOf(logfile.point_list.FindLast(x => x.timestamp <= gui.time_end));
+
+                        for (int i=0; i<end_index-start_index; i++)
+                        {
+
+                        }
+
+                        //MessageBox.Show(start_index.ToString() + " " + end_index.ToString());
                     }
 
                     // MessageBox.Show(logfile.point_list.Find(x => x.id == 419366480).timestamp.ToString());
@@ -406,137 +432,155 @@ namespace CAN_Viewer
 
         private void canvas_Paint(object sender, PaintEventArgs e)
         {
+
+        }
+
+        // Sandbox area for testing/debugging stuff
+        private void canvas_Click(object sender, EventArgs e)
+        {
+            /*
             Pen pen = new Pen(Color.White);
-            Graphics g = e.Graphics;
 
             Point[] line_points =
             {
                 new Point(0, 0),
-                new Point(canvas.Width, canvas.Height)
+                new Point(canvas.Width/2, canvas.Height/2)
             };
 
             g.DrawLines(pen, line_points);
+            */
         }
-    }
-    
-    // Canvas class
-    public class Canvas_t
-    {
-        public double time_start; // Time at start of canvas
-        public double time_end; // Time at end of canvas, can be same as start time
 
-        public List<Canvas_Signal_t> signal_list;
-
-        public Canvas_t()
+        // Canvas class
+        public class Canvas_t
         {
-            time_start = 0.0;
-            time_end = 0.0;
+            public double time_start; // Time at start of canvas
+            public double time_end; // Time at end of canvas, can be same as start time
 
-            signal_list = new List<Canvas_Signal_t>();
-        }
-        public Canvas_t(double time_start_initial, double time_end_initial)
-        {
-            if (time_start_initial <= time_end_initial) // Initial parameters are good
+            //public List<Canvas_Signal_t> signal_list;
+
+            public Canvas_t()
             {
-                time_start = time_start_initial;
-                time_end = time_end_initial;
+                time_start = 0.0;
+                time_end = 0.0;
+
+                //signal_list = new List<Canvas_Signal_t>();
             }
-            else // Initial parameters are bad, revert to time_start with 0 width
+            public Canvas_t(double time_start_initial, double time_end_initial)
             {
-                time_start = time_start_initial;
-                time_end = time_start_initial;
+                if (time_start_initial <= time_end_initial) // Initial parameters are good
+                {
+                    time_start = time_start_initial;
+                    time_end = time_end_initial;
+                }
+                else // Initial parameters are bad, revert to time_start with 0 width
+                {
+                    time_start = time_start_initial;
+                    time_end = time_start_initial;
+                }
+
+                //signal_list = new List<Canvas_Signal_t>();
             }
-
-            signal_list = new List<Canvas_Signal_t>();
-        }
-    }
-    // Canvas signal class
-    public class Canvas_Signal_t
-    {
-        public string name;
-        public double max_val;
-        public double min_val;
-        public string unit;
-
-        public Point center;
-        public int height;
-
-        public List<Canvas_Point_t> point_list;
-
-        public Canvas_Signal_t()
-        {
-            name = "";
-            max_val = 0.0;
-            min_val = 0.0;
-            unit = "";
-
-            center = new Point(0, 0);
-            height = 0;
-
-            point_list = new List<Canvas_Point_t>();
-        }
-        public Canvas_Signal_t(string name_, double max_val_, double min_val_, string unit_, Point center_, int height_)
-        {
-            // Check if max_val_ is less than min_val_, should not happen
-            if (max_val_ < min_val_)
-                throw new ArgumentException("max_val_ less than min_val_");
-            else
+            /*
+            public Tuple<int, int> message_list_indices_between_timestamps(double start_time, double end_time)
             {
-                max_val = max_val_;
-                min_val = min_val_;
+                Tuple<int, int> result = new Tuple<int, int>(0, 0);
+
+                // Find start and end indices of logfile message list between two timeslices
+                result.Item1 = logfile.point_list.IndexOf(logfile.point_list.Find(x => x.timestamp == logfile.point_list[0].timestamp));
             }
-            // Check if center_ has any negative coordinates, should not happen
-            if (center_.X < 0 || center_.Y < 0)
-                throw new ArgumentException("center_ coordinates are negative");
-            else
-                center = center_;
-            // Check if height_ is negative, should not happen
-            if (height_ < 0)
-                throw new ArgumentException("height_ less than 0");
-            else
-                height = height_;
-
-            name = name_;
-            unit = unit_;
-
-            point_list = new List<Canvas_Point_t>();
+            */
         }
-    }
-    // Canvas point class
-    public class Canvas_Point_t
-    {
-        public double x_abs; // Absolute x coordinate
-        public double x_rel; // Relative x coordinate in current canvas
-        public double y_rel; // Relative y coordinate in current canvas
-
-        public double value; // Value of signal at this point
-        public double timestamp; // Timestamp of signal at this point
-
-        public Canvas_Point_t()
+        /*
+        // Canvas signal class
+        public class Canvas_Signal_t
         {
-            x_abs = 0.0;
-            x_rel = 0.0;
-            y_rel = 0.0;
+            public string name;
+            public double max_val;
+            public double min_val;
+            public string unit;
 
-            value = 0.0;
-            timestamp = 0.0;
+            public Point center;
+            public int height;
+
+            public List<Canvas_Point_t> point_list;
+
+            public Canvas_Signal_t()
+            {
+                name = "";
+                max_val = 0.0;
+                min_val = 0.0;
+                unit = "";
+
+                center = new Point(0, 0);
+                height = 0;
+
+                point_list = new List<Canvas_Point_t>();
+            }
+            public Canvas_Signal_t(string name_, double max_val_, double min_val_, string unit_, Point center_, int height_)
+            {
+                // Check if max_val_ is less than min_val_, should not happen
+                if (max_val_ < min_val_)
+                    throw new ArgumentException("max_val_ less than min_val_");
+                else
+                {
+                    max_val = max_val_;
+                    min_val = min_val_;
+                }
+                // Check if center_ has any negative coordinates, should not happen
+                if (center_.X < 0 || center_.Y < 0)
+                    throw new ArgumentException("center_ coordinates are negative");
+                else
+                    center = center_;
+                // Check if height_ is negative, should not happen
+                if (height_ < 0)
+                    throw new ArgumentException("height_ less than 0");
+                else
+                    height = height_;
+
+                name = name_;
+                unit = unit_;
+
+                point_list = new List<Canvas_Point_t>();
+            }
         }
-        public Canvas_Point_t(double x_abs_, double x_rel_, double y_rel_, double value_, double timestamp_)
+        // Canvas point class
+        public class Canvas_Point_t
         {
-            // Check if timestamp_ or x_abs_ are negative, should not happen
-            if (x_abs_ < 0 || timestamp_ < 0)
-            {
-                throw new ArgumentException("absolute X coordinate or timestamp initial value negative");
-            }
-            else
-            {
-                x_abs = x_abs_;
-                timestamp = timestamp_;
-            }
+            public double x_abs; // Absolute x coordinate
+            public double x_rel; // Relative x coordinate in current canvas
+            public double y_rel; // Relative y coordinate in current canvas
 
-            x_rel = x_rel_;
-            y_rel = y_rel_;
-            value = value_;
+            public double value; // Value of signal at this point
+            public double timestamp; // Timestamp of signal at this point
+
+            public Canvas_Point_t()
+            {
+                x_abs = 0.0;
+                x_rel = 0.0;
+                y_rel = 0.0;
+
+                value = 0.0;
+                timestamp = 0.0;
+            }
+            public Canvas_Point_t(double x_abs_, double x_rel_, double y_rel_, double value_, double timestamp_)
+            {
+                // Check if timestamp_ or x_abs_ are negative, should not happen
+                if (x_abs_ < 0 || timestamp_ < 0)
+                {
+                    throw new ArgumentException("absolute X coordinate or timestamp initial value negative");
+                }
+                else
+                {
+                    x_abs = x_abs_;
+                    timestamp = timestamp_;
+                }
+
+                x_rel = x_rel_;
+                y_rel = y_rel_;
+                value = value_;
+            }
         }
+        */
     }
 }
