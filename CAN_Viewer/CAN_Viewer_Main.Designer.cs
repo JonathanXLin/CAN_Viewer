@@ -65,7 +65,7 @@
             this.checkedListBox_signals.FormattingEnabled = true;
             this.checkedListBox_signals.Location = new System.Drawing.Point(0, 0);
             this.checkedListBox_signals.Name = "checkedListBox_signals";
-            this.checkedListBox_signals.Size = new System.Drawing.Size(179, 356);
+            this.checkedListBox_signals.Size = new System.Drawing.Size(230, 356);
             this.checkedListBox_signals.TabIndex = 1;
             // 
             // menuStrip_menu
@@ -155,7 +155,7 @@
             this.treeView_tree.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView_tree.Location = new System.Drawing.Point(0, 0);
             this.treeView_tree.Name = "treeView_tree";
-            this.treeView_tree.Size = new System.Drawing.Size(179, 154);
+            this.treeView_tree.Size = new System.Drawing.Size(230, 154);
             this.treeView_tree.TabIndex = 3;
             // 
             // splitContainer1
@@ -172,7 +172,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.checkedListBox_signals);
-            this.splitContainer1.Size = new System.Drawing.Size(179, 514);
+            this.splitContainer1.Size = new System.Drawing.Size(230, 514);
             this.splitContainer1.SplitterDistance = 154;
             this.splitContainer1.TabIndex = 4;
             // 
@@ -180,9 +180,9 @@
             // 
             this.canvas.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.canvas.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.canvas.Location = new System.Drawing.Point(179, 24);
+            this.canvas.Location = new System.Drawing.Point(230, 24);
             this.canvas.Name = "canvas";
-            this.canvas.Size = new System.Drawing.Size(805, 514);
+            this.canvas.Size = new System.Drawing.Size(754, 514);
             this.canvas.TabIndex = 5;
             this.canvas.Click += new System.EventHandler(this.canvas_Click);
             this.canvas.Paint += new System.Windows.Forms.PaintEventHandler(this.canvas_Paint);

@@ -39,7 +39,10 @@ namespace CAN_Viewer
             public string path;
 
             public List<logfile_point_t> point_list;
-            public int num_points;
+            public int num_points; // Can find size of list from method in list, FLAG TO FIX MULTIPLE INSTANCES
+
+            public List<string> unique_signals; // All signals stored only once here
+            public int num_unique_signals;
         }
         // Direction enumeration for logfile point direction, not yet used
         enum Direction { Rx, Tx, unknown };
@@ -142,6 +145,8 @@ namespace CAN_Viewer
                     logfile.path = openFileDialog.FileName;
                     logfile.point_list = new List<logfile_point_t>();
                     logfile.num_points = 0;
+                    logfile.unique_signals = new List<string>();
+                    logfile.num_unique_signals = 0;
 
                     // Update status bar with file name
                     status_text.Text = Path.GetFileName(logfile.path);
@@ -247,6 +252,15 @@ namespace CAN_Viewer
                                     new_point.num_signal_points++;
 
                                     //MessageBox.Show("Logfile Message #: " + new_point.point_number + " Timestamp: " + new_point.timestamp + " Signal Name <" + database_file.message_list[new_point.database_message_index].signal_list[i].name + ">, value: " + final_value);
+
+                                    // Check if signal is new signal and if so, add to unique_signal list
+                                    if (logfile.unique_signals.Exists(x => x == new_signal_point.name) == false)
+                                    {
+                                        logfile.unique_signals.Add(new_signal_point.name);
+                                        logfile.num_unique_signals++;
+
+                                        //MessageBox.Show("Added: " + new_signal_point.name);
+                                    }
                                 }
                                 //MessageBox.Show("Decoding logfile line number <" + new_point.point_number + "> with Timestamp <" + new_point.timestamp + ">");
                             }
@@ -282,25 +296,6 @@ namespace CAN_Viewer
                             }
                             */
                         }
-
-                        // Set initial gui window to entire logfile timeslice, with some padding
-                        if (logfile.num_points != 0)
-                        {
-                            gui.time_start = logfile.point_list[0].timestamp - 0.1 * (logfile.point_list[logfile.num_points - 1].timestamp - logfile.point_list[0].timestamp);
-                            gui.time_end = logfile.point_list[logfile.num_points - 1].timestamp + 0.1 * (logfile.point_list[logfile.num_points - 1].timestamp - logfile.point_list[0].timestamp);
-                        }
-                        else
-                            MessageBox.Show("Logfile empty");
-
-                        // Find first and last indices of logfile point_list in gui timeslice
-                        int start_index = logfile.point_list.IndexOf(logfile.point_list.Find(x => x.timestamp >= gui.time_start));
-                        int end_index = logfile.point_list.IndexOf(logfile.point_list.FindLast(x => x.timestamp <= gui.time_end));
-
-                        for (int i=0; i<end_index-start_index; i++)
-                        {
-
-                        }
-
                         //MessageBox.Show(start_index.ToString() + " " + end_index.ToString());
                     }
 
@@ -311,6 +306,32 @@ namespace CAN_Viewer
                     */
                 }
             }
+
+            // Populate checkedListBox with all logfile signals
+            logfile.unique_signals = logfile.unique_signals.OrderBy(name => name).ToList();
+            foreach (string signal_name in logfile.unique_signals)
+            {
+                checkedListBox_signals.Items.Add(signal_name);
+            }
+
+            // Set initial gui window to entire logfile timeslice, with some padding
+            if (logfile.num_points != 0)
+            {
+                gui.time_start = logfile.point_list[0].timestamp - 0.1 * (logfile.point_list[logfile.num_points - 1].timestamp - logfile.point_list[0].timestamp);
+                gui.time_end = logfile.point_list[logfile.num_points - 1].timestamp + 0.1 * (logfile.point_list[logfile.num_points - 1].timestamp - logfile.point_list[0].timestamp);
+            }
+            else
+                MessageBox.Show("Logfile empty");
+
+            // Find first and last indices of logfile point_list in gui timeslice
+            int start_index = logfile.point_list.IndexOf(logfile.point_list.Find(x => x.timestamp >= gui.time_start));
+            int end_index = logfile.point_list.IndexOf(logfile.point_list.FindLast(x => x.timestamp <= gui.time_end));
+
+            if (end_index - start_index > 0)
+                for (int i = 0; i < end_index - start_index; i++)
+                {
+
+                }
         }
 
         private void openToolStripMenuItem_database_Click(object sender, EventArgs e)
