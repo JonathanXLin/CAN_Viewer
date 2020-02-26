@@ -31,6 +31,7 @@ namespace CAN_Viewer
         public CAN_Viewer_Main()
         {
             InitializeComponent();
+            this.MouseWheel += new MouseEventHandler(canvas_MouseWheel);
         }
 
         // Logfile, which contains points
@@ -129,6 +130,10 @@ namespace CAN_Viewer
 
             // Initialize graphics object
             g = canvas.CreateGraphics();
+
+            // Initialize gui timeslice to be 10s
+            gui.time_start = -1.0;
+            gui.time_end = 9.0;
         }
 
         private void openToolStripMenuItem_logfile_Click(object sender, EventArgs e)
@@ -603,5 +608,40 @@ namespace CAN_Viewer
             }
         }
         */
+        private void canvas_MouseWheel(object sender, MouseEventArgs e)
+        {
+            canvas.Focus();
+
+            // Timeslice bounds increased/decreased by 10% of edge of gui window to current mouse position when middle mouse wheel is moved
+            double timeslice_width = gui.time_end - gui.time_start;
+            double left_bound_adjustment_weight = e.X / canvas.Width;
+            double right_bound_adjustment_weight = 1 - left_bound_adjustment_weight;
+
+            if (e.Delta > 0)
+            {
+                gui.time_start += timeslice_width * 0.1 * left_bound_adjustment_weight;
+                gui.time_end -= timeslice_width * 0.1 * right_bound_adjustment_weight;
+            }
+            else if (e.Delta < 0)
+            {
+                gui.time_start -= timeslice_width * 0.1 * left_bound_adjustment_weight;
+                gui.time_end += timeslice_width * 0.1 * right_bound_adjustment_weight;
+            }
+
+            MessageBox.Show(gui.time_start.ToString() + " " + gui.time_end.ToString());
+        }
+
+        public void update_time_tickmarks(double time_start, double time_end)
+        {
+            Label[] tickmark = new Label[10];
+
+            for (int i=0; i<10; i++)
+            {
+                tickmark[i] = new Label();
+                tickmark[i].Text = ((time_end - time_start) * ((i + 1) / 10)).ToString();
+                tickmark[i].Location = new Point(canvas.Width * ((i + 1) / 10), 100);
+                this.Controls.Add(tickmark[i]);
+            }
+        }
     }
 }
