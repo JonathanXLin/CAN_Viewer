@@ -16,7 +16,7 @@ namespace CAN_Viewer
     public partial class CAN_Viewer_Main : Form
     {
         // Initial declarations of database set and logfile objects
-        Database_Set databases = new Database_Set();
+        Database_Set database_set = new Database_Set();
         Logfile logfile = new Logfile();
 
         // Initial declaration of canvas object with time zero and width zero, populated when logfile is loaded
@@ -78,13 +78,14 @@ namespace CAN_Viewer
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     // Parse logfile
-                    logfile.parse(openFileDialog.FileName);
+                    logfile.path = openFileDialog.FileName;
+                    logfile.parse(logfile.path, database_set);
 
                     // Update status bar text
                     status_text.Text = Path.GetFileName(logfile.path);
 
                     // Add to treeview
-                    TreeNode new_logfile_node = new TreeNode(Path.GetFileName(path));
+                    TreeNode new_logfile_node = new TreeNode(Path.GetFileName(logfile.path));
                     treeView_tree.Nodes[0].Nodes.Add(new_logfile_node);
                     treeView_tree.Nodes[0].Expand();
                 }
@@ -127,7 +128,17 @@ namespace CAN_Viewer
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    database_file.parse(openFileDialog.FileName);
+                    // Create new database and add to database_set
+                    Database new_database = new Database();
+                    new_database.path = openFileDialog.FileName;
+                    new_database.parse(new_database.path);
+
+                    database_set.databases.Add(new_database);
+
+                    // Add new database to treeview
+                    TreeNode new_database_node = new TreeNode(Path.GetFileName(new_database.path));
+                    treeView_tree.Nodes[1].Nodes.Add(new_database_node);
+                    treeView_tree.Nodes[1].Expand();
                 }
             }
         }
