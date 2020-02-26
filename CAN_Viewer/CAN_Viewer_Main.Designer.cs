@@ -201,6 +201,7 @@
             this.Name = "CAN_Viewer_Main";
             this.Text = "CAN Viewer v0.1";
             this.Load += new System.EventHandler(this.CAN_Viewer_Main_Load);
+            this.Resize += new System.EventHandler(this.CAN_Viewer_Main_Resize);
             this.menuStrip_menu.ResumeLayout(false);
             this.menuStrip_menu.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);

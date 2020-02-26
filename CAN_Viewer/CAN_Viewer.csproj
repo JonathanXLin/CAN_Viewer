@@ -50,12 +50,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Canvas.cs" />
     <Compile Include="CAN_Viewer_Main.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CAN_Viewer_Main.Designer.cs">
       <DependentUpon>CAN_Viewer_Main.cs</DependentUpon>
     </Compile>
+    <Compile Include="Logfile.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="CAN_Viewer_Main.resx">
