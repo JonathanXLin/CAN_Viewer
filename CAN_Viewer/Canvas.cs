@@ -67,15 +67,16 @@ namespace CAN_Viewer
                 time_tickmarkers.Add(new_label);
             }
         }
-        /*
-        public Tuple<int, int> message_list_indices_between_timestamps(double start_time, double end_time)
+        // Find start and end indices of logfile message list between two timeslices
+        public List<int> message_list_indices_between_timestamps(Logfile logfile, double start_time, double end_time)
         {
-            Tuple<int, int> result = new Tuple<int, int>(0, 0);
+            List<int> timeslice_boundaries = new List<int>();
 
-            // Find start and end indices of logfile message list between two timeslices
-            result.Item1 = logfile.point_list.IndexOf(logfile.point_list.Find(x => x.timestamp == logfile.point_list[0].timestamp));
+            timeslice_boundaries.Add(logfile.point_list.IndexOf(logfile.point_list.Find(x => x.timestamp >= logfile.point_list[0].timestamp)));
+            timeslice_boundaries.Add(logfile.point_list.IndexOf(logfile.point_list.FindLast(x => x.timestamp == logfile.point_list[0].timestamp)));
+
+            return timeslice_boundaries;
         }
-        */
     }
     /*
     // Canvas signal class

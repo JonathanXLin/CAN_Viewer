@@ -198,6 +198,18 @@ namespace CAN_Viewer
 
             return 1;// Not used, but should return 1 if success
         }
+
+        // Populate checkedListBox with all logfile signals
+        public int update_CheckedListBox(CheckedListBox checkListBox)
+        {
+            unique_signals = unique_signals.OrderBy(name => name).ToList();
+            foreach (string signal_name in unique_signals)
+            {
+                checkListBox.Items.Add(signal_name);
+            }
+
+            return 1;// Not used, but should return 1 if success
+        }
     }
 
     // Logfile point, corresponds to single line in logfile

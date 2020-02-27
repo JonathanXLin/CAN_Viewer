@@ -29,6 +29,11 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CAN_Viewer_Main));
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint1 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(1D, 1D);
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint2 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(2D, 2D);
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint3 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(3D, 3D);
             this.statusStrip_status = new System.Windows.Forms.StatusStrip();
             this.checkedListBox_signals = new System.Windows.Forms.CheckedListBox();
             this.menuStrip_menu = new System.Windows.Forms.MenuStrip();
@@ -44,11 +49,13 @@
             this.treeView_tree = new System.Windows.Forms.TreeView();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.canvas = new System.Windows.Forms.Panel();
+            this.chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.menuStrip_menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart)).BeginInit();
             this.SuspendLayout();
             // 
             // statusStrip_status
@@ -179,19 +186,40 @@
             // canvas
             // 
             this.canvas.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.canvas.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.canvas.Location = new System.Drawing.Point(230, 24);
+            this.canvas.Location = new System.Drawing.Point(705, 441);
             this.canvas.Name = "canvas";
-            this.canvas.Size = new System.Drawing.Size(754, 514);
+            this.canvas.Size = new System.Drawing.Size(279, 97);
             this.canvas.TabIndex = 5;
             this.canvas.Click += new System.EventHandler(this.canvas_Click);
             this.canvas.Paint += new System.Windows.Forms.PaintEventHandler(this.canvas_Paint);
+            // 
+            // chart
+            // 
+            chartArea1.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
+            chartArea1.AxisX.LabelStyle.ForeColor = System.Drawing.Color.Gray;
+            chartArea1.AxisX.LabelStyle.Interval = 0D;
+            chartArea1.Name = "ChartArea1";
+            this.chart.ChartAreas.Add(chartArea1);
+            this.chart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chart.Location = new System.Drawing.Point(230, 24);
+            this.chart.Name = "chart";
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.Name = "Series1";
+            series1.Points.Add(dataPoint1);
+            series1.Points.Add(dataPoint2);
+            series1.Points.Add(dataPoint3);
+            this.chart.Series.Add(series1);
+            this.chart.Size = new System.Drawing.Size(754, 514);
+            this.chart.TabIndex = 6;
+            this.chart.Text = "chart1";
             // 
             // CAN_Viewer_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 560);
+            this.Controls.Add(this.chart);
             this.Controls.Add(this.canvas);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.statusStrip_status);
@@ -208,6 +236,7 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chart)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -230,6 +259,7 @@
         private System.Windows.Forms.TreeView treeView_tree;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Panel canvas;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart;
     }
 }
 

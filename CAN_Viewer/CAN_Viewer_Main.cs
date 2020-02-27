@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Security;
 using System.Diagnostics;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace CAN_Viewer
 {
@@ -21,6 +22,9 @@ namespace CAN_Viewer
 
         // Initial declaration of canvas object with time zero and width zero, populated when logfile is loaded
         Canvas gui = new Canvas(0.0, 0.0);
+
+        // Initial declaration of Chart_GUI object
+        Chart_GUI chart_gui;
 
         // Graphics object, initialized in main load
         Graphics g;
@@ -65,6 +69,9 @@ namespace CAN_Viewer
             gui.time_start = -1.0;
             gui.time_end = 9.0;
             gui.update_time_tickmarks(canvas);
+
+            // Set Chart_GUI chart instance to default chart in designer
+            chart_gui = new Chart_GUI(chart);
         }
 
         private void openToolStripMenuItem_logfile_Click(object sender, EventArgs e)
@@ -92,11 +99,7 @@ namespace CAN_Viewer
             }
 
             // Populate checkedListBox with all logfile signals
-            logfile.unique_signals = logfile.unique_signals.OrderBy(name => name).ToList();
-            foreach (string signal_name in logfile.unique_signals)
-            {
-                checkedListBox_signals.Items.Add(signal_name);
-            }
+            logfile.update_CheckedListBox(checkedListBox_signals);
 
             // Set initial gui window to entire logfile timeslice, with some padding
             if (logfile.num_points != 0)

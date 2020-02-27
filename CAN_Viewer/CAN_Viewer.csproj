@@ -39,6 +39,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -57,6 +58,7 @@
     <Compile Include="CAN_Viewer_Main.Designer.cs">
       <DependentUpon>CAN_Viewer_Main.cs</DependentUpon>
     </Compile>
+    <Compile Include="Chart_GUI.cs" />
     <Compile Include="Database_Set.cs" />
     <Compile Include="Logfile.cs" />
     <Compile Include="Program.cs" />
