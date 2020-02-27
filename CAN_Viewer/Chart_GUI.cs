@@ -26,15 +26,20 @@ namespace CAN_Viewer
             chart = chart_;
             chart.BackColor = Color.FromArgb(77, 77, 77); // Set chart color to white
 
-            signals = new List<Tuple<ChartArea, Series>();
+            signals = new List<Tuple<ChartArea, Series>>();
 
             timeslice = new Tuple<double, double>(-1.0, 9.0); // Initialize timeslice to be -1.0 to 9.0 until logfile is displayed
 
             // Initially create one signal area, will be deleted and replaced with real data when logfile is parsed
-            signals.Add(new Tuple<ChartArea, Series>(new ChartArea("default"), new Series());
-            chart.ChartAreas.Add(chart_areas[0]);
+            ChartArea default_chart_area = new ChartArea("default");
 
-            stylize_chart_area(chart_areas[0]);
+            Series default_series = new Series();
+            for (int i = 0; i < 5; i++)
+                default_series.Points.AddXY(i + 1, i + 1);
+
+            stylize_signal(default_chart_area, default_series);
+
+            add_signal(default_chart_area, default_series);
         }
         // Adds new chart area and series to signals list and chart object
         public int add_signal(ChartArea chartArea_, Series series_)
@@ -45,7 +50,7 @@ namespace CAN_Viewer
 
             return 1; // Not yet used
         }
-        public int stylize_chart_area(ChartArea chart_area_)
+        public int stylize_signal(ChartArea chart_area_, Series series_)
         {
             chart_area_.BackColor = Color.Black; // Set chart_area to black
 
@@ -67,9 +72,19 @@ namespace CAN_Viewer
             chart_area_.AxisY.MajorGrid.LineColor = Color.FromArgb(77, 77, 77);
             chart_area_.AxisY.LabelStyle.ForeColor = Color.White;
 
-            chart_area_.AxisY.Minimum = timeslice.Item1;
-            chart_area_.AxisY.Maximum = timeslice.Item2;
-            chart_area_.AxisY.IntervalAutoMode = IntervalAutoMode.VariableCount;
+            chart_area_.AxisY.Minimum = -5.0; // Arbitrary defaults, are overridden later
+            chart_area_.AxisY.Maximum = 5.0;
+            chart_area_.AxisY.IntervalAutoMode = IntervalAutoMode.FixedCount;
+
+            // Series stylize
+            series_.Enabled = true;
+            series_.ChartArea = chart_area_.Name;
+
+            series_.ChartType = SeriesChartType.Line;
+            series_.MarkerStyle = MarkerStyle.Square;
+            series_.MarkerColor = Color.White;
+            series_.Color = Color.White;
+            series_.LabelBackColor = Color.White;
 
             return 1; // Not yet used
         }
