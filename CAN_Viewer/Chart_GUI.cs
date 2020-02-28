@@ -42,20 +42,16 @@ namespace CAN_Viewer
             for (int i = 0; i < 5; i++)
                 default_series.Points.AddXY(i + 1, i + 1);
 
-            stylize_signal(default_chart_area, default_series);
-
-            add_signal(default_chart_area, default_series);
+            add_signal_from_series(default_chart_area, default_series);
         }
-        // Adds new chart area and series to signals list and chart object
-        public int add_signal(ChartArea chartArea_, Series series_)
+        public int update_timeslice_data(Logfile logfile_)
         {
-            signals.Add(new Tuple<ChartArea, Series>(chartArea_, series_));
-            chart.ChartAreas.Add(chartArea_);
-            chart.Series.Add(series_);
+            
 
             return 1; // Not yet used
         }
-        public int stylize_signal(ChartArea chart_area_, Series series_)
+        // Adds new chart area and series to signals list and chart object
+        public int add_signal_from_series(ChartArea chart_area_, Series series_)
         {
             chart_area_.BackColor = Color.Black; // Set chart_area to black
 
@@ -90,6 +86,10 @@ namespace CAN_Viewer
             series_.MarkerColor = Color.White;
             series_.Color = Color.White;
             series_.LabelBackColor = Color.White;
+
+            signals.Add(new Tuple<ChartArea, Series>(chart_area_, series_));
+            chart.ChartAreas.Add(chart_area_);
+            chart.Series.Add(series_);
 
             return 1; // Not yet used
         }
