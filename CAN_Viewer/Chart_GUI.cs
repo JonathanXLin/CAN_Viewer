@@ -19,14 +19,22 @@ namespace CAN_Viewer
         public Chart chart;
         public List<Tuple<ChartArea, Series>> signals;
 
+        public Logfile logfile;
+
+        public CheckedListBox checked_list_box;
+
         public Timeslice timeslice;
 
         public NiceScale nicescale; // NiceScale instance to configure nice looking axis values
 
-        public Chart_GUI(Chart chart_)
+        public Chart_GUI(Chart chart_, Logfile logfile_, CheckedListBox checked_list_box_)
         {
             chart = chart_;
             chart.BackColor = Color.FromArgb(77, 77, 77); // Set chart color to white
+
+            logfile = logfile_;
+
+            checked_list_box = checked_list_box_;
 
             signals = new List<Tuple<ChartArea, Series>>();
 
@@ -44,9 +52,26 @@ namespace CAN_Viewer
 
             add_signal_from_series(default_chart_area, default_series);
         }
-        public int update_timeslice_data(Logfile logfile_)
+        public int update_logfile(Logfile logfile_)
         {
-            
+            if (logfile_ == null)
+                return 0;
+            else
+            {
+                logfile = logfile_;
+                return 1;
+            }
+        }
+        public int update_timeslice_data(Timeslice timeslice_new)
+        {
+            // Find start and end indices of set of logfile points that are encompassed by timeslice_new
+            int start_index = logfile.point_list.IndexOf(logfile.point_list.Find(x => x.timestamp >= timeslice_new.start)); // Index of first signal greater than timeslice start
+            int end_index = logfile.point_list.IndexOf(logfile.point_list.FindLast(x => x.timestamp <= timeslice_new.end)); // Index of last signal less than timeslice end
+
+            // Create sublist of points from list of points in logfile
+            List<Logfile_Point> timeslice_points = logfile.point_list.GetRange(start_index, end_index);
+
+            Series new_series = new Series();
 
             return 1; // Not yet used
         }

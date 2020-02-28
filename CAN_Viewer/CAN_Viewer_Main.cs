@@ -71,7 +71,7 @@ namespace CAN_Viewer
             gui.update_time_tickmarks(canvas);
 
             // Set Chart_GUI chart instance to default chart in designer
-            chart_gui = new Chart_GUI(chart);
+            chart_gui = new Chart_GUI(chart, null, checkedListBox_signals); // Logfile argument is null because no logfile yet, will be updated
 
             // Initialize mouse wheel event in chart_gui
             chart_gui.initialize_mouse_wheel_event(this);
@@ -93,6 +93,10 @@ namespace CAN_Viewer
 
                     // Update status bar text
                     status_text.Text = Path.GetFileName(logfile.path);
+
+                    // Update now updated logfile in chart_gui
+                    if (chart_gui.update_logfile(logfile) == 0)
+                        throw new ArgumentException("chart_gui cannot be updated with null logfile argument");
 
                     // Add to treeview
                     TreeNode new_logfile_node = new TreeNode(Path.GetFileName(logfile.path));
