@@ -116,16 +116,6 @@ namespace CAN_Viewer
             }
             else
                 MessageBox.Show("Logfile empty");
-
-            // Find first and last indices of logfile point_list in gui timeslice
-            int start_index = logfile.point_list.IndexOf(logfile.point_list.Find(x => x.timestamp >= gui.time_start));
-            int end_index = logfile.point_list.IndexOf(logfile.point_list.FindLast(x => x.timestamp <= gui.time_end));
-
-            if (end_index - start_index > 0)
-                for (int i = 0; i < end_index - start_index; i++)
-                {
-
-                }
         }
 
         private void openToolStripMenuItem_database_Click(object sender, EventArgs e)
@@ -158,20 +148,10 @@ namespace CAN_Viewer
             
         }
 
-        // Sandbox area for testing/debugging stuff
+        // Sandbox area for testing/debugging stuff, not used
         private void canvas_Click(object sender, EventArgs e)
         {
-            /*
-            Pen pen = new Pen(Color.White);
-
-            Point[] line_points =
-            {
-                new Point(0, 0),
-                new Point(canvas.Width/2, canvas.Height/2)
-            };
-
-            g.DrawLines(pen, line_points);
-            */
+            
         }
         private void canvas_MouseWheel(object sender, MouseEventArgs e)
         {
@@ -205,6 +185,16 @@ namespace CAN_Viewer
             this.Invalidate();
 
             gui.update_time_tickmarks(canvas);
+        }
+
+        private void chart_Click(object sender, EventArgs e)
+        {
+            /*
+            for (int i=0; i<checkedListBox_signals.CheckedItems.Count; i++)
+            {
+                MessageBox.Show(checkedListBox_signals.CheckedItems[i].ToString());
+            }
+            */
         }
     }
 }

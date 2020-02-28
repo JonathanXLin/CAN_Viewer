@@ -213,6 +213,7 @@
             this.chart.Size = new System.Drawing.Size(754, 514);
             this.chart.TabIndex = 6;
             this.chart.Text = "chart1";
+            this.chart.Click += new System.EventHandler(this.chart_Click);
             // 
             // CAN_Viewer_Main
             // 

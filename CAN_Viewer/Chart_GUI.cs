@@ -16,15 +16,18 @@ namespace CAN_Viewer
 {
     public class Chart_GUI
     {
+        // Chart instance being worked on
         public Chart chart;
+        // List of signals that are contained in current timeslice
         public List<Tuple<ChartArea, Series>> signals;
-
+        // Logfile being displayed
         public Logfile logfile;
-
+        // CheckedListBox of unique signals that are to be displayed, updated in constructor and update_timeslice_data
         public CheckedListBox checked_list_box;
-
+        // Current timeslice to be displayed, arbitrarily set in constructor and updated in update_timeslice_data
         public Timeslice timeslice;
 
+        // NiceScale object whose methods are used to configure x axes to look nice
         public NiceScale nicescale; // NiceScale instance to configure nice looking axis values
 
         public Chart_GUI(Chart chart_, Logfile logfile_, CheckedListBox checked_list_box_)
@@ -62,16 +65,115 @@ namespace CAN_Viewer
                 return 1;
             }
         }
-        public int update_timeslice_data(Timeslice timeslice_new)
+        public void mouse_wheel_event(object sender, MouseEventArgs e)
         {
+            // Timeslice bounds increased/decreased by 10% of edge of gui window to current mouse position when middle mouse wheel is moved
+            double timeslice_width = timeslice.end - timeslice.start;
+            double left_bound_adjustment_weight = (e.X - (chart.Location.X)) / Convert.ToDouble(chart.Width);
+            double right_bound_adjustment_weight = 1 - left_bound_adjustment_weight;
+
+            // Zoom in
+            if (e.Delta > 0)
+            {
+                // Update timeslice
+                timeslice.start += timeslice_width * 0.1 * left_bound_adjustment_weight;
+                timeslice.end -= timeslice_width * 0.1 * right_bound_adjustment_weight;
+
+                // Update each chart area to new timeslice
+                foreach (ChartArea current_chart_area in chart.ChartAreas)
+                {
+                    nicescale.set_parameters(this);
+
+                    current_chart_area.AxisX.Minimum = nicescale.get_nice_min();
+                    current_chart_area.AxisX.Maximum = nicescale.get_nice_max();
+                    current_chart_area.AxisX.Interval = nicescale.get_tick_spacing();
+                }
+            }
+            // Zoom out
+            else if (e.Delta < 0)
+            {
+                // Update timeslice
+                timeslice.start -= timeslice_width * 0.1 * left_bound_adjustment_weight;
+                timeslice.end += timeslice_width * 0.1 * right_bound_adjustment_weight;
+
+                // Update each chart area to new timeslice
+                foreach (ChartArea current_chart_area in chart.ChartAreas)
+                {
+                    nicescale.set_parameters(this);
+
+                    current_chart_area.AxisX.Minimum = nicescale.get_nice_min();
+                    current_chart_area.AxisX.Maximum = nicescale.get_nice_max();
+                    current_chart_area.AxisX.Interval = nicescale.get_tick_spacing();
+                }
+            }
+
+            update_timeslice_data(timeslice, checked_list_box);
+
+            //MessageBox.Show(timeslice.start.ToString() + " " + timeslice.end.ToString());
+        }
+        public int update_timeslice_data(Timeslice timeslice_new, CheckedListBox checked_list_box_new)
+        {
+            if (logfile == null)
+                return 0;
+
+            // Clear chart, will be repopulated later
+            chart.ChartAreas.Clear();
+            chart.Series.Clear();
+
+            // Clear existing signal list, repopulated later
+            signals.Clear();
+
+            // Update timeslice and checked_list_box
+            timeslice = timeslice_new;
+            checked_list_box = checked_list_box_new;
+
+            // Create list of ChartAreas and Series which will be populated later, once they are populated, they are iteratively added to series with add_signal_from_series()
+            List<ChartArea> chart_areas = new List<ChartArea>();
+            List<Series> series = new List<Series>();
+
+            // Populate list of ChartAreas and Series with all signals selected in checked_list_box, which are arranged alphabetically by default
+            for (int i = 0; i < checked_list_box.CheckedItems.Count; i++)
+            {
+                ChartArea new_chart_area = new ChartArea(checked_list_box.CheckedItems[i].ToString());
+                Series new_series = new Series(checked_list_box.CheckedItems[i].ToString());
+
+                chart_areas.Add(new_chart_area);
+                series.Add(new_series);
+
+                //MessageBox.Show(checked_list_box.CheckedItems[i].ToString());
+            }
+
             // Find start and end indices of set of logfile points that are encompassed by timeslice_new
-            int start_index = logfile.point_list.IndexOf(logfile.point_list.Find(x => x.timestamp >= timeslice_new.start)); // Index of first signal greater than timeslice start
-            int end_index = logfile.point_list.IndexOf(logfile.point_list.FindLast(x => x.timestamp <= timeslice_new.end)); // Index of last signal less than timeslice end
+            int start_index = logfile.point_list.IndexOf(logfile.point_list.Find(x => x.timestamp >= timeslice.start)); // Index of first signal greater than timeslice start
+            int end_index = logfile.point_list.IndexOf(logfile.point_list.FindLast(x => x.timestamp <= timeslice.end)); // Index of last signal less than timeslice end
 
             // Create sublist of points from list of points in logfile
             List<Logfile_Point> timeslice_points = logfile.point_list.GetRange(start_index, end_index);
 
-            Series new_series = new Series();
+            // At each Logfile_Point within timeslice, for each of its signals, add the data to the series of that signal
+            foreach (Logfile_Point current_point in timeslice_points)
+            {
+                foreach (Logfile_Signal_Point current_signal_point in current_point.signal_point_list)
+                {
+                    int current_signal_name_index_in_checked_list_box = checked_list_box.Items.IndexOf(current_signal_point.name);
+
+                    // If current signal's box is checked
+                    if (checked_list_box.GetItemChecked(current_signal_name_index_in_checked_list_box) == true)
+                    {
+                        series.Find(series_of_signal => Convert.ToBoolean(string.Compare(series_of_signal.Name, current_signal_point.name))).Points.Add(current_point.timestamp, current_signal_point.value);
+                    }
+                }
+            }
+
+            // Add now-populated chart_areas and series lists to signals list
+            if (chart_areas.Count != series.Count)
+                throw new ArgumentException("size of chart_area and series not same");
+
+            for (int i = 0; i < chart_areas.Count; i++)
+                add_signal_from_series(chart_areas[i], series[i]);
+
+            // Refresh chart
+            chart.Refresh();
 
             return 1; // Not yet used
         }
@@ -123,50 +225,6 @@ namespace CAN_Viewer
             form_.MouseWheel += new MouseEventHandler(mouse_wheel_event);
 
             return 1; // Not yet used
-        }
-        public void mouse_wheel_event(object sender, MouseEventArgs e)
-        {
-            // Timeslice bounds increased/decreased by 10% of edge of gui window to current mouse position when middle mouse wheel is moved
-            double timeslice_width = timeslice.end - timeslice.start;
-            double left_bound_adjustment_weight = (e.X - (chart.Location.X)) / Convert.ToDouble(chart.Width);
-            double right_bound_adjustment_weight = 1 - left_bound_adjustment_weight;
-
-            // Zoom in
-            if (e.Delta > 0)
-            {
-                // Update timeslice
-                timeslice.start += timeslice_width * 0.1 * left_bound_adjustment_weight;
-                timeslice.end -= timeslice_width * 0.1 * right_bound_adjustment_weight;
-
-                // Update each chart area to new timeslice
-                foreach (ChartArea current_chart_area in chart.ChartAreas)
-                {
-                    nicescale.set_parameters(this);
-
-                    current_chart_area.AxisX.Minimum = nicescale.get_nice_min();
-                    current_chart_area.AxisX.Maximum = nicescale.get_nice_max();
-                    current_chart_area.AxisX.Interval = nicescale.get_tick_spacing();
-                }
-            }
-            // Zoom out
-            else if (e.Delta < 0)
-            {
-                // Update timeslice
-                timeslice.start -= timeslice_width * 0.1 * left_bound_adjustment_weight;
-                timeslice.end += timeslice_width * 0.1 * right_bound_adjustment_weight;
-
-                // Update each chart area to new timeslice
-                foreach (ChartArea current_chart_area in chart.ChartAreas)
-                {
-                    nicescale.set_parameters(this);
-
-                    current_chart_area.AxisX.Minimum = nicescale.get_nice_min();
-                    current_chart_area.AxisX.Maximum = nicescale.get_nice_max();
-                    current_chart_area.AxisX.Interval = nicescale.get_tick_spacing();
-                }
-            }
-
-            //MessageBox.Show(timeslice.start.ToString() + " " + timeslice.end.ToString());
         }
     }
 
