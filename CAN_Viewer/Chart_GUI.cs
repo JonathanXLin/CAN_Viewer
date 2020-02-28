@@ -78,16 +78,6 @@ namespace CAN_Viewer
                 // Update timeslice
                 timeslice.start += timeslice_width * 0.1 * left_bound_adjustment_weight;
                 timeslice.end -= timeslice_width * 0.1 * right_bound_adjustment_weight;
-
-                // Update each chart area to new timeslice
-                foreach (ChartArea current_chart_area in chart.ChartAreas)
-                {
-                    nicescale.set_parameters(this);
-
-                    current_chart_area.AxisX.Minimum = nicescale.get_nice_min();
-                    current_chart_area.AxisX.Maximum = nicescale.get_nice_max();
-                    current_chart_area.AxisX.Interval = nicescale.get_tick_spacing();
-                }
             }
             // Zoom out
             else if (e.Delta < 0)
@@ -95,21 +85,28 @@ namespace CAN_Viewer
                 // Update timeslice
                 timeslice.start -= timeslice_width * 0.1 * left_bound_adjustment_weight;
                 timeslice.end += timeslice_width * 0.1 * right_bound_adjustment_weight;
-
-                // Update each chart area to new timeslice
-                foreach (ChartArea current_chart_area in chart.ChartAreas)
-                {
-                    nicescale.set_parameters(this);
-
-                    current_chart_area.AxisX.Minimum = nicescale.get_nice_min();
-                    current_chart_area.AxisX.Maximum = nicescale.get_nice_max();
-                    current_chart_area.AxisX.Interval = nicescale.get_tick_spacing();
-                }
             }
 
             update_timeslice_data(timeslice, checked_list_box);
-
             //MessageBox.Show(timeslice.start.ToString() + " " + timeslice.end.ToString());
+        }
+        // Sets initial timeslice to be width of all data with 10% padding on each side
+        public int set_initial_timeslice_data(CheckedListBox checked_list_box_initial)
+        {
+            // Set initial gui window to entire logfile timeslice, with some padding
+            if (logfile.num_points != 0)
+            {
+                double initial_time_start = logfile.point_list[0].timestamp - 0.1 * (logfile.point_list[logfile.num_points - 1].timestamp - logfile.point_list[0].timestamp);
+                double initial_time_end = logfile.point_list[logfile.num_points - 1].timestamp + 0.1 * (logfile.point_list[logfile.num_points - 1].timestamp - logfile.point_list[0].timestamp);
+
+                Timeslice initial_timeslice = new Timeslice { start = initial_time_start, end = initial_time_end };
+
+                update_timeslice_data(initial_timeslice, checked_list_box_initial);
+            }
+            else
+                MessageBox.Show("Logfile empty");
+
+            return 1; // Not yet used
         }
         public int update_timeslice_data(Timeslice timeslice_new, CheckedListBox checked_list_box_new)
         {
@@ -147,8 +144,14 @@ namespace CAN_Viewer
             int start_index = logfile.point_list.IndexOf(logfile.point_list.Find(x => x.timestamp >= timeslice.start)); // Index of first signal greater than timeslice start
             int end_index = logfile.point_list.IndexOf(logfile.point_list.FindLast(x => x.timestamp <= timeslice.end)); // Index of last signal less than timeslice end
 
+            //MessageBox.Show(start_index.ToString() + " " + end_index.ToString() + " | " + "0" + " " + (logfile.point_list.Count - 1).ToString());
+
             // Create sublist of points from list of points in logfile
-            List<Logfile_Point> timeslice_points = logfile.point_list.GetRange(start_index, end_index);
+            List<Logfile_Point> timeslice_points;
+            if (start_index != -1 && end_index != -1 && end_index > start_index)
+                timeslice_points = logfile.point_list.GetRange(start_index, end_index - start_index);
+            else
+                timeslice_points = new List<Logfile_Point>();
 
             // At each Logfile_Point within timeslice, for each of its signals, add the data to the series of that signal
             foreach (Logfile_Point current_point in timeslice_points)
@@ -160,7 +163,10 @@ namespace CAN_Viewer
                     // If current signal's box is checked
                     if (checked_list_box.GetItemChecked(current_signal_name_index_in_checked_list_box) == true)
                     {
-                        series.Find(series_of_signal => Convert.ToBoolean(string.Compare(series_of_signal.Name, current_signal_point.name))).Points.Add(current_point.timestamp, current_signal_point.value);
+                        Series series_of_found_signal_data = series.Find(series_of_signal => Convert.ToBoolean(string.Compare(series_of_signal.Name, current_signal_point.name)));
+
+                        if (series_of_found_signal_data != null)
+                            series_of_found_signal_data.Points.Add(current_point.timestamp, current_signal_point.value);
                     }
                 }
             }
@@ -189,8 +195,16 @@ namespace CAN_Viewer
             chart_area_.AxisX.MajorGrid.LineColor = Color.FromArgb(77, 77, 77);
             chart_area_.AxisX.LabelStyle.ForeColor = Color.White;
 
-            chart_area_.AxisX.Minimum = timeslice.start;
-            chart_area_.AxisX.Maximum = timeslice.end;
+            // Update each chart area to new timeslice
+            foreach (ChartArea current_chart_area in chart.ChartAreas)
+            {
+                nicescale.set_parameters(this);
+
+                current_chart_area.AxisX.Minimum = nicescale.get_nice_min();
+                current_chart_area.AxisX.Maximum = nicescale.get_nice_max();
+                current_chart_area.AxisX.Interval = nicescale.get_tick_spacing();
+            }
+
             chart_area_.AxisX.IntervalAutoMode = IntervalAutoMode.VariableCount;
 
             // Y axis stylize

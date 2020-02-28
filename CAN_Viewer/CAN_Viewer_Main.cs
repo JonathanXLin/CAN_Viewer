@@ -108,6 +108,10 @@ namespace CAN_Viewer
             // Populate checkedListBox with all logfile signals
             logfile.update_CheckedListBox(checkedListBox_signals);
 
+            // Set initial chart to show timeslice of entire logfile
+            chart_gui.set_initial_timeslice_data(checkedListBox_signals);
+
+            /*
             // Set initial gui window to entire logfile timeslice, with some padding
             if (logfile.num_points != 0)
             {
@@ -116,6 +120,7 @@ namespace CAN_Viewer
             }
             else
                 MessageBox.Show("Logfile empty");
+            */
         }
 
         private void openToolStripMenuItem_database_Click(object sender, EventArgs e)
