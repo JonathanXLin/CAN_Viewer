@@ -163,10 +163,11 @@ namespace CAN_Viewer
                     // If current signal's box is checked
                     if (checked_list_box.GetItemChecked(current_signal_name_index_in_checked_list_box) == true)
                     {
-                        Series series_of_found_signal_data = series.Find(series_of_signal => Convert.ToBoolean(string.Compare(series_of_signal.Name, current_signal_point.name)));
-
-                        if (series_of_found_signal_data != null)
-                            series_of_found_signal_data.Points.Add(current_point.timestamp, current_signal_point.value);
+                        if (series.Find(series_of_signal => !Convert.ToBoolean(string.Compare(series_of_signal.Name, current_signal_point.name))) != null)
+                        {
+                            series.Find(series_of_signal => !Convert.ToBoolean(string.Compare(series_of_signal.Name, current_signal_point.name))).Points.AddXY(current_point.timestamp, current_signal_point.value);
+                            //MessageBox.Show(current_point.timestamp.ToString() + " " + current_signal_point.value.ToString());
+                        }
                     }
                 }
             }
@@ -204,8 +205,6 @@ namespace CAN_Viewer
                 current_chart_area.AxisX.Maximum = nicescale.get_nice_max();
                 current_chart_area.AxisX.Interval = nicescale.get_tick_spacing();
             }
-
-            chart_area_.AxisX.IntervalAutoMode = IntervalAutoMode.VariableCount;
 
             // Y axis stylize
             chart_area_.AxisY.Enabled = AxisEnabled.True;

@@ -17,8 +17,8 @@ namespace CAN_Viewer
     public partial class CAN_Viewer_Main : Form
     {
         // Initial declarations of database set and logfile objects
-        Database_Set database_set = new Database_Set();
-        Logfile logfile = new Logfile();
+        Database_Set database_set;
+        Logfile logfile;
 
         // Initial declaration of canvas object with time zero and width zero, populated when logfile is loaded
         Canvas gui = new Canvas(0.0, 0.0);
@@ -50,10 +50,8 @@ namespace CAN_Viewer
             statusStrip_status.Stretch = false;
             statusStrip_status.TabIndex = 0;
 
-            logfile.path = "[no logfile selected]";
-
             status_text.Size = new System.Drawing.Size(109, 17);
-            status_text.Text = logfile.path;
+            status_text.Text = "[no logfile selected]";
 
             // Initialize treeview with logfile and database root nodes
             TreeNode root_logfile = new TreeNode("CAN Logfiles");
@@ -87,6 +85,9 @@ namespace CAN_Viewer
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
+                    // Instantiate logfile
+                    logfile = new Logfile();
+
                     // Parse logfile
                     logfile.path = openFileDialog.FileName;
                     logfile.parse(logfile.path, database_set);
@@ -128,6 +129,8 @@ namespace CAN_Viewer
             // Open file dialog
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
+                database_set = new Database_Set();
+
                 openFileDialog.Filter = "dbc files (*.dbc)|*.dbc";
                 openFileDialog.RestoreDirectory = true;
 
@@ -153,11 +156,11 @@ namespace CAN_Viewer
             
         }
 
-        // Sandbox area for testing/debugging stuff, not used
         private void canvas_Click(object sender, EventArgs e)
         {
             
         }
+
         private void canvas_MouseWheel(object sender, MouseEventArgs e)
         {
             canvas.Focus();
@@ -192,8 +195,48 @@ namespace CAN_Viewer
             gui.update_time_tickmarks(canvas);
         }
 
+        // Sandbox area for testing/debugging stuff, not used
         private void chart_Click(object sender, EventArgs e)
         {
+            if (logfile != null)
+            {
+                Timeslice max_timeslice;
+                max_timeslice.start = 0;
+                max_timeslice.end = logfile.point_list[logfile.point_list.Count - 1].timestamp;
+
+                chart_gui.update_timeslice_data(max_timeslice, checkedListBox_signals);
+
+                using (StreamWriter file = new StreamWriter("test.txt"))
+                {
+                    foreach (Logfile_Point point in logfile.point_list)
+                    {
+                        /*
+                        string raw_data = "";
+                        for (int i = 0; i < point.num_bytes; i++)
+                            raw_data += point.data[i].ToString() + " ";
+                        file.WriteLine("Message Number: " + point.point_number + " Timestamp: " + point.timestamp + " Raw Data: " + raw_data);
+
+                        foreach (Logfile_Signal_Point signal_point in point.signal_point_list)
+                        {
+                            file.WriteLine("\t" + signal_point.name + ": " + signal_point.value);
+                        }
+                        */
+
+                        int index = point.signal_point_list.IndexOf(point.signal_point_list.Find(signal => !Convert.ToBoolean(string.Compare(signal.name, "Total_Engine_Hours"))));
+
+                        if (index != -1)
+                        {
+                            string raw_data = "";
+                            for (int i = 0; i < point.num_bytes; i++)
+                                raw_data += point.data[i].ToString() + " ";
+                            file.WriteLine("Message Number: " + point.point_number + " Timestamp: " + point.timestamp + " Raw Data: " + raw_data);
+
+                            file.WriteLine("\t" + point.signal_point_list[index].name + ":\t\t\t" + point.signal_point_list[index].value);
+                        }
+                    }
+                }
+            }
+
             /*
             for (int i=0; i<checkedListBox_signals.CheckedItems.Count; i++)
             {

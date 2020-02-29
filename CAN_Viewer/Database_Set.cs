@@ -60,7 +60,7 @@ namespace CAN_Viewer
                     {
                         // Parse message line and populate message_list with new item
                         Message new_message = new Message();
-                        new_message.name = message_line_words[2];
+                        new_message.name = message_line_words[2]; 
                         new_message.id = Int64.Parse(message_line_words[1]) - (long)(8 * Math.Pow(16, 7)); // Last digit in hex is 8 too big for some reason
                         new_message.length = Int32.Parse(message_line_words[3].Remove(0, 1));
                         new_message.sender = message_line_words[4];
@@ -85,6 +85,11 @@ namespace CAN_Viewer
                                 // Parse signal line and populate signal with new item
                                 Signal new_signal = new Signal();
                                 new_signal.name = signal_line_words[2];
+
+                                //if (!Convert.ToBoolean(string.Compare(message_line_words[2], "HOURS")))
+                                //{
+                                //    MessageBox.Show(curr_signal_line + " |||||| " + new_signal.name);
+                                //}
 
                                 int ampersand_index = signal_line_words[4].IndexOf(@"@");
                                 int pipe_index = signal_line_words[4].IndexOf(@"|");
