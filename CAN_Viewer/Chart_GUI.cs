@@ -18,10 +18,12 @@ namespace CAN_Viewer
     {
         // Chart instance being worked on
         public Chart chart;
-        // List of signals that are contained in current timeslice
-        public List<Tuple<ChartArea, Series>> signals;
+        // List of complete series in entire logfile
+        public List<Series> series;
         // Logfile being displayed
         public Logfile logfile;
+        // Database set being used
+        public Database_Set database_set;
         // CheckedListBox of unique signals that are to be displayed, updated in constructor and update_timeslice_data
         public CheckedListBox checked_list_box;
         // Current timeslice to be displayed, arbitrarily set in constructor and updated in update_timeslice_data
@@ -38,40 +40,67 @@ namespace CAN_Viewer
             chart = chart_;
             chart.BackColor = Color.FromArgb(77, 77, 77); // Set chart color to white
 
+            series = new List<Series>();
+
             logfile = logfile_;
 
             checked_list_box = checked_list_box_;
-
-            signals = new List<Tuple<ChartArea, Series>>();
 
             timeslice.start = -1.0; // Initialize timeslice to be -1.0 to 9.0 until logfile is displayed
             timeslice.end = 9.0;
 
             nicescale = new NiceScale(this); // Instantiate nicescale object
 
-            // Initially create one signal area, will be deleted and replaced with real data when logfile is parsed
-            ChartArea default_chart_area = new ChartArea("default");
-
-            Series default_series = new Series();
-            for (int i = 0; i < 5; i++)
-                default_series.Points.AddXY(i + 1, i + 1);
-
-            add_signal_from_series(default_chart_area, default_series);
-
             chart_area_width = Convert.ToInt32(chart.ChartAreas[0].Position.Width);
         }
-        public int update_logfile(Logfile logfile_)
+        public int update_logfile(Logfile logfile_, Database_Set database_set_, CheckedListBox checked_list_box_)
         {
-            if (logfile_ == null)
+            if (logfile_ == null || database_set_ == null)
                 return 0;
             else
             {
                 logfile = logfile_;
+                database_set = database_set_;
+                checked_list_box = checked_list_box_;
+
+                // Populate list of series, one series for each unique signal
+                foreach (string unique_signal_name in logfile.unique_signals)
+                {
+                    Series new_series = new Series(unique_signal_name);
+                    //MessageBox.Show(new_series.Name);
+
+                    // Stylize new series
+                    new_series.Enabled = true;
+                    new_series.ChartArea = ""; // Set to zero length string for it to not be plotted
+
+                    new_series.ChartType = SeriesChartType.Line;
+                    new_series.MarkerStyle = MarkerStyle.Square;
+                    new_series.MarkerColor = Color.White;
+                    new_series.Color = Color.White;
+                    new_series.LabelBackColor = Color.White;
+
+                    series.Add(new_series);
+                }
+
+                // For every signal in every message, add the data to that signal's series
+                foreach (Logfile_Point point in logfile.point_list)
+                {
+                    foreach (Logfile_Signal_Point signal_point in point.signal_point_list)
+                    {
+                        series.Find(x => !Convert.ToBoolean(string.Compare(signal_point.name, x.Name))).Points.AddXY(point.timestamp, signal_point.value);
+                        //MessageBox.Show(series.Find(x => !Convert.ToBoolean(string.Compare(signal_point.name, x.Name))).Name);
+                    }
+                }
+
                 return 1;
             }
         }
-        public int set_initial_timeslice_data(CheckedListBox checked_list_box_initial)
+        // Same as function below except timeslice is set to entire logfile width plus some padding
+        public int set_initial_timeslice_data()
         {
+            if (logfile == null)
+                return 0;
+
             // Set initial gui window to entire logfile timeslice, with some padding
             if (logfile.num_points != 0)
             {
@@ -80,136 +109,190 @@ namespace CAN_Viewer
 
                 Timeslice initial_timeslice = new Timeslice { start = initial_time_start, end = initial_time_end };
 
-                update_timeslice_data(initial_timeslice, checked_list_box_initial);
+                update_timeslice_data(initial_timeslice);
             }
             else
                 MessageBox.Show("Logfile empty");
 
             return 1; // Not yet used
         }
-        public int update_timeslice_data(Timeslice timeslice_new, CheckedListBox checked_list_box_new)
+        // Updates chart areas to show data in new timeslice
+        public int update_timeslice_data(Timeslice timeslice_new)
         {
             if (logfile == null)
                 return 0;
 
-            // Clear chart, will be repopulated later
-            chart.ChartAreas.Clear();
-            chart.Series.Clear();
-
-            // Clear existing signal list, repopulated later
-            signals.Clear();
+            //// Clear chart, will be repopulated later
+            //chart.ChartAreas.Clear();
 
             // Update timeslice and checked_list_box
             timeslice = timeslice_new;
-            checked_list_box = checked_list_box_new;
 
-            // Create list of ChartAreas and Series which will be populated later, once they are populated, they are iteratively added to series with add_signal_from_series()
-            List<ChartArea> chart_areas = new List<ChartArea>();
-            List<Series> series = new List<Series>();
+            //// Create list of ChartAreas which will be populated later
+            //List<ChartArea> chart_areas = new List<ChartArea>();
 
-            // Populate list of ChartAreas and Series with all signals selected in checked_list_box, which are arranged alphabetically by default
-            for (int i = 0; i < checked_list_box.CheckedItems.Count; i++)
-            {
-                ChartArea new_chart_area = new ChartArea(checked_list_box.CheckedItems[i].ToString());
-                Series new_series = new Series(checked_list_box.CheckedItems[i].ToString());
+            //// Populate list of ChartAreas with all signals selected in checked_list_box, which are arranged alphabetically by default
+            //for (int i = 0; i < checked_list_box.CheckedItems.Count; i++)
+            //{
+            //    ChartArea new_chart_area = new ChartArea(checked_list_box.CheckedItems[i].ToString());
 
-                chart_areas.Add(new_chart_area);
-                series.Add(new_series);
+            //    chart_areas.Add(new_chart_area);
+            //}
 
-                //MessageBox.Show(checked_list_box.CheckedItems[i].ToString());
-            }
-
-            // Find start and end indices of set of logfile points that are encompassed by timeslice_new
-            int start_index = logfile.point_list.IndexOf(logfile.point_list.Find(x => x.timestamp >= timeslice.start)); // Index of first signal greater than timeslice start
-            int end_index = logfile.point_list.IndexOf(logfile.point_list.FindLast(x => x.timestamp <= timeslice.end)); // Index of last signal less than timeslice end
+            //// Find start and end indices of set of logfile points that are encompassed by timeslice_new
+            //int start_index = logfile.point_list.IndexOf(logfile.point_list.Find(x => x.timestamp >= timeslice.start)); // Index of first signal greater than timeslice start
+            //int end_index = logfile.point_list.IndexOf(logfile.point_list.FindLast(x => x.timestamp <= timeslice.end)); // Index of last signal less than timeslice end
 
             //MessageBox.Show(start_index.ToString() + " " + end_index.ToString() + " | " + "0" + " " + (logfile.point_list.Count - 1).ToString());
 
-            // Create sublist of points from list of points in logfile
-            List<Logfile_Point> timeslice_points;
-            if (start_index != -1 && end_index != -1 && end_index > start_index)
-                timeslice_points = logfile.point_list.GetRange(start_index, end_index - start_index);
-            else
-                timeslice_points = new List<Logfile_Point>();
+            //// Create sublist of points from list of points in logfile
+            //List<Logfile_Point> timeslice_points;
+            //if (start_index != -1 && end_index != -1 && end_index > start_index)
+            //    timeslice_points = logfile.point_list.GetRange(start_index, end_index - start_index);
+            //else
+            //    timeslice_points = new List<Logfile_Point>();
 
-            // At each Logfile_Point within timeslice, for each of its signals, add the data to the series of that signal
-            foreach (Logfile_Point current_point in timeslice_points)
+            //// At each Logfile_Point within timeslice, for each of its signals, add the data to the series of that signal
+            //foreach (Logfile_Point current_point in timeslice_points)
+            //{
+            //    foreach (Logfile_Signal_Point current_signal_point in current_point.signal_point_list)
+            //    {
+            //        int current_signal_name_index_in_checked_list_box = checked_list_box.Items.IndexOf(current_signal_point.name);
+
+            //        // If current signal's box is checked
+            //        if (checked_list_box.GetItemChecked(current_signal_name_index_in_checked_list_box) == true)
+            //        {
+            //            if (series.Find(series_of_signal => !Convert.ToBoolean(string.Compare(series_of_signal.Name, current_signal_point.name))) != null)
+            //            {
+            //                series.Find(series_of_signal => !Convert.ToBoolean(string.Compare(series_of_signal.Name, current_signal_point.name))).Points.AddXY(current_point.timestamp, current_signal_point.value);
+            //                //MessageBox.Show(current_point.timestamp.ToString() + " " + current_signal_point.value.ToString());
+            //            }
+            //        }
+            //    }
+            //}
+
+            //// Add now-populated chart_areas and series lists to signals list
+            //if (chart_areas.Count != series.Count)
+            //    throw new ArgumentException("size of chart_area and series not same");
+
+            //for (int i = 0; i < chart_areas.Count; i++)
+            //    add_signal_from_series(chart_areas[i], series[i]);
+
+            //for (int i = 0; i < chart_areas.Count; i++)
+            //{
+            //    chart_areas[i].BackColor = Color.Black; // Set chart_area to black
+
+            //    // X axis stylize
+            //    chart_areas[i].AxisX.Enabled = AxisEnabled.True;
+            //    chart_areas[i].AxisX.LineColor = Color.White;
+            //    chart_areas[i].AxisX.InterlacedColor = Color.White;
+            //    chart_areas[i].AxisX.MajorGrid.LineColor = Color.FromArgb(77, 77, 77);
+            //    chart_areas[i].AxisX.LabelStyle.ForeColor = Color.White;
+
+            //    // Find nice x axis parameters, need to do this after refresh because need new chart area width
+            //    nicescale.set_parameters(this);
+
+            //    chart_areas[i].AxisX.Minimum = nicescale.get_nice_min();
+            //    chart_areas[i].AxisX.Maximum = nicescale.get_nice_max();
+            //    chart_areas[i].AxisX.Interval = nicescale.get_tick_spacing();
+
+            //    // Y axis stylize
+            //    chart_areas[i].AxisY.Enabled = AxisEnabled.True;
+            //    chart_areas[i].AxisY.LineColor = Color.White;
+            //    chart_areas[i].AxisY.InterlacedColor = Color.White;
+            //    chart_areas[i].AxisY.MajorGrid.LineColor = Color.FromArgb(77, 77, 77);
+            //    chart_areas[i].AxisY.LabelStyle.ForeColor = Color.White;
+
+            //    chart_areas[i].AxisY.Minimum = double.NaN; // Autoscales y axis
+            //    chart_areas[i].AxisY.Maximum = double.NaN;
+            //    chart_areas[i].AxisY.IntervalAutoMode = IntervalAutoMode.FixedCount;
+
+            //    chart.ChartAreas.Add(chart_areas[i]);
+            //}
+
+            // Find nice x axis parameters, need to do this after refresh because need new chart area width
+            nicescale.set_parameters(this);
+
+            foreach (ChartArea chart_area in chart.ChartAreas)
             {
-                foreach (Logfile_Signal_Point current_signal_point in current_point.signal_point_list)
-                {
-                    int current_signal_name_index_in_checked_list_box = checked_list_box.Items.IndexOf(current_signal_point.name);
-
-                    // If current signal's box is checked
-                    if (checked_list_box.GetItemChecked(current_signal_name_index_in_checked_list_box) == true)
-                    {
-                        if (series.Find(series_of_signal => !Convert.ToBoolean(string.Compare(series_of_signal.Name, current_signal_point.name))) != null)
-                        {
-                            series.Find(series_of_signal => !Convert.ToBoolean(string.Compare(series_of_signal.Name, current_signal_point.name))).Points.AddXY(current_point.timestamp, current_signal_point.value);
-                            //MessageBox.Show(current_point.timestamp.ToString() + " " + current_signal_point.value.ToString());
-                        }
-                    }
-                }
+                chart_area.AxisX.Minimum = nicescale.get_nice_min();
+                chart_area.AxisX.Maximum = nicescale.get_nice_max();
+                chart_area.AxisX.Interval = nicescale.get_tick_spacing();
             }
-
-            // Add now-populated chart_areas and series lists to signals list
-            if (chart_areas.Count != series.Count)
-                throw new ArgumentException("size of chart_area and series not same");
-
-            for (int i = 0; i < chart_areas.Count; i++)
-                add_signal_from_series(chart_areas[i], series[i]);
 
             // Refresh chart
             chart.Refresh();
 
             return 1; // Not yet used
         }
-        // Adds new chart area and series to signals list and chart object
-        public int add_signal_from_series(ChartArea chart_area_, Series series_)
+        public void update_displayed_chart_areas(List<string> checked_items)
         {
-            chart_area_.BackColor = Color.Black; // Set chart_area to black
+            // Clear all existing chart areas, all series' chart areas, and series in chart
+            chart.ChartAreas.Clear();
+            foreach (Series current_series in series)
+                current_series.ChartArea = "";
+            chart.Series.Clear();
 
-            // X axis stylize
-            chart_area_.AxisX.Enabled = AxisEnabled.True;
-            chart_area_.AxisX.LineColor = Color.White;
-            chart_area_.AxisX.InterlacedColor = Color.White;
-            chart_area_.AxisX.MajorGrid.LineColor = Color.FromArgb(77, 77, 77);
-            chart_area_.AxisX.LabelStyle.ForeColor = Color.White;
+            foreach (string checked_signal_name in checked_items)
+            {
+                // Declare new chart area for each signal checked and add to chart
+                ChartArea chart_area = new ChartArea();
+                chart_area.Name = checked_signal_name;
+                chart_area.BackColor = Color.Black; // Set chart_area to black
 
-            // Find nice x axis parameters, need to do this after refresh because need new chart area width
-            nicescale.set_parameters(this);
+                // X axis stylize
+                chart_area.AxisX.Enabled = AxisEnabled.True;
+                chart_area.AxisX.LineColor = Color.White;
+                chart_area.AxisX.InterlacedColor = Color.White;
+                chart_area.AxisX.MajorGrid.LineColor = Color.FromArgb(77, 77, 77);
+                chart_area.AxisX.LabelStyle.ForeColor = Color.White;
 
-            chart_area_.AxisX.Minimum = nicescale.get_nice_min();
-            chart_area_.AxisX.Maximum = nicescale.get_nice_max();
-            chart_area_.AxisX.Interval = nicescale.get_tick_spacing();
+                // Find nice x axis parameters, need to do this after refresh because need new chart area width
+                nicescale.set_parameters(this);
 
-            // Y axis stylize
-            chart_area_.AxisY.Enabled = AxisEnabled.True;
-            chart_area_.AxisY.LineColor = Color.White;
-            chart_area_.AxisY.InterlacedColor = Color.White;
-            chart_area_.AxisY.MajorGrid.LineColor = Color.FromArgb(77, 77, 77);
-            chart_area_.AxisY.LabelStyle.ForeColor = Color.White;
+                chart_area.AxisX.Minimum = nicescale.get_nice_min();
+                chart_area.AxisX.Maximum = nicescale.get_nice_max();
+                chart_area.AxisX.Interval = nicescale.get_tick_spacing();
 
-            chart_area_.AxisY.Minimum = double.NaN; // Autoscales y axis
-            chart_area_.AxisY.Maximum = double.NaN;
-            chart_area_.AxisY.IntervalAutoMode = IntervalAutoMode.FixedCount;
+                // Y axis stylize
+                chart_area.AxisY.Enabled = AxisEnabled.True;
+                chart_area.AxisY.LineColor = Color.White;
+                chart_area.AxisY.InterlacedColor = Color.White;
+                chart_area.AxisY.MajorGrid.LineColor = Color.FromArgb(77, 77, 77);
+                chart_area.AxisY.LabelStyle.ForeColor = Color.White;
 
-            // Series stylize
-            series_.Enabled = true;
-            series_.ChartArea = chart_area_.Name;
+                chart_area.AxisY.Minimum = double.NaN; // Autoscales y axis
+                chart_area.AxisY.Maximum = double.NaN;
+                chart_area.AxisY.IntervalAutoMode = IntervalAutoMode.FixedCount;
 
-            series_.ChartType = SeriesChartType.Line;
-            series_.MarkerStyle = MarkerStyle.Square;
-            series_.MarkerColor = Color.White;
-            series_.Color = Color.White;
-            series_.LabelBackColor = Color.White;
+                // Add chart area to chart
+                chart.ChartAreas.Add(chart_area);
 
-            signals.Add(new Tuple<ChartArea, Series>(chart_area_, series_));
-            chart.ChartAreas.Add(chart_area_);
-            chart.Series.Add(series_);
+                // Assign chart area to series of signal checked
+                int series_index = series.IndexOf(series.Find(x => !Convert.ToBoolean(string.Compare(x.Name, checked_signal_name))));
 
-            //MessageBox.Show(chart_area_.AxisX.Minimum.ToString() + " " + chart_area_.AxisX.Maximum.ToString() + " " + chart_area_.AxisX.Interval.ToString());
+                if (series_index != -1)
+                {
+                    // Stylize new series
+                    series[series_index].Enabled = true;
+                    series[series_index].ChartArea = ""; // Set to zero length string for it to not be plotted
 
-            return 1; // Not yet used
+                    series[series_index].ChartType = SeriesChartType.Line;
+                    series[series_index].MarkerStyle = MarkerStyle.Square;
+                    series[series_index].MarkerColor = Color.White;
+                    series[series_index].Color = Color.White;
+                    series[series_index].LabelBackColor = Color.White;
+
+                    // Add chart area to series
+                    series[series_index].ChartArea = chart_area.Name;
+
+                    // Add series to chart
+                    chart.Series.Add(series[series_index]);
+                }
+            }
+
+            // Refresh chart to display changes
+            chart.Refresh();
         }
         public void mouse_wheel_event(object sender, MouseEventArgs e)
         {
@@ -233,7 +316,7 @@ namespace CAN_Viewer
                 timeslice.end += timeslice_width * 0.1 * right_bound_adjustment_weight;
             }
 
-            update_timeslice_data(timeslice, checked_list_box);
+            update_timeslice_data(timeslice);
             //MessageBox.Show(timeslice.start.ToString() + " " + timeslice.end.ToString());
         }
         // Sets initial timeslice to be width of all data with 10% padding on each side
@@ -250,7 +333,7 @@ namespace CAN_Viewer
                 chart_area_width = Convert.ToInt32(chart.ChartAreas[0].Position.Width);
 
             // Explicitly update timeslice data, which only changes x axis nice parameters
-            update_timeslice_data(timeslice, checked_list_box);
+            update_timeslice_data(timeslice);
         }
         public int initialize_form_resize_event(Form form_)
         {

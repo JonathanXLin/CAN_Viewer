@@ -29,11 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CAN_Viewer_Main));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint7 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(1D, 1D);
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint8 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(2D, 2D);
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint9 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(3D, 3D);
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             this.statusStrip_status = new System.Windows.Forms.StatusStrip();
             this.checkedListBox_signals = new System.Windows.Forms.CheckedListBox();
             this.menuStrip_menu = new System.Windows.Forms.MenuStrip();
@@ -74,6 +70,7 @@
             this.checkedListBox_signals.Name = "checkedListBox_signals";
             this.checkedListBox_signals.Size = new System.Drawing.Size(230, 356);
             this.checkedListBox_signals.TabIndex = 1;
+            this.checkedListBox_signals.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBox_signals_ItemCheck);
             // 
             // menuStrip_menu
             // 
@@ -195,21 +192,14 @@
             // 
             // chart
             // 
-            chartArea3.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
-            chartArea3.AxisX.LabelStyle.ForeColor = System.Drawing.Color.Gray;
-            chartArea3.AxisX.LabelStyle.Interval = 0D;
-            chartArea3.Name = "ChartArea1";
-            this.chart.ChartAreas.Add(chartArea3);
+            chartArea1.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
+            chartArea1.AxisX.LabelStyle.ForeColor = System.Drawing.Color.Gray;
+            chartArea1.AxisX.LabelStyle.Interval = 0D;
+            chartArea1.Name = "ChartArea1";
+            this.chart.ChartAreas.Add(chartArea1);
             this.chart.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chart.Location = new System.Drawing.Point(230, 24);
             this.chart.Name = "chart";
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series3.Name = "Series1";
-            series3.Points.Add(dataPoint7);
-            series3.Points.Add(dataPoint8);
-            series3.Points.Add(dataPoint9);
-            this.chart.Series.Add(series3);
             this.chart.Size = new System.Drawing.Size(754, 514);
             this.chart.TabIndex = 6;
             this.chart.Text = "chart1";

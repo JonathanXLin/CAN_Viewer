@@ -100,22 +100,22 @@ namespace CAN_Viewer
                     // Update status bar text
                     status_text.Text = Path.GetFileName(logfile.path);
 
-                    // Update now updated logfile in chart_gui
-                    if (chart_gui.update_logfile(logfile) == 0)
-                        throw new ArgumentException("chart_gui cannot be updated with null logfile argument");
-
                     // Add to treeview
                     TreeNode new_logfile_node = new TreeNode(Path.GetFileName(logfile.path));
                     treeView_tree.Nodes[0].Nodes.Add(new_logfile_node);
                     treeView_tree.Nodes[0].Expand();
+
+                    // Populate checkedListBox with all logfile signals
+                    logfile.update_CheckedListBox(checkedListBox_signals);
+
+                    // Set initial chart to show timeslice of entire logfile
+                    chart_gui.set_initial_timeslice_data();
+
+                    // Update now updated logfile in chart_gui
+                    if (chart_gui.update_logfile(logfile, database_set, checkedListBox_signals) == 0)
+                        throw new ArgumentException("chart_gui cannot be updated with null logfile argument");
                 }
             }
-
-            // Populate checkedListBox with all logfile signals
-            logfile.update_CheckedListBox(checkedListBox_signals);
-
-            // Set initial chart to show timeslice of entire logfile
-            chart_gui.set_initial_timeslice_data(checkedListBox_signals);
 
             /*
             // Set initial gui window to entire logfile timeslice, with some padding
@@ -207,7 +207,7 @@ namespace CAN_Viewer
                 max_timeslice.start = 0;
                 max_timeslice.end = logfile.point_list[logfile.point_list.Count - 1].timestamp;
 
-                chart_gui.update_timeslice_data(max_timeslice, checkedListBox_signals);
+                chart_gui.update_timeslice_data(max_timeslice);
 
                 using (StreamWriter file = new StreamWriter("test.txt"))
                 {
@@ -246,6 +246,25 @@ namespace CAN_Viewer
                 MessageBox.Show(checkedListBox_signals.CheckedItems[i].ToString());
             }
             */
+        }
+
+        private void checkedListBox_signals_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            List<string> checked_items = new List<string>();
+            foreach (var item in checkedListBox_signals.CheckedItems)
+                checked_items.Add(item.ToString());
+
+            if (e.NewValue == CheckState.Checked)
+                checked_items.Add(checkedListBox_signals.Items[e.Index].ToString());
+            else
+                checked_items.Remove(checkedListBox_signals.Items[e.Index].ToString());
+
+            chart_gui.update_displayed_chart_areas(checked_items);
+
+            //string message = "";
+            //foreach (string checked_name in checkedItems)
+            //    message += checked_name + " ";
+            //MessageBox.Show(message);
         }
     }
 }
