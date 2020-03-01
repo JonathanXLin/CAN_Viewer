@@ -192,9 +192,7 @@
             // 
             // chart
             // 
-            chartArea1.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
-            chartArea1.AxisX.LabelStyle.ForeColor = System.Drawing.Color.Gray;
-            chartArea1.AxisX.LabelStyle.Interval = 0D;
+            chartArea1.BackColor = System.Drawing.Color.Black;
             chartArea1.Name = "ChartArea1";
             this.chart.ChartAreas.Add(chartArea1);
             this.chart.Dock = System.Windows.Forms.DockStyle.Fill;

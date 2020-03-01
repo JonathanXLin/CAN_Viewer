@@ -29,7 +29,7 @@ namespace CAN_Viewer
         // Current timeslice to be displayed, arbitrarily set in constructor and updated in update_timeslice_data
         public Timeslice timeslice;
 
-        // Chart area width, initialized in constructor and updated on form resize event
+        // Chart area width, instantiated in constructor updated on form_resize_event
         public int chart_area_width;
 
         // NiceScale object whose methods are used to configure x axes to look nice
@@ -49,9 +49,9 @@ namespace CAN_Viewer
             timeslice.start = -1.0; // Initialize timeslice to be -1.0 to 9.0 until logfile is displayed
             timeslice.end = 9.0;
 
-            nicescale = new NiceScale(this); // Instantiate nicescale object
-
             chart_area_width = Convert.ToInt32(chart.ChartAreas[0].Position.Width);
+
+            nicescale = new NiceScale(this); // Instantiate nicescale object
         }
         public int update_logfile(Logfile logfile_, Database_Set database_set_, CheckedListBox checked_list_box_)
         {
@@ -91,6 +91,13 @@ namespace CAN_Viewer
                         //MessageBox.Show(series.Find(x => !Convert.ToBoolean(string.Compare(signal_point.name, x.Name))).Name);
                     }
                 }
+
+                // Set timeslice initially to max width of logfile
+                Timeslice max_timeslice;
+                max_timeslice.start = 0;
+                max_timeslice.end = Convert.ToInt32(logfile.point_list[logfile.point_list.Count - 1].timestamp * 1.1);
+
+                update_timeslice_data(max_timeslice);
 
                 return 1;
             }

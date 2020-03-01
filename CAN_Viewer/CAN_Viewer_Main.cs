@@ -209,35 +209,35 @@ namespace CAN_Viewer
 
                 chart_gui.update_timeslice_data(max_timeslice);
 
-                using (StreamWriter file = new StreamWriter("test.txt"))
-                {
-                    foreach (Logfile_Point point in logfile.point_list)
-                    {
-                        /*
-                        string raw_data = "";
-                        for (int i = 0; i < point.num_bytes; i++)
-                            raw_data += point.data[i].ToString() + " ";
-                        file.WriteLine("Message Number: " + point.point_number + " Timestamp: " + point.timestamp + " Raw Data: " + raw_data);
+                //    using (StreamWriter file = new StreamWriter("test.txt"))
+                //    {
+                //        foreach (Logfile_Point point in logfile.point_list)
+                //        {
+                //            /*
+                //            string raw_data = "";
+                //            for (int i = 0; i < point.num_bytes; i++)
+                //                raw_data += point.data[i].ToString() + " ";
+                //            file.WriteLine("Message Number: " + point.point_number + " Timestamp: " + point.timestamp + " Raw Data: " + raw_data);
 
-                        foreach (Logfile_Signal_Point signal_point in point.signal_point_list)
-                        {
-                            file.WriteLine("\t" + signal_point.name + ": " + signal_point.value);
-                        }
-                        */
+                //            foreach (Logfile_Signal_Point signal_point in point.signal_point_list)
+                //            {
+                //                file.WriteLine("\t" + signal_point.name + ": " + signal_point.value);
+                //            }
+                //            */
 
-                        int index = point.signal_point_list.IndexOf(point.signal_point_list.Find(signal => !Convert.ToBoolean(string.Compare(signal.name, "Total_Engine_Hours"))));
+                //            int index = point.signal_point_list.IndexOf(point.signal_point_list.Find(signal => !Convert.ToBoolean(string.Compare(signal.name, "Total_Engine_Hours"))));
 
-                        if (index != -1)
-                        {
-                            string raw_data = "";
-                            for (int i = 0; i < point.num_bytes; i++)
-                                raw_data += point.data[i].ToString() + " ";
-                            file.WriteLine("Message Number: " + point.point_number + " Timestamp: " + point.timestamp + " Raw Data: " + raw_data);
+                //            if (index != -1)
+                //            {
+                //                string raw_data = "";
+                //                for (int i = 0; i < point.num_bytes; i++)
+                //                    raw_data += point.data[i].ToString() + " ";
+                //                file.WriteLine("Message Number: " + point.point_number + " Timestamp: " + point.timestamp + " Raw Data: " + raw_data);
 
-                            file.WriteLine("\t" + point.signal_point_list[index].name + ":\t\t\t" + point.signal_point_list[index].value);
-                        }
-                    }
-                }
+                //                file.WriteLine("\t" + point.signal_point_list[index].name + ":\t\t\t" + point.signal_point_list[index].value);
+                //            }
+                //        }
+                //    }
             }
 
             /*
