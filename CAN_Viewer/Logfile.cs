@@ -85,13 +85,17 @@ namespace CAN_Viewer
                         //MessageBox.Show(new_point.point_number.ToString());
 
                         // Matches point with corresponding message_format in database file
-                        // Finds and stores index of database_ message_list that is used to decode curr_point
-                        new_point.database_message_index = -1; // Initially set to not found, but if found in any database, will be updated
+                        // Finds and stores database and database message indices used by point
+                        new_point.database_index = -1; // These are initially set to not found, but if found in any database, will be updated
+                        new_point.database_message_index = -1; // These are initially set to not found, but if found in any database, will be updated
 
                         foreach (Database current_database in database_set.databases)
                         {
                             if (current_database.message_list.IndexOf(current_database.message_list.Find(x => x.id == new_point.id)) != -1)
+                            {
+                                new_point.database_index = database_set.databases.IndexOf(current_database);
                                 new_point.database_message_index = current_database.message_list.IndexOf(current_database.message_list.Find(x => x.id == new_point.id));
+                            } 
                         }
 
                         // Convert bytewise data representation into bit array
@@ -106,57 +110,54 @@ namespace CAN_Viewer
                         }
 
                         // If database message format not found for point
-                        if (new_point.database_message_index == -1)
+                        if (new_point.database_index == -1 || new_point.database_message_index == -1)
                         {
                             //MessageBox.Show("Not Decoding logfile line number <" + new_point.point_number + "> with Timestamp <" + new_point.timestamp + ">");
                         }
                         else
                         {
-                            foreach (Database current_database in database_set.databases)
+                            // Populate signal point list with all signals contained in logfile point
+                            int num_signals = database_set.databases[new_point.database_index].message_list[new_point.database_message_index].num_signals; // Number of signals in current point
+
+                            for (int i = 0; i < num_signals; i++)
                             {
-                                // Populate signal point list with all signals contained in logfile point
-                                int num_signals = current_database.message_list[new_point.database_message_index].num_signals; // Number of signals in current point
+                                // Calculate raw value using little endian
+                                int start_bit = database_set.databases[new_point.database_index].message_list[new_point.database_message_index].signal_list[i].start_bit;
+                                int num_bits = database_set.databases[new_point.database_index].message_list[new_point.database_message_index].signal_list[i].length;
 
-                                for (int i = 0; i < num_signals; i++)
+                                long raw_value = 0; // Raw little-endian value of signal
+
+                                for (int bit_array_index = start_bit; bit_array_index < start_bit + num_bits; bit_array_index++)
                                 {
-                                    // Calculate raw value using little endian
-                                    int start_bit = current_database.message_list[new_point.database_message_index].signal_list[i].start_bit;
-                                    int num_bits = current_database.message_list[new_point.database_message_index].signal_list[i].length;
-
-                                    long raw_value = 0; // Raw little-endian value of signal
-
-                                    for (int bit_array_index = start_bit; bit_array_index < start_bit + num_bits; bit_array_index++)
-                                    {
-                                        raw_value += Convert.ToInt64(data_bit_array[bit_array_index]) * Convert.ToInt64(Math.Pow(2, bit_array_index - start_bit));
-                                    }
-                                    //MessageBox.Show("Logfile Message #: " + new_point.point_number + " Timestamp: " + new_point.timestamp + " Signal Value: " + raw_value);
-
-                                    // Apply scaling, and offset (note, endian is not considered because I don't know what it does)
-                                    double scale = current_database.message_list[new_point.database_message_index].signal_list[i].scale;
-                                    double offset = current_database.message_list[new_point.database_message_index].signal_list[i].offset;
-
-                                    double final_value = (raw_value * scale) + offset;
-
-                                    // Add new signal to signal list and store values in new signal
-                                    Logfile_Signal_Point new_signal_point = new Logfile_Signal_Point();
-                                    new_signal_point.name = current_database.message_list[new_point.database_message_index].signal_list[i].name;
-                                    new_signal_point.value = final_value;
-                                    new_point.signal_point_list.Add(new_signal_point);
-                                    new_point.num_signal_points++;
-
-                                    //MessageBox.Show("Logfile Message #: " + new_point.point_number + " Timestamp: " + new_point.timestamp + " Signal Name <" + database_.message_list[new_point.database_message_index].signal_list[i].name + ">, value: " + final_value);
-
-                                    // Check if signal is new signal and if so, add to unique_signal list
-                                    if (unique_signals.Exists(x => x == new_signal_point.name) == false)
-                                    {
-                                        unique_signals.Add(new_signal_point.name);
-                                        num_unique_signals++;
-
-                                        //MessageBox.Show("Added: " + new_signal_point.name);
-                                    }
+                                    raw_value += Convert.ToInt64(data_bit_array[bit_array_index]) * Convert.ToInt64(Math.Pow(2, bit_array_index - start_bit));
                                 }
-                                //MessageBox.Show("Decoding logfile line number <" + new_point.point_number + "> with Timestamp <" + new_point.timestamp + ">");
+                                //MessageBox.Show("Logfile Message #: " + new_point.point_number + " Timestamp: " + new_point.timestamp + " Signal Value: " + raw_value);
+
+                                // Apply scaling, and offset (note, endian is not considered because I don't know what it does)
+                                double scale = database_set.databases[new_point.database_index].message_list[new_point.database_message_index].signal_list[i].scale;
+                                double offset = database_set.databases[new_point.database_index].message_list[new_point.database_message_index].signal_list[i].offset;
+
+                                double final_value = (raw_value * scale) + offset;
+
+                                // Add new signal to signal list and store values in new signal
+                                Logfile_Signal_Point new_signal_point = new Logfile_Signal_Point();
+                                new_signal_point.name = database_set.databases[new_point.database_index].message_list[new_point.database_message_index].signal_list[i].name;
+                                new_signal_point.value = final_value;
+                                new_point.signal_point_list.Add(new_signal_point);
+                                new_point.num_signal_points++;
+
+                                //MessageBox.Show("Logfile Message #: " + new_point.point_number + " Timestamp: " + new_point.timestamp + " Signal Name <" + database_.message_list[new_point.database_message_index].signal_list[i].name + ">, value: " + final_value);
+
+                                // Check if signal is new signal and if so, add to unique_signal list
+                                if (unique_signals.Exists(x => x == new_signal_point.name) == false)
+                                {
+                                    unique_signals.Add(new_signal_point.name);
+                                    num_unique_signals++;
+
+                                    //MessageBox.Show("Added: " + new_signal_point.name);
+                                }
                             }
+                            //MessageBox.Show("Decoding logfile line number <" + new_point.point_number + "> with Timestamp <" + new_point.timestamp + ">");
                         }
 
                         // Adds logfile point to point list
@@ -227,7 +228,9 @@ namespace CAN_Viewer
         public int[] data;
         public int point_number;
 
-        public int database_message_index; // Index of database message format, -1 if does not exist
+        public int database_index; // Index of database that contains point's format, -1 if does not exist
+        public int database_message_index; // Index of message in database that contains point's format, -1 if does not exist
+
         public List<Logfile_Signal_Point> signal_point_list; // List of signals that are contained in logfile point
         public int num_signal_points;
 

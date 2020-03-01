@@ -62,7 +62,12 @@ namespace CAN_Viewer
                         Message new_message = new Message();
                         new_message.name = message_line_words[2]; 
                         new_message.id = Int64.Parse(message_line_words[1]) - (long)(8 * Math.Pow(16, 7)); // Last digit in hex is 8 too big for some reason
-                        new_message.length = Int32.Parse(message_line_words[3].Remove(0, 1));
+                        
+                        if (message_line_words[3][0] == ':') // Sometimes is in format :8
+                            new_message.length = Int32.Parse(message_line_words[3].Remove(0, 1));
+                        else // Sometimes is in format : 8
+                            new_message.length = Int32.Parse(message_line_words[3]);
+
                         new_message.sender = message_line_words[4];
                         message_list.Add(new_message);
 

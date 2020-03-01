@@ -246,7 +246,8 @@ namespace CAN_Viewer
         public void form_resize_event(object sender, EventArgs e)
         {
             // Update chart area width
-            chart_area_width = Convert.ToInt32(chart.ChartAreas[0].Position.Width);
+            if (chart.ChartAreas.Count != 0)
+                chart_area_width = Convert.ToInt32(chart.ChartAreas[0].Position.Width);
 
             // Explicitly update timeslice data, which only changes x axis nice parameters
             update_timeslice_data(timeslice, checked_list_box);

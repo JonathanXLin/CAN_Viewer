@@ -1,0 +1,557 @@
+VERSION "HNPBNYYYYYYYYYYYYYYYYYYYYYYYYYYYNNNNNNNNNN/4/%%%/4/'%**4NNN///"
+
+
+NS_ :
+    NS_DESC_
+    CM_
+    BA_DEF_
+    BA_
+    VAL_
+    CAT_DEF_
+    CAT_
+    FILTER
+    BA_DEF_DEF_
+    EV_DATA_
+    ENVVAR_DATA_
+    SGTYPE_
+    SGTYPE_VAL_
+    BA_DEF_SGTYPE_
+    BA_SGTYPE_
+    SIG_TYPE_REF_
+    VAL_TABLE_
+    SIG_GROUP_
+    SIG_VALTYPE_
+    SIGTYPE_VALTYPE_
+
+BS_:
+
+BU_: TesterECU ePark_DECU
+
+BO_ 2566848592 ENG_PVM_FBK_MSG_1 :8 ePark_DECU
+ SG_ Tractor_Pres_fbk_status_OORH_1 : 0|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ Trailer_Pres_fbk_status_OORH_1 : 2|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ Tractor_Pres_fbk_status_OORH_2 : 4|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ Trailer_Pres_fbk_status_OORH_2 : 6|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ Tractor_Pres_fbk_status_OORL_1 : 8|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ Tractor_Pres_fbk_status_OORL_2 : 10|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ Trailer_Pres_fbk_status_OORL_1 : 12|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ Trailer_Pres_fbk_status_OORL_2 : 14|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ Trailer_del_pres_1 : 16|8@1+ (1,0) [0|150] "Psi" Vector__XXX
+ SG_ Trailer_del_pres_2 : 24|8@1+ (1,0) [0|150] "Psi" Vector__XXX
+ SG_ Tractor_del_pres_1 : 32|8@1+ (1,0) [0|150] "Psi" Vector__XXX
+ SG_ Tractor_del_pres_2 : 40|8@1+ (1,0) [0|150] "Psi" Vector__XXX
+ SG_ PU_ParkUnpark_4State : 48|8@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ TU_ParkUnpark_4State : 56|8@1+ (1,0) [0|3] "" Vector__XXX
+
+BO_ 2566848848 ENG_BUTTON_MSG_FAST_1 :8 ePark_DECU
+ SG_ yellow_button_neutral_state_A : 0|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ yellow_button_push_state_A : 2|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ yellow_button_pull_state_A : 4|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ red_button_neutral_state_A : 6|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ red_button_push_state_A : 8|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ red_button_pull_state_A : 10|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ yellow_button_neutral_state_B : 12|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ yellow_button_push_state_B : 14|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ yellow_button_pull_state_B : 16|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ red_button_neutral_state_B : 18|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ red_button_push_state_B : 20|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ red_button_pull_state_B : 22|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ Yellow_button_push_intent : 24|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ Yellow_button_pull_intent : 26|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ Yellow_button_neutral_intent : 28|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ Red_button_push_intent : 30|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ Red_button_pull_intent : 32|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ Red_button_neutral_intent : 34|2@1+ (1,0) [0|3] "" Vector__XXX
+
+BO_ 2566849360 ENG_DECU_SYSTEM_MSG_1 :8 ePark_DECU
+ SG_ button_configuration_error : 0|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ trailer_configuration_error : 1|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ External_supply_volt_mon : 2|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ Battery_pow_mon : 4|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ Epark_Seat_Belt_Switch : 6|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ Epark_Ignition_status : 8|2@1+ (1,0) [0|2] "" Vector__XXX
+ SG_ Epark_Door_Switch_Status : 10|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ Epark_SLS_Switch_Status : 12|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ PS_supply_volt_mon : 14|2@1+ (1,0) [0|2] "" Vector__XXX
+
+BO_ 2566849872 ENG_SOL_MSG_1 :8 ePark_DECU
+ SG_ tractor_sol_app_stat : 0|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ tractor_sol_rel_stat : 2|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ trailer_sol_rel_stat : 4|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ trailer_sol_app_stat : 6|2@1+ (1,0) [0|3] "" Vector__XXX
+
+BO_ 2566850384 ENG_PVM_FBK_MSG_2 :8 ePark_DECU
+ SG_ Tractor_delivery_volt_1 : 0|8@1+ (0.02,0) [0|5] "Volt" Vector__XXX
+ SG_ Tractor_delivery_volt_2 : 8|8@1+ (0.02,0) [0|5] "Volt" Vector__XXX
+ SG_ Trailer_delivery_volt_1 : 16|8@1+ (0.02,0) [0|5] "Volt" Vector__XXX
+ SG_ Trailer_delivery_volt_2 : 24|8@1+ (0.02,0) [0|5] "Volt" Vector__XXX
+
+BO_ 2566850640 ENG_BUTTON_MSG_SLOW_1 :8 ePark_DECU
+ SG_ Yellow_button_push_state : 0|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ Yellow_button_pull_state : 2|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ Yellow_button_neutral_state : 4|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ Red_button_push_state : 6|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ Red_button_pull_state : 8|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ Red_button_neutral_state : 10|2@1+ (1,0) [0|3] "" Vector__XXX
+
+BO_ 2566851152 Adv_Feature_Status :8 ePark_DECU
+ SG_ Anti_Rollaway_Powered_Unit_Statu : 0|8@1+ (1,0) [0|6] "" Vector__XXX
+ SG_ Anti_Rollaway_Towed_Unit_Status : 8|8@1+ (1,0) [0|6] "" Vector__XXX
+ SG_ PAS_Powered_Unit_Status : 16|8@1+ (1,0) [0|10] "" Vector__XXX
+ SG_ PAS_Towed_Unit_Status : 24|8@1+ (1,0) [0|10] "" Vector__XXX
+ SG_ PAS_XBR_park_Status_1 : 32|8@1+ (1,0) [0|10] "" Vector__XXX
+ SG_ Manual_powered_park_status : 40|4@1+ (1,0) [0|7] "" Vector__XXX
+ SG_ Manual_towed_park_status : 44|4@1+ (1,0) [0|7] "" Vector__XXX
+ SG_ ATBR_status : 48|4@1+ (1,0) [0|9] "" Vector__XXX
+ SG_ Bobtail_status : 52|4@1+ (1,0) [0|2] "" Vector__XXX
+ SG_ Manual_powered_unpark_status : 56|4@1+ (1,0) [0|8] "" Vector__XXX
+ SG_ Manual_towed_unpark_status : 60|4@1+ (1,0) [0|8] "" Vector__XXX
+
+BO_ 2566851408 Adv_Feature_Status_2 :8 ePark_DECU
+ SG_ Manual_Powered_Park_Request : 0|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Manual_Powered_Unpark_Request : 1|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Manual_Towed_Park_Request : 2|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Manual_Towed_Unpark_Request : 3|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ ARA_Powered_Park_Request : 4|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ ARA_Towed_Park_Request : 5|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Bobtail_request : 7|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ ATBD_Unpark_Request : 8|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Yel_btn_PAS_powered_park_request : 9|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Yel_btn_PAS_towed_park_request : 10|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Yel_btn_PAS_powered_Unpark_reque : 11|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Yel_btn_PAS_towed_Unpark_request : 12|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Red_btn_PASR_towed_park_request : 13|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Red_btn_PASR_towed_Unpark_reques : 14|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Valve_SwitchBack_PU_Park_Request : 15|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Valve_Switch_Back_PU_Unpark_Requ : 16|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Valve_Switch_Back_TU_Park_Reques : 17|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Valve_Switch_Back_TU_Unpark_Requ : 18|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Re_deliver_Eval_Towed_Unit : 19|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ VSB_PU_Park_Status : 20|4@1+ (1,0) [0|15] "" Vector__XXX
+ SG_ VSB_TU_Park_Status : 24|4@1+ (1,0) [0|15] "" Vector__XXX
+ SG_ VSB_PU_Unpark_Status : 28|4@1+ (1,0) [0|15] "" Vector__XXX
+ SG_ VSB_TU_Unpark_Status : 32|4@1+ (1,0) [0|15] "" Vector__XXX
+
+BO_ 2566851664 AuC_BuC_Batt_Mon_St :8 ePark_DECU
+ SG_ AuC_D_BattVltg_data_8_bit : 0|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ BattVltg_data_Of_BuC_from_ICC : 8|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ Err_Cntr_For_Batt_Mon_at_AuC : 16|16@1+ (1,0) [0|65535] "" Vector__XXX
+ SG_ Err_Cntr_Of_BuC_Batt_Mon_from_IC : 40|16@1+ (1,0) [0|65535] "" Vector__XXX
+
+BO_ 2566852944 DECU_LED_Vhcl_Motion_Debug :8 ePark_DECU
+ SG_ STAT_A_PU_WL_LED : 0|2@1+ (1,0) [0|2] "" Vector__XXX
+ SG_ STAT_A_TU_WL_LED : 2|2@1+ (1,0) [0|2] "" Vector__XXX
+ SG_ PU_WL_LED_OOR : 4|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ TU_WL_LED_OOR : 5|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ vhcl_motion_st_BuC : 6|2@1+ (1,0) [0|2] "" Vector__XXX
+ SG_ Speed_BuC : 8|16@1+ (0.00390625,0) [0|250.99609375] "km/h" Vector__XXX
+ SG_ STAT_A_PU_WL_Counts : 24|8@1+ (4,0) [0|255] "" Vector__XXX
+ SG_ STAT_A_TU_WL_Counts : 32|8@1+ (4,0) [0|255] "" Vector__XXX
+ SG_ vhcl_motion_st_AuC : 40|2@1+ (1,0) [0|2] "" Vector__XXX
+ SG_ Speed_Implausibility_Flag_AuC : 42|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ tctr_left_wheel_locking : 43|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ tctr_right_wheel_locking : 44|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ tctr_wheels_lock : 45|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Speed_AuC : 48|16@1+ (0.00390625,0) [0|250.99609375] "km/h" Vector__XXX
+
+BO_ 2566853200 Limited_Engineering_Dataset :8 ePark_DECU
+ SG_ PU_Delivery_Status : 0|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ TU_Delivery_Status : 2|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ Bobtail_Feature_Status : 4|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ Exhaust_At_Speed_PowerUnit_Featu : 6|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ Exhaust_At_Speed_TowedUnit_Featu : 8|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ Anti_Rollaway_Feature_Status : 10|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ Auto_Trailer_Release_Feature_Sta : 12|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ Driveline_Protection_Feature_Sta : 14|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ OCC1_Status : 16|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ Yellow_Button_Intent : 18|3@1+ (1,0) [0|2] "" Vector__XXX
+ SG_ RedButtonIntent : 21|3@1+ (1,0) [0|2] "" Vector__XXX
+ SG_ Ignition_Status : 24|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ Foot_Brake_Status : 26|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ OCC2_Status : 28|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ Redeliver_Eval_Towed_Unit : 30|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Red_EAS_TU_Feature_Status : 32|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ Red_EAS_re_deliver_Feature_Statu : 34|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ Yel_EAS_PU_re_deliver_Feature_St : 36|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ Yel_EAS_TU_Re_deliver_Feature_St : 38|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ VSB_PU_Park_Status : 40|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ VSB_PU_Unpark_Status : 42|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ VSB_TU_Park_Status : 44|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ VSB_TU_Unpark_Status : 46|2@1+ (1,0) [0|3] "" Vector__XXX
+
+BO_ 2566853968 AuC_SYSTEM_MODE_MSG :8 ePark_DECU
+ SG_ System_Mode_Status_A : 0|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ Maintenance_Mode_Entry_Req : 2|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ Normal_Mode_Entry_Req : 4|3@1+ (1,0) [0|7] "" Vector__XXX
+ SG_ IgnitionStatus : 8|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ Battery_Voltage_Status : 10|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ Cranking_State : 12|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ B2A_GVR_PUReq : 32|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ AuC_PU_Req : 40|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ B2A_GVR_TUReq : 48|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ AuC_TU_Req : 56|8@1+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 2566866000 AuC_LowLevCrossChesk_Tx :8 ePark_DECU
+ SG_ canj_CAT_ErrorSet : 0|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ canj_CATErrorCode : 8|16@1+ (1,0) [0|65535] "" Vector__XXX
+ SG_ canj_ErrorCount : 24|16@1+ (1,0) [0|65535] "" Vector__XXX
+
+BO_ 2566854736 CAN_Phase2Btest_Tx :8 ePark_DECU
+ SG_ canj_VarAddressTx : 0|32@1+ (1,0) [0|4294967295] "" Vector__XXX
+ SG_ canj_VarValueTx : 32|16@1+ (1,0) [0|65535] "" Vector__XXX
+
+BO_ 2566857040 Eng_CPU_Task_Loads :8 ePark_DECU
+ SG_ CPU_Load : 0|8@1+ (1,0) [0|255] "%" Vector__XXX
+ SG_ TaskLoad_1ms : 8|8@1+ (1,0) [0|255] "%" Vector__XXX
+ SG_ TaskLoad_2ms : 16|8@1+ (1,0) [0|255] "%" Vector__XXX
+ SG_ TaskLoad_5ms : 24|8@1+ (1,0) [0|255] "%" Vector__XXX
+ SG_ TaskLoad_10ms : 32|8@1+ (1,0) [0|255] "%" Vector__XXX
+ SG_ TaskLoad_50ms : 40|8@1+ (1,0) [0|255] "%" Vector__XXX
+ SG_ TaskLoad_100ms : 48|8@1+ (1,0) [0|255] "%" Vector__XXX
+
+BO_ 2566857296 Eng_CPU_Task_Peak_Loads :8 ePark_DECU
+ SG_ CPU_Load_Peak : 0|8@1+ (1,0) [0|255] "%" Vector__XXX
+ SG_ TaskLoad_1ms_Peak : 8|8@1+ (1,0) [0|255] "%" Vector__XXX
+ SG_ TaskLoad_2ms_Peak : 16|8@1+ (1,0) [0|255] "%" Vector__XXX
+ SG_ TaskLoad_5ms_Peak : 24|8@1+ (1,0) [0|255] "%" Vector__XXX
+ SG_ TaskLoad_10ms_Peak : 32|8@1+ (1,0) [0|255] "%" Vector__XXX
+ SG_ TaskLoad_50ms_Peak : 40|8@1+ (1,0) [0|255] "%" Vector__XXX
+ SG_ TaskLoad_100ms_Peak : 48|8@1+ (1,0) [0|255] "%" Vector__XXX
+
+BO_ 2566858832 AuC_Eng_Debug_MSG :8 ePark_DECU
+ SG_ Eng_DebugByte1Val : 0|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ Eng_DebugByte2Val : 8|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ Eng_DebugByte3Val : 16|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ Eng_DebugByte4Val : 24|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ Eng_DebugByte5Val : 32|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ Eng_DebugByte6Val : 40|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ Eng_DebugByte7Val : 48|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ Eng_DebugByte8Val : 56|8@1+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 2566860880 AuC_Button_PU_Debug_Msg :8 ePark_DECU
+ SG_ PU_HW_Failure : 0|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ PU_Crosscheck_Failure : 2|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ PU_Pos_Overlap : 4|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ PU_40ms_Crosscheck_Failure : 6|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ PU_CrossCheck_Err : 8|16@1+ (1,0) [0|65535] "" Vector__XXX
+ SG_ PU_40ms_Crosscheck_Err : 24|16@1+ (1,0) [0|65535] "" Vector__XXX
+ SG_ PU_Phy_Err_Counter : 40|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ Pu_Stuck_Err : 48|16@1+ (1,0) [0|65535] "" Vector__XXX
+
+BO_ 2566861136 AuC_Button_TU_Debug_Msg :8 ePark_DECU
+ SG_ TU_HW_Failure : 0|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ TU_Crosscheck_Failure : 2|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ TU_Pos_Overlap : 4|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ TU_40ms_Crosscheck_Failure : 6|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ TU_CrossCheck_Err : 8|16@1+ (1,0) [0|65535] "" Vector__XXX
+ SG_ TU_40ms_Crosscheck_Err : 24|16@1+ (1,0) [0|65535] "" Vector__XXX
+ SG_ TU_Phy_Err_Counter : 40|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ Tu_Stuck_Err : 48|16@1+ (1,0) [0|65535] "" Vector__XXX
+
+BO_ 2566869242 AuC_BuC_BattMon_TestMsg :8 TesterECU
+ SG_ canj_BuC_D_BattVltg_data_8_bit : 0|8@1+ (1,0) [0|255] "" ePark_DECU
+ SG_ canj_AuC_D_BattVltg_data_8_bit : 8|8@1+ (1,0) [0|255] "" ePark_DECU
+
+BO_ 2566870522 AuC_LowLevCrossChesk_Rx :8 TesterECU
+ SG_ canj_TestSet : 0|8@1+ (1,0) [0|255] "" ePark_DECU
+ SG_ canj_Testselection : 8|8@1+ (1,0) [0|255] "" ePark_DECU
+ SG_ canj_test_data_8_bit : 16|8@1+ (1,0) [0|255] "" ePark_DECU
+ SG_ canj_SetCATError : 24|8@1+ (1,0) [0|255] "" ePark_DECU
+
+BO_ 2566855162 CAN_Phase2Btest_Rx :8 TesterECU
+ SG_ canj_VarAddressRx : 0|32@1+ (1,0) [0|4294967295] "" ePark_DECU
+ SG_ canj_VarMaskRx : 32|16@1+ (1,0) [0|65535] "" ePark_DECU
+
+CM_ "This database file is auto-generated by can_procdb.pl";
+
+BA_DEF_ BO_ "GenMsgCycleTime" INT 0 3600000;
+BA_DEF_ BO_ "GenMsgCycleTimeFast" INT 0 3600000;
+BA_DEF_ BO_ "GenMsgDelayTime" INT 0 1000;
+BA_DEF_ BO_ "GenMsgFastOnStart" INT 0 100000;
+BA_DEF_ BO_ "GenMsgILSupport" ENUM "No","Yes";
+BA_DEF_ BO_ "GenMsgNrOfRepetition" INT 0 1000000;
+BA_DEF_ BO_ "GenMsgRequestable" INT 0 1;
+BA_DEF_ BO_ "GenMsgSendType" ENUM "cyclic","NotUsed","NotUsed","NotUsed","NotUsed","NotUsed","NotUsed","IfActive","noMsgSendType";
+BA_DEF_ BO_ "GenMsgStartDelayTime" INT 0 100000;
+BA_DEF_ BO_ "GenMsgTimeOut_BrakeSystemCtl" INT 0 0;
+BA_DEF_ BO_ "VFrameFormat" ENUM "StandardCAN","ExtendedCAN","reserved","J1939PG";
+BA_DEF_ "BusType" STRING ;
+BA_DEF_ "DatabaseVersion" STRING ;
+BA_DEF_ "GenEnvVarEndingDsp" STRING ;
+BA_DEF_ "GenEnvVarEndingSnd" STRING ;
+BA_DEF_ "GenEnvVarPrefix" STRING ;
+BA_DEF_ "SAE_J1939_21_SpecVersion" STRING ;
+BA_DEF_ "SAE_J1939_71_SpecVersion" STRING ;
+BA_DEF_ "SAE_J1939_73_SpecVersion" STRING ;
+BA_DEF_ "SAE_J1939_75_SpecVersion" STRING ;
+BA_DEF_ "SAE_J1939_81_SpecVersion" STRING ;
+BA_DEF_ SG_ "GenSigEVName" STRING ;
+BA_DEF_ SG_ "GenSigILSupport" ENUM "No","Yes";
+BA_DEF_ SG_ "GenSigInactiveValue" INT 0 0;
+BA_DEF_ SG_ "GenSigSendType" ENUM "Cyclic","OnWrite","OnWriteWithRepetition","OnChange","OnChangeWithRepetition","IfActive","IfActiveWithRepetition","NoSigSendType";
+BA_DEF_ SG_ "GenSigStartValue" INT 0 10000;
+BA_DEF_ SG_ "SPN" INT 0 524287;
+BA_DEF_ SG_ "SigType" ENUM "Default","Range","RangeSigned","ASCII","Discrete","Control","ReferencePGN","DTC","StringDelimiter","StringLength","StringLengthControl";
+BA_DEF_ SG_ "SystemSignalLongSymbol" STRING ;
+BA_DEF_ BU_ "ECU" STRING ;
+BA_DEF_ BU_ "NmJ1939AAC" INT 0 1;
+BA_DEF_ BU_ "NmJ1939ECUInstance" INT 0 3;
+BA_DEF_ BU_ "NmJ1939Function" INT 0 255;
+BA_DEF_ BU_ "NmJ1939FunctionInstance" INT 0 7;
+BA_DEF_ BU_ "NmJ1939IdentityNumber" INT 0 2097151;
+BA_DEF_ BU_ "NmJ1939IndustryGroup" INT 0 7;
+BA_DEF_ BU_ "NmJ1939ManufacturerCode" INT 0 2047;
+BA_DEF_ BU_ "NmJ1939System" INT 0 127;
+BA_DEF_ BU_ "NmJ1939SystemInstance" INT 0 15;
+BA_DEF_ BU_ "NmStationAddress" INT 0 255;
+BA_DEF_ BU_ "NodeLayerModules" STRING ;
+BA_DEF_DEF_ "GenMsgCycleTime" 0;
+BA_DEF_DEF_ "GenMsgCycleTimeFast" 0;
+BA_DEF_DEF_ "GenMsgDelayTime" 0;
+BA_DEF_DEF_ "GenMsgFastOnStart" 0;
+BA_DEF_DEF_ "GenMsgILSupport" "Yes";
+BA_DEF_DEF_ "GenMsgNrOfRepetition" 0;
+BA_DEF_DEF_ "GenMsgRequestable" 1;
+BA_DEF_DEF_ "GenMsgSendType" "noMsgSendType";
+BA_DEF_DEF_ "GenMsgStartDelayTime" 0;
+BA_DEF_DEF_ "GenMsgTimeOut_BrakeSystemCtl" 0;
+BA_DEF_DEF_ "VFrameFormat" "J1939PG";
+BA_DEF_DEF_ "BusType" "";
+BA_DEF_DEF_ "DatabaseVersion" "";
+BA_DEF_DEF_ "GenEnvVarEndingDsp" "Dsp_";
+BA_DEF_DEF_ "GenEnvVarEndingSnd" "_";
+BA_DEF_DEF_ "GenEnvVarPrefix" "Env";
+BA_DEF_DEF_ "SAE_J1939_21_SpecVersion" "";
+BA_DEF_DEF_ "SAE_J1939_71_SpecVersion" "";
+BA_DEF_DEF_ "SAE_J1939_73_SpecVersion" "";
+BA_DEF_DEF_ "SAE_J1939_75_SpecVersion" "";
+BA_DEF_DEF_ "SAE_J1939_81_SpecVersion" "";
+BA_DEF_DEF_ "GenSigEVName" "Env@Nodename_@Signame";
+BA_DEF_DEF_ "GenSigILSupport" "Yes";
+BA_DEF_DEF_ "GenSigInactiveValue" 0;
+BA_DEF_DEF_ "GenSigSendType" "NoSigSendType";
+BA_DEF_DEF_ "GenSigStartValue" 0;
+BA_DEF_DEF_ "SPN" 0;
+BA_DEF_DEF_ "SigType" "Default";
+BA_DEF_DEF_ "SystemSignalLongSymbol" "";
+BA_DEF_DEF_ "ECU" "";
+BA_DEF_DEF_ "NmJ1939AAC" 0;
+BA_DEF_DEF_ "NmJ1939ECUInstance" 0;
+BA_DEF_DEF_ "NmJ1939Function" 0;
+BA_DEF_DEF_ "NmJ1939FunctionInstance" 0;
+BA_DEF_DEF_ "NmJ1939IdentityNumber" 0;
+BA_DEF_DEF_ "NmJ1939IndustryGroup" 0;
+BA_DEF_DEF_ "NmJ1939ManufacturerCode" 0;
+BA_DEF_DEF_ "NmJ1939System" 0;
+BA_DEF_DEF_ "NmJ1939SystemInstance" 0;
+BA_DEF_DEF_ "NmStationAddress" 254;
+BA_DEF_DEF_ "NodeLayerModules" "";
+BA_ "BusType" "CAN";
+BA_ "DatabaseVersion" "7.6";
+BA_ "SAE_J1939_21_SpecVersion" "2006-10";
+BA_ "SAE_J1939_71_SpecVersion" "2011-09";
+BA_ "SAE_J1939_73_SpecVersion" "2010-10";
+BA_ "SAE_J1939_75_SpecVersion" "2005-10";
+BA_ "SAE_J1939_81_SpecVersion" "2003-05";
+
+BA_ "GenMsgCycleTime" BO_ 2566848592 20;
+BA_ "GenMsgSendType" BO_ 2566848592 0;
+BA_ "VFrameFormat" BO_ 2566848592 1;
+BA_ "GenMsgCycleTime" BO_ 2566848848 10;
+BA_ "GenMsgSendType" BO_ 2566848848 0;
+BA_ "VFrameFormat" BO_ 2566848848 1;
+BA_ "GenMsgCycleTime" BO_ 2566849360 20;
+BA_ "GenMsgSendType" BO_ 2566849360 0;
+BA_ "VFrameFormat" BO_ 2566849360 1;
+BA_ "GenMsgCycleTime" BO_ 2566849872 20;
+BA_ "GenMsgSendType" BO_ 2566849872 0;
+BA_ "VFrameFormat" BO_ 2566849872 1;
+BA_ "GenMsgCycleTime" BO_ 2566850384 50;
+BA_ "GenMsgSendType" BO_ 2566850384 0;
+BA_ "VFrameFormat" BO_ 2566850384 1;
+BA_ "GenMsgCycleTime" BO_ 2566850640 40;
+BA_ "GenMsgSendType" BO_ 2566850640 0;
+BA_ "VFrameFormat" BO_ 2566850640 1;
+BA_ "GenMsgCycleTime" BO_ 2566851152 100;
+BA_ "GenMsgSendType" BO_ 2566851152 0;
+BA_ "VFrameFormat" BO_ 2566851152 1;
+BA_ "SystemSignalLongSymbol" SG_ 2566851152 Anti_Rollaway_Powered_Unit_Statu "Anti_Rollaway_Powered_Unit_Status";
+BA_ "GenMsgCycleTime" BO_ 2566851408 100;
+BA_ "GenMsgSendType" BO_ 2566851408 0;
+BA_ "VFrameFormat" BO_ 2566851408 1;
+BA_ "SystemSignalLongSymbol" SG_ 2566851408 Yel_btn_PAS_powered_Unpark_reque "Yel_btn_PAS_powered_Unpark_request";
+BA_ "SystemSignalLongSymbol" SG_ 2566851408 Red_btn_PASR_towed_Unpark_reques "Red_btn_PASR_towed_Unpark_request";
+BA_ "SystemSignalLongSymbol" SG_ 2566851408 Valve_Switch_Back_PU_Unpark_Requ "Valve_Switch_Back_PU_Unpark_Request";
+BA_ "SystemSignalLongSymbol" SG_ 2566851408 Valve_Switch_Back_TU_Park_Reques "Valve_Switch_Back_TU_Park_Request";
+BA_ "SystemSignalLongSymbol" SG_ 2566851408 Valve_Switch_Back_TU_Unpark_Requ "Valve_Switch_Back_TU_Unpark_Request";
+BA_ "GenMsgCycleTime" BO_ 2566851664 10;
+BA_ "GenMsgSendType" BO_ 2566851664 0;
+BA_ "VFrameFormat" BO_ 2566851664 1;
+BA_ "SystemSignalLongSymbol" SG_ 2566851664 Err_Cntr_Of_BuC_Batt_Mon_from_IC "Err_Cntr_Of_BuC_Batt_Mon_from_ICC";
+BA_ "GenMsgCycleTime" BO_ 2566852944 100;
+BA_ "GenMsgSendType" BO_ 2566852944 0;
+BA_ "VFrameFormat" BO_ 2566852944 1;
+BA_ "GenMsgCycleTime" BO_ 2566853200 100;
+BA_ "GenMsgSendType" BO_ 2566853200 0;
+BA_ "VFrameFormat" BO_ 2566853200 1;
+BA_ "SystemSignalLongSymbol" SG_ 2566853200 Exhaust_At_Speed_PowerUnit_Featu "Exhaust_At_Speed_PowerUnit_Feature_Status";
+BA_ "SystemSignalLongSymbol" SG_ 2566853200 Exhaust_At_Speed_TowedUnit_Featu "Exhaust_At_Speed_TowedUnit_Feature_Status";
+BA_ "SystemSignalLongSymbol" SG_ 2566853200 Auto_Trailer_Release_Feature_Sta "Auto_Trailer_Release_Feature_Status";
+BA_ "SystemSignalLongSymbol" SG_ 2566853200 Driveline_Protection_Feature_Sta "Driveline_Protection_Feature_Status";
+BA_ "SystemSignalLongSymbol" SG_ 2566853200 Red_EAS_re_deliver_Feature_Statu "Red_EAS_re_deliver_Feature_Status";
+BA_ "SystemSignalLongSymbol" SG_ 2566853200 Yel_EAS_PU_re_deliver_Feature_St "Yel_EAS_PU_re_deliver_Feature_Status";
+BA_ "SystemSignalLongSymbol" SG_ 2566853200 Yel_EAS_TU_Re_deliver_Feature_St "Yel_EAS_TU_Re_deliver_Feature_Status";
+BA_ "GenMsgCycleTime" BO_ 2566853968 10;
+BA_ "GenMsgSendType" BO_ 2566853968 0;
+BA_ "VFrameFormat" BO_ 2566853968 1;
+BA_ "GenMsgCycleTime" BO_ 2566866000 10;
+BA_ "GenMsgSendType" BO_ 2566866000 0;
+BA_ "VFrameFormat" BO_ 2566866000 1;
+BA_ "GenMsgCycleTime" BO_ 2566854736 100;
+BA_ "GenMsgSendType" BO_ 2566854736 0;
+BA_ "VFrameFormat" BO_ 2566854736 1;
+BA_ "GenMsgCycleTime" BO_ 2566857040 100;
+BA_ "GenMsgSendType" BO_ 2566857040 0;
+BA_ "VFrameFormat" BO_ 2566857040 1;
+BA_ "GenMsgCycleTime" BO_ 2566857296 100;
+BA_ "GenMsgSendType" BO_ 2566857296 0;
+BA_ "VFrameFormat" BO_ 2566857296 1;
+BA_ "GenMsgCycleTime" BO_ 2566858832 100;
+BA_ "GenMsgSendType" BO_ 2566858832 0;
+BA_ "VFrameFormat" BO_ 2566858832 1;
+BA_ "GenMsgCycleTime" BO_ 2566860880 10;
+BA_ "GenMsgSendType" BO_ 2566860880 0;
+BA_ "VFrameFormat" BO_ 2566860880 1;
+BA_ "GenMsgCycleTime" BO_ 2566861136 10;
+BA_ "GenMsgSendType" BO_ 2566861136 0;
+BA_ "VFrameFormat" BO_ 2566861136 1;
+BA_ "GenMsgCycleTime" BO_ 2566869242 10;
+BA_ "GenMsgSendType" BO_ 2566869242 0;
+BA_ "VFrameFormat" BO_ 2566869242 1;
+BA_ "GenMsgCycleTime" BO_ 2566870522 10;
+BA_ "GenMsgSendType" BO_ 2566870522 0;
+BA_ "VFrameFormat" BO_ 2566870522 1;
+BA_ "GenMsgCycleTime" BO_ 2566855162 10;
+BA_ "GenMsgSendType" BO_ 2566855162 0;
+BA_ "VFrameFormat" BO_ 2566855162 1;
+BA_ "NmStationAddress" BU_ TesterECU 250;
+BA_ "NmStationAddress" BU_ ePark_DECU 80;
+
+VAL_ 2566848592 Tractor_Pres_fbk_status_OORH_1 3 "Not Available" 2 "Reserved" 1 "Not Plausible" 0 "Plausible" ;
+VAL_ 2566848592 Trailer_Pres_fbk_status_OORH_1 3 "Not Available" 2 "Reserved" 1 "Not Plausible" 0 "Plausible" ;
+VAL_ 2566848592 Tractor_Pres_fbk_status_OORH_2 3 "Not Available" 2 "Reserved" 1 "Not Plausible" 0 "Plausible" ;
+VAL_ 2566848592 Trailer_Pres_fbk_status_OORH_2 3 "Not Available" 2 "Reserved" 1 "Not Plausible" 0 "Plausible" ;
+VAL_ 2566848592 Tractor_Pres_fbk_status_OORL_1 3 "Not Available" 2 "Reserved" 1 "Not Plausible" 0 "Plausible" ;
+VAL_ 2566848592 Tractor_Pres_fbk_status_OORL_2 3 "Not Available" 2 "Reserved" 1 "Not Plausible" 0 "Plausible" ;
+VAL_ 2566848592 Trailer_Pres_fbk_status_OORL_1 3 "Not Available" 2 "Reserved" 1 "Not Plausible" 0 "Plausible" ;
+VAL_ 2566848592 Trailer_Pres_fbk_status_OORL_2 3 "Not Available" 2 "Reserved" 1 "Not Plausible" 0 "Plausible" ;
+VAL_ 2566848592 Trailer_del_pres_1 ;
+VAL_ 2566848592 Trailer_del_pres_2 ;
+VAL_ 2566848592 Tractor_del_pres_1 ;
+VAL_ 2566848592 Tractor_del_pres_2 ;
+VAL_ 2566848592 PU_ParkUnpark_4State 255 "Not Available" 3 "Parking" 2 "Unparking" 1 "Parked" 0 "Unparked" ;
+VAL_ 2566848592 TU_ParkUnpark_4State 255 "Not Available" 3 "Parking" 2 "Unparking" 1 "Parked" 0 "Unparked" ;
+VAL_ 2566848848 yellow_button_neutral_state_A 3 "Not Available" 2 "Error" 1 "On" 0 "Off" ;
+VAL_ 2566848848 yellow_button_push_state_A 3 "Not Available" 2 "Error" 1 "On" 0 "Off" ;
+VAL_ 2566848848 yellow_button_pull_state_A 3 "Not Available" 2 "Error" 1 "On" 0 "Off" ;
+VAL_ 2566848848 red_button_neutral_state_A 3 "Not Available" 2 "Error" 1 "On" 0 "Off" ;
+VAL_ 2566848848 red_button_push_state_A 3 "Not Available" 2 "Error" 1 "On" 0 "Off" ;
+VAL_ 2566848848 red_button_pull_state_A 3 "Not Available" 2 "Error" 1 "On" 0 "Off" ;
+VAL_ 2566848848 yellow_button_neutral_state_B 3 "Not Available" 2 "Error" 1 "On" 0 "Off" ;
+VAL_ 2566848848 yellow_button_push_state_B 3 "Not Available" 2 "Error" 1 "On" 0 "Off" ;
+VAL_ 2566848848 yellow_button_pull_state_B 3 "Not Available" 2 "Error" 1 "On" 0 "Off" ;
+VAL_ 2566848848 red_button_neutral_state_B 3 "Not Available" 2 "Error" 1 "On" 0 "Off" ;
+VAL_ 2566848848 red_button_push_state_B 3 "Not Available" 2 "Error" 1 "On" 0 "Off" ;
+VAL_ 2566848848 red_button_pull_state_B 3 "Not Available" 2 "Error" 1 "On" 0 "Off" ;
+VAL_ 2566848848 Yellow_button_push_intent 3 "Not Available" 2 "Error" 1 "On" 0 "Off" ;
+VAL_ 2566848848 Yellow_button_pull_intent 3 "Not Available" 2 "Error" 1 "On" 0 "Off" ;
+VAL_ 2566848848 Yellow_button_neutral_intent 3 "Not Available" 2 "Error" 1 "On" 0 "Off" ;
+VAL_ 2566848848 Red_button_push_intent 3 "Not Available" 2 "Error" 1 "On" 0 "Off" ;
+VAL_ 2566848848 Red_button_pull_intent 3 "Not Available" 2 "Error" 1 "On" 0 "Off" ;
+VAL_ 2566848848 Red_button_neutral_intent 3 "Not Available" 2 "Error" 1 "On" 0 "Off" ;
+VAL_ 2566849360 button_configuration_error 1 "Error" 0 "No Error" ;
+VAL_ 2566849360 trailer_configuration_error 1 "Error" 0 "No Error" ;
+VAL_ 2566849360 External_supply_volt_mon 3 "Not Available" 2 "Reserved" 1 "Out of Range Low" 0 "Out of Range High" ;
+VAL_ 2566849360 Battery_pow_mon 3 "Not Available" 2 "Reserved" 1 "Out of Range Low" 0 "Out of Range High" ;
+VAL_ 2566849360 Epark_Seat_Belt_Switch 3 "Not Available" 2 "Error" 1 "On" 0 "Off" ;
+VAL_ 2566849360 Epark_Ignition_status 3 "Not Available" 2 "Reserved/Not Defined" 1 "Applied" 0 "Not Applied" ;
+VAL_ 2566849360 Epark_Door_Switch_Status 3 "Not Available" 2 "Error" 1 "On" 0 "Off" ;
+VAL_ 2566849360 Epark_SLS_Switch_Status 3 "Not Available" 2 "Error" 1 "Applied" 0 "Not Applied" ;
+VAL_ 2566849360 PS_supply_volt_mon 3 "Not Available" 2 "Short to Ground" 1 "Short to Battery" 0 "In Range" ;
+VAL_ 2566849872 tractor_sol_app_stat 3 "Not Available" 2 "Reserved/Not Defined" 1 "Applied" 0 "Not Applied" ;
+VAL_ 2566849872 tractor_sol_rel_stat 3 "Not Available" 2 "Reserved/Not Defined" 1 "Applied" 0 "Not Applied" ;
+VAL_ 2566849872 trailer_sol_rel_stat 3 "Not Available" 2 "Reserved/Not Defined" 1 "Applied" 0 "Not Applied" ;
+VAL_ 2566849872 trailer_sol_app_stat 3 "Not Available" 2 "Reserved/Not Defined" 1 "Applied" 0 "Not Applied" ;
+VAL_ 2566850384 Tractor_delivery_volt_1 255 "Not Available" ;
+VAL_ 2566850384 Tractor_delivery_volt_2 255 "Not Available" ;
+VAL_ 2566850384 Trailer_delivery_volt_1 255 "Not Available" ;
+VAL_ 2566850384 Trailer_delivery_volt_2 255 "Not Available" ;
+VAL_ 2566850640 Yellow_button_push_state 3 "Not Available" 2 "Error" 1 "On" 0 "Off" ;
+VAL_ 2566850640 Yellow_button_pull_state 3 "Not Available" 2 "Error" 1 "On" 0 "Off" ;
+VAL_ 2566850640 Yellow_button_neutral_state 3 "Not Available" 2 "Error" 1 "On" 0 "Off" ;
+VAL_ 2566850640 Red_button_push_state 3 "Not Available" 2 "Error" 1 "On" 0 "Off" ;
+VAL_ 2566850640 Red_button_pull_state 3 "Not Available" 2 "Error" 1 "On" 0 "Off" ;
+VAL_ 2566850640 Red_button_neutral_state 3 "Not Available" 2 "Error" 1 "On" 0 "Off" ;
+VAL_ 2566851152 Anti_Rollaway_Powered_Unit_Statu 255 "Not Available" 6 "Init" 5 "Active_Interlock" 4 "Idle" 3 "Over_Speed" 2 "Driver_Intent_Opposite" 1 "Allowed" 0 "Module_Disbaled" ;
+VAL_ 2566851152 Anti_Rollaway_Towed_Unit_Status 255 "Not Available" 6 "Init" 5 "Active_Interlock" 4 "Idle" 3 "Over_Speed" 2 "Driver_Intent_Opposite" 1 "Allowed" 0 "Module_Disbaled" ;
+VAL_ 2566851152 PAS_Powered_Unit_Status 255 "Not Available" 10 "Rqst_Cancelled" 9 "Unparking" 8 "Parking" 7 "Single_Btn_Parking" 6 "Default_Parking" 5 "Prev_Not_Neutral" 4 "Idle" 3 "Under_Spd" 2 "No_req" 1 "Allowed" 0 "Module_Disbaled" ;
+VAL_ 2566851152 PAS_Towed_Unit_Status 255 "Not Available" 10 "Rqst_Cancelled" 9 "Unparking" 8 "Parking" 7 "Single_Btn_Parking" 6 "Default_Parking" 5 "Prev_Not_Neutral" 4 "Idle" 3 "Under_Spd" 2 "No_req" 1 "Allowed" 0 "Module_Disbaled" ;
+VAL_ 2566851152 PAS_XBR_park_Status_1 255 "Not Available" 10 "Rqst_Cancelled" 9 "Unparking" 8 "Parking" 7 "Single_Btn_Parking" 6 "Default_Parking" 5 "Prev_Not_Neutral" 4 "Idle" 3 "Under_Spd" 2 "No_req" 1 "Allowed" 0 "Module_Disbaled" ;
+VAL_ 2566851152 Manual_powered_park_status 15 "Not Available" 7 "Driver_Intent_Neutral" 6 "Driver_Intent_Error" 5 "Prev_Not_Neutral" 4 "Speed_NA" 3 "Over_Speed" 2 "Driver_Intent_Opposite" 1 "Allowed" 0 "Module_Disbaled" ;
+VAL_ 2566851152 Manual_towed_park_status 15 "Not Available" 7 "Driver_Intent_Neutral" 6 "Driver_Intent_Error" 5 "Prev_Not_Neutral" 4 "Single_Btn_Park" 3 "Over_Speed" 2 "Driver_Intent_Opposite" 1 "Allowed" 0 "Module_Disbaled" ;
+VAL_ 2566851152 ATBR_status 15 "Not Available" 9 "ATBD Error" 8 "Reserved" 7 "Reserved" 6 "ATBD Active" 5 "Reserved" 4 "Reserved" 3 "ATBD Off" 2 "ATBD_Standby" 1 "ATBD_Not_Available" 0 "ATBD_Disabled" ;
+VAL_ 2566851152 Bobtail_status 15 "Not Available" 2 "Bobtail Standby" 1 "Bobtail Active" 0 "Bobtail Not Available" ;
+VAL_ 2566851152 Manual_powered_unpark_status 15 "Not Available" 8 "Interlock_Not_Satisfied" 7 "Driver_Intent_Neutral" 6 "Driver_Intent_Error" 5 "Prev_Not_Neutral" 4 "Speed_NA" 3 "Over_Speed" 2 "Driver_Intent_Opposite" 1 "Allowed" 0 "Module_Disbaled" ;
+VAL_ 2566851152 Manual_towed_unpark_status 15 "Not Available" 8 "Interlock_Not_Satisfied" 7 "Driver_Intent_Neutral" 6 "Driver_Intent_Error" 5 "Prev_Not_Neutral" 4 "Speed_NA" 3 "Over_Speed" 2 "Driver_Intent_Opposite" 1 "Allowed" 0 "Module_Disbaled" ;
+VAL_ 2566851408 Manual_Powered_Park_Request 1 "Request is true" 0 "No Request" ;
+VAL_ 2566851408 Manual_Powered_Unpark_Request 1 "Request is true" 0 "No Request" ;
+VAL_ 2566851408 Manual_Towed_Park_Request 1 "Request is true" 0 "No Request" ;
+VAL_ 2566851408 Manual_Towed_Unpark_Request 1 "Request is true" 0 "No Request" ;
+VAL_ 2566851408 ARA_Powered_Park_Request 1 "Request is true" 0 "No Request" ;
+VAL_ 2566851408 ARA_Towed_Park_Request 1 "Request is true" 0 "No Request" ;
+VAL_ 2566851408 Bobtail_request 1 "Bobtail request is true" 0 "Bobtail request is false" ;
+VAL_ 2566851408 ATBD_Unpark_Request 1 "Request is true" 0 "No Request" ;
+VAL_ 2566851408 Yel_btn_PAS_powered_park_request 1 "Request is true" 0 "No Request" ;
+VAL_ 2566851408 Yel_btn_PAS_towed_park_request 1 "Request is true" 0 "No Request" ;
+VAL_ 2566851408 Yel_btn_PAS_powered_Unpark_reque 1 "Request is true" 0 "No Request" ;
+VAL_ 2566851408 Yel_btn_PAS_towed_Unpark_request 1 "Request is true" 0 "No Request" ;
+VAL_ 2566851408 Red_btn_PASR_towed_park_request 1 "Request is true" 0 "No Request" ;
+VAL_ 2566851408 Red_btn_PASR_towed_Unpark_reques 1 "Request is true" 0 "No Request" ;
+VAL_ 2566851408 Valve_SwitchBack_PU_Park_Request 1 "Request is true" 0 "No Request" ;
+VAL_ 2566851408 Valve_Switch_Back_PU_Unpark_Requ 1 "Request is true" 0 "No Request" ;
+VAL_ 2566851408 Valve_Switch_Back_TU_Park_Reques 1 "Request is true" 0 "No Request" ;
+VAL_ 2566851408 Valve_Switch_Back_TU_Unpark_Requ 1 "Request is true" 0 "No Request" ;
+VAL_ 2566851408 Re_deliver_Eval_Towed_Unit 1 "Redelivery to the towed unit is allowed" 0 "Redelivery to the towed unit is not allowed" ;
+VAL_ 2566851408 VSB_PU_Park_Status 15 "Not Available" 3 "Valve switch detected when vehicle motion is not available" 2 "Valve switch detected when vehicle in motion" 1 "Valve switch detected when Stationary" 0 "Valve switch is not detected" ;
+VAL_ 2566851408 VSB_TU_Park_Status 15 "Not Available" 3 "Valve switch detected when vehicle motion is not available" 2 "Valve switch detected when vehicle in motion" 1 "Valve switch detected when Stationary" 0 "Valve switch is not detected" ;
+VAL_ 2566851408 VSB_PU_Unpark_Status 15 "Not Available" 3 "Valve switch detected when vehicle motion is not available" 2 "Valve switch detected when vehicle in motion" 1 "Valve switch detected when Stationary" 0 "Valve switch is not detected" ;
+VAL_ 2566851408 VSB_TU_Unpark_Status 15 "Not Available" 3 "Valve switch detected when vehicle motion is not available" 2 "Valve switch detected when vehicle in motion" 1 "Valve switch detected when Stationary" 0 "Valve switch is not detected" ;
+VAL_ 2566853200 PU_Delivery_Status 3 "Not_Available" 2 "Power_Unit_delivery_status_is_Error" 1 "Power_Unit_is_Exhausted" 0 "Power_Unit_is_Delivered" ;
+VAL_ 2566853200 TU_Delivery_Status 3 "Not_Available" 2 "Towed_Unit_delivery_status_is_Error" 1 "Towed_Unit_is_Exhausted" 0 "Towed_Unit_is_Delivered" ;
+VAL_ 2566853200 Bobtail_Feature_Status 3 "Not_Available" 2 "Error" 1 "Active" 0 "Inactive" ;
+VAL_ 2566853200 Exhaust_At_Speed_PowerUnit_Featu 3 "Not_Available" 2 "Error" 1 "Active" 0 "Inactive" ;
+VAL_ 2566853200 Exhaust_At_Speed_TowedUnit_Featu 3 "Not_Available" 2 "Error" 1 "Active" 0 "Inactive" ;
+VAL_ 2566853200 Anti_Rollaway_Feature_Status 3 "Not_Available" 2 "Error" 1 "Active" 0 "Inactive" ;
+VAL_ 2566853200 Auto_Trailer_Release_Feature_Sta 3 "Not_Available" 2 "Error" 1 "Active" 0 "Inactive" ;
+VAL_ 2566853200 Driveline_Protection_Feature_Sta 3 "Not_Available" 2 "Error" 1 "Active" 0 "Inactive" ;
+VAL_ 2566853200 OCC1_Status 3 "OCC1_is_Not_Available" 2 "OCC1_is_Error" 1 "OCC1_is_satisfied" 0 "OCC1_is_not_satisfied" ;
+VAL_ 2566853200 Yellow_Button_Intent 7 "Not_Available" 6 "Error" 5 "Not_Defined" 4 "Not_Defined" 3 "Not_Defined" 2 "Pull_is_true" 1 "Push_is_true" 0 "Neutral_is_true" ;
+VAL_ 2566853200 RedButtonIntent 7 "Not_Available" 6 "Error" 5 "Not_Defined" 4 "Not_Defined" 3 "Not_Defined" 2 "Pull_is_true" 1 "Push_is_true" 0 "Neutral_is_true" ;
+VAL_ 2566853200 Ignition_Status 3 "Ignition_Not_Available" 2 "Ignition_Error" 1 "Ignition_is_ON" 0 "Ignition_is_OFF" ;
+VAL_ 2566853200 Foot_Brake_Status 3 "Foot_Brake_is_Not_Available" 2 "Foot_Brake_is_Error" 1 "Foot_Brake_is_depressed" 0 "Foot_Brake_is_not_depressed" ;
+VAL_ 2566853200 OCC2_Status 3 "OCC2_is_Not_Available" 2 "OCC2_is_Error" 1 "OCC2_is_satisfied" 0 "OCC2_is_not_satisfied" ;
+VAL_ 2566853200 Redeliver_Eval_Towed_Unit 1 "Redelivery to the towed unit is allowed" 0 "Redelivery to the towed unit is not allowed" ;
+VAL_ 2566853200 Red_EAS_TU_Feature_Status 3 "Not_Available" 2 "Error" 1 "Active" 0 "Inactive" ;
+VAL_ 2566853200 Red_EAS_re_deliver_Feature_Statu 3 "Not_Available" 2 "Error" 1 "Active" 0 "Inactive" ;
+VAL_ 2566853200 Yel_EAS_PU_re_deliver_Feature_St 3 "Not_Available" 2 "Error" 1 "Active" 0 "Inactive" ;
+VAL_ 2566853200 Yel_EAS_TU_Re_deliver_Feature_St 3 "Not_Available" 2 "Error" 1 "Active" 0 "Inactive" ;
+VAL_ 2566853200 VSB_PU_Park_Status 3 "Not_Available" 2 "Error" 1 "Active" 0 "Inactive" ;
+VAL_ 2566853200 VSB_PU_Unpark_Status 3 "Not_Available" 2 "Error" 1 "Active" 0 "Inactive" ;
+VAL_ 2566853200 VSB_TU_Park_Status 3 "Not_Available" 2 "Error" 1 "Active" 0 "Inactive" ;
+VAL_ 2566853200 VSB_TU_Unpark_Status 3 "Not_Available" 2 "Error" 1 "Active" 0 "Inactive" ;
+VAL_ 2566853968 System_Mode_Status_A 3 "Not_Available" 2 "Error" 1 "MAINTENANCE_MODE" 0 "NORMAL_MODE" ;
+VAL_ 2566853968 Maintenance_Mode_Entry_Req 3 "Not_Available" 2 "REQUEST_VIA_SWITCH_PATTERN" 1 "REQUEST_VIA_UDS" 0 "NO_REQUEST" ;
+VAL_ 2566853968 Normal_Mode_Entry_Req 7 "Not_Available" 6 "Error" 5 "Not_Defined" 4 "REQUEST_VIA_BATT_VAL_OOR" 3 "REQUEST_VIA_IGNITION_OFF" 2 "REQUEST_VIA_FRNT_AXLE_SPEED" 1 "REQUEST_VIA_UDS" 0 "NO_REQUEST" ;
+VAL_ 2566853968 IgnitionStatus 3 "Not Available" 2 "Ignition is Error" 1 "Ignition is ON  " 0 "Ignition is OFF " ;
+VAL_ 2566853968 Battery_Voltage_Status 3 "Not_Available" 2 "Error" 1 "Active" 0 "Inactive" ;
+VAL_ 2566853968 Cranking_State 3 "Not Available" 2 "Error" 1 "Engine cranking" 0 "Engine not cranking" ;

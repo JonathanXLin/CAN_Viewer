@@ -75,6 +75,9 @@ namespace CAN_Viewer
 
             // Initialize form resize event in chart_gui
             chart_gui.initialize_form_resize_event(this);
+
+            // Instantiate database set, this is not done in database open file dialog because multiple databases can be added into one database_set
+            database_set = new Database_Set();
         }
 
         private void openToolStripMenuItem_logfile_Click(object sender, EventArgs e)
@@ -131,8 +134,6 @@ namespace CAN_Viewer
             // Open file dialog
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
-                database_set = new Database_Set();
-
                 openFileDialog.Filter = "dbc files (*.dbc)|*.dbc";
                 openFileDialog.RestoreDirectory = true;
 
