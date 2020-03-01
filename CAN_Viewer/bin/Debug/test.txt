@@ -1,202 +1,190 @@
-Message Number: 1265 Timestamp: 19.695477 Raw Data: 156 175 0 0 217 25 2 0 
-	Total_Engine_Hours:			2247.8
-Message Number: 7180 Timestamp: 26.054647 Raw Data: 156 175 0 0 217 25 2 0 
-	Total_Engine_Hours:			2247.8
-Message Number: 10561 Timestamp: 29.704734 Raw Data: 156 175 0 0 217 25 2 0 
-	Total_Engine_Hours:			2247.8
-Message Number: 16390 Timestamp: 35.984313 Raw Data: 156 175 0 0 217 25 2 0 
-	Total_Engine_Hours:			2247.8
-Message Number: 19836 Timestamp: 39.695018 Raw Data: 156 175 0 0 217 25 2 0 
-	Total_Engine_Hours:			2247.8
-Message Number: 25609 Timestamp: 45.914159 Raw Data: 156 175 0 0 217 25 2 0 
-	Total_Engine_Hours:			2247.8
-Message Number: 29118 Timestamp: 49.694531 Raw Data: 156 175 0 0 217 25 2 0 
-	Total_Engine_Hours:			2247.8
-Message Number: 34825 Timestamp: 55.84457 Raw Data: 156 175 0 0 217 25 2 0 
-	Total_Engine_Hours:			2247.8
-Message Number: 38401 Timestamp: 59.694189 Raw Data: 156 175 0 0 217 25 2 0 
-	Total_Engine_Hours:			2247.8
-Message Number: 44036 Timestamp: 65.77378 Raw Data: 156 175 0 0 217 25 2 0 
-	Total_Engine_Hours:			2247.8
-Message Number: 44673 Timestamp: 66.453553 Raw Data: 156 175 0 0 217 25 2 0 
-	Total_Engine_Hours:			2247.8
-Message Number: 47683 Timestamp: 69.693701 Raw Data: 156 175 0 0 217 25 2 0 
-	Total_Engine_Hours:			2247.8
-Message Number: 53259 Timestamp: 75.703319 Raw Data: 156 175 0 0 217 25 2 0 
-	Total_Engine_Hours:			2247.8
-Message Number: 56977 Timestamp: 79.703219 Raw Data: 156 175 0 0 217 25 2 0 
-	Total_Engine_Hours:			2247.8
-Message Number: 62483 Timestamp: 85.633537 Raw Data: 156 175 0 0 217 25 2 0 
-	Total_Engine_Hours:			2247.8
-Message Number: 66251 Timestamp: 89.692893 Raw Data: 156 175 0 0 218 25 2 0 
-	Total_Engine_Hours:			2247.8
-Message Number: 71685 Timestamp: 95.562888 Raw Data: 156 175 0 0 218 25 2 0 
-	Total_Engine_Hours:			2247.8
-Message Number: 74093 Timestamp: 98.122931 Raw Data: 157 175 0 0 218 25 2 0 
-	Total_Engine_Hours:			2247.85
-Message Number: 75548 Timestamp: 99.682858 Raw Data: 157 175 0 0 218 25 2 0 
-	Total_Engine_Hours:			2247.85
-Message Number: 78981 Timestamp: 103.372532 Raw Data: 157 175 0 0 218 25 2 0 
-	Total_Engine_Hours:			2247.85
-Message Number: 80952 Timestamp: 105.493411 Raw Data: 157 175 0 0 218 25 2 0 
-	Total_Engine_Hours:			2247.85
-Message Number: 84848 Timestamp: 109.68268 Raw Data: 157 175 0 0 218 25 2 0 
-	Total_Engine_Hours:			2247.85
-Message Number: 90173 Timestamp: 115.423032 Raw Data: 157 175 0 0 218 25 2 0 
-	Total_Engine_Hours:			2247.85
-Message Number: 94148 Timestamp: 119.692179 Raw Data: 157 175 0 0 218 25 2 0 
-	Total_Engine_Hours:			2247.85
-Message Number: 99396 Timestamp: 125.352104 Raw Data: 157 175 0 0 218 25 2 0 
-	Total_Engine_Hours:			2247.85
-Message Number: 100430 Timestamp: 126.472292 Raw Data: 157 175 0 0 218 25 2 0 
-	Total_Engine_Hours:			2247.85
-Message Number: 103443 Timestamp: 129.702376 Raw Data: 157 175 0 0 218 25 2 0 
-	Total_Engine_Hours:			2247.85
-Message Number: 106142 Timestamp: 132.60179 Raw Data: 157 175 0 0 218 25 2 0 
-	Total_Engine_Hours:			2247.85
-Message Number: 108635 Timestamp: 135.281916 Raw Data: 157 175 0 0 218 25 2 0 
-	Total_Engine_Hours:			2247.85
-Message Number: 112727 Timestamp: 139.681754 Raw Data: 157 175 0 0 218 25 2 0 
-	Total_Engine_Hours:			2247.85
-Message Number: 117859 Timestamp: 145.211744 Raw Data: 157 175 0 0 218 25 2 0 
-	Total_Engine_Hours:			2247.85
-Message Number: 122010 Timestamp: 149.681372 Raw Data: 157 175 0 0 218 25 2 0 
-	Total_Engine_Hours:			2247.85
-Message Number: 127082 Timestamp: 155.141295 Raw Data: 157 175 0 0 218 25 2 0 
-	Total_Engine_Hours:			2247.85
-Message Number: 131330 Timestamp: 159.701547 Raw Data: 157 175 0 0 219 25 2 0 
-	Total_Engine_Hours:			2247.85
-Message Number: 134027 Timestamp: 162.601231 Raw Data: 157 175 0 0 219 25 2 0 
-	Total_Engine_Hours:			2247.85
-Message Number: 136313 Timestamp: 165.071167 Raw Data: 157 175 0 0 219 25 2 0 
-	Total_Engine_Hours:			2247.85
-Message Number: 140612 Timestamp: 169.691056 Raw Data: 157 175 0 0 219 25 2 0 
-	Total_Engine_Hours:			2247.85
-Message Number: 145542 Timestamp: 175.000932 Raw Data: 157 175 0 0 219 25 2 0 
-	Total_Engine_Hours:			2247.85
-Message Number: 149911 Timestamp: 179.700942 Raw Data: 157 175 0 0 219 25 2 0 
-	Total_Engine_Hours:			2247.85
-Message Number: 154771 Timestamp: 184.930899 Raw Data: 157 175 0 0 219 25 2 0 
-	Total_Engine_Hours:			2247.85
-Message Number: 156208 Timestamp: 186.491083 Raw Data: 157 175 0 0 219 25 2 0 
-	Total_Engine_Hours:			2247.85
-Message Number: 159194 Timestamp: 189.691333 Raw Data: 157 175 0 0 219 25 2 0 
-	Total_Engine_Hours:			2247.85
-Message Number: 161898 Timestamp: 192.600412 Raw Data: 157 175 0 0 219 25 2 0 
-	Total_Engine_Hours:			2247.85
-Message Number: 163994 Timestamp: 194.860576 Raw Data: 157 175 0 0 219 25 2 0 
-	Total_Engine_Hours:			2247.85
-Message Number: 168489 Timestamp: 199.700264 Raw Data: 157 175 0 0 219 25 2 0 
-	Total_Engine_Hours:			2247.85
-Message Number: 173211 Timestamp: 204.790567 Raw Data: 157 175 0 0 219 25 2 0 
-	Total_Engine_Hours:			2247.85
-Message Number: 177777 Timestamp: 209.700042 Raw Data: 157 175 0 0 219 25 2 0 
-	Total_Engine_Hours:			2247.85
-Message Number: 182436 Timestamp: 214.719961 Raw Data: 157 175 0 0 219 25 2 0 
-	Total_Engine_Hours:			2247.85
-Message Number: 187065 Timestamp: 219.699894 Raw Data: 157 175 0 0 219 25 2 0 
-	Total_Engine_Hours:			2247.85
-Message Number: 189761 Timestamp: 222.599845 Raw Data: 157 175 0 0 219 25 2 0 
-	Total_Engine_Hours:			2247.85
-Message Number: 191657 Timestamp: 224.649723 Raw Data: 157 175 0 0 219 25 2 0 
-	Total_Engine_Hours:			2247.85
-Message Number: 196334 Timestamp: 229.67962 Raw Data: 157 175 0 0 219 25 2 0 
-	Total_Engine_Hours:			2247.85
-Message Number: 200891 Timestamp: 234.590439 Raw Data: 157 175 0 0 220 25 2 0 
-	Total_Engine_Hours:			2247.85
-Message Number: 205630 Timestamp: 239.689532 Raw Data: 157 175 0 0 220 25 2 0 
-	Total_Engine_Hours:			2247.85
-Message Number: 210093 Timestamp: 244.509487 Raw Data: 157 175 0 0 220 25 2 0 
-	Total_Engine_Hours:			2247.85
-Message Number: 211959 Timestamp: 246.519364 Raw Data: 157 175 0 0 220 25 2 0 
-	Total_Engine_Hours:			2247.85
-Message Number: 214923 Timestamp: 249.689393 Raw Data: 157 175 0 0 220 25 2 0 
-	Total_Engine_Hours:			2247.85
-Message Number: 217627 Timestamp: 252.59928 Raw Data: 157 175 0 0 220 25 2 0 
-	Total_Engine_Hours:			2247.85
-Message Number: 219332 Timestamp: 254.439228 Raw Data: 157 175 0 0 220 25 2 0 
-	Total_Engine_Hours:			2247.85
-Message Number: 224216 Timestamp: 259.68911 Raw Data: 157 175 0 0 220 25 2 0 
-	Total_Engine_Hours:			2247.85
-Message Number: 228559 Timestamp: 264.368921 Raw Data: 157 175 0 0 220 25 2 0 
-	Total_Engine_Hours:			2247.85
-Message Number: 233515 Timestamp: 269.688836 Raw Data: 157 175 0 0 220 25 2 0 
-	Total_Engine_Hours:			2247.85
-Message Number: 237786 Timestamp: 274.298686 Raw Data: 157 175 0 0 220 25 2 0 
-	Total_Engine_Hours:			2247.85
-Message Number: 242793 Timestamp: 279.678593 Raw Data: 158 175 0 0 220 25 2 0 
-	Total_Engine_Hours:			2247.9
-Message Number: 245512 Timestamp: 282.598575 Raw Data: 158 175 0 0 220 25 2 0 
-	Total_Engine_Hours:			2247.9
-Message Number: 247019 Timestamp: 284.229319 Raw Data: 158 175 0 0 220 25 2 0 
-	Total_Engine_Hours:			2247.9
-Message Number: 252099 Timestamp: 289.688497 Raw Data: 158 175 0 0 220 25 2 0 
-	Total_Engine_Hours:			2247.9
-Message Number: 256243 Timestamp: 294.158764 Raw Data: 158 175 0 0 220 25 2 0 
-	Total_Engine_Hours:			2247.9
-Message Number: 261400 Timestamp: 299.698395 Raw Data: 158 175 0 0 220 25 2 0 
-	Total_Engine_Hours:			2247.9
-Message Number: 265476 Timestamp: 304.088895 Raw Data: 158 175 0 0 221 25 2 0 
-	Total_Engine_Hours:			2247.9
-Message Number: 267743 Timestamp: 306.538022 Raw Data: 158 175 0 0 221 25 2 0 
-	Total_Engine_Hours:			2247.9
-Message Number: 270694 Timestamp: 309.688402 Raw Data: 158 175 0 0 221 25 2 0 
-	Total_Engine_Hours:			2247.9
-Message Number: 273399 Timestamp: 312.598252 Raw Data: 158 175 0 0 221 25 2 0 
-	Total_Engine_Hours:			2247.9
-Message Number: 274722 Timestamp: 314.017907 Raw Data: 158 175 0 0 221 25 2 0 
-	Total_Engine_Hours:			2247.9
-Message Number: 279990 Timestamp: 319.687723 Raw Data: 158 175 0 0 221 25 2 0 
-	Total_Engine_Hours:			2247.9
-Message Number: 283948 Timestamp: 323.947638 Raw Data: 158 175 0 0 221 25 2 0 
-	Total_Engine_Hours:			2247.9
-Message Number: 289292 Timestamp: 329.697535 Raw Data: 158 175 0 0 221 25 2 0 
-	Total_Engine_Hours:			2247.9
-Message Number: 293189 Timestamp: 333.878019 Raw Data: 158 175 0 0 221 25 2 0 
-	Total_Engine_Hours:			2247.9
-Message Number: 298592 Timestamp: 339.707517 Raw Data: 158 175 0 0 221 25 2 0 
-	Total_Engine_Hours:			2247.9
-Message Number: 301285 Timestamp: 342.59744 Raw Data: 158 175 0 0 221 25 2 0 
-	Total_Engine_Hours:			2247.9
-Message Number: 302405 Timestamp: 343.807463 Raw Data: 158 175 0 0 221 25 2 0 
-	Total_Engine_Hours:			2247.9
-Message Number: 307872 Timestamp: 349.687139 Raw Data: 158 175 0 0 221 25 2 0 
-	Total_Engine_Hours:			2247.9
-Message Number: 311623 Timestamp: 353.737462 Raw Data: 158 175 0 0 221 25 2 0 
-	Total_Engine_Hours:			2247.9
-Message Number: 317159 Timestamp: 359.696996 Raw Data: 158 175 0 0 221 25 2 0 
-	Total_Engine_Hours:			2247.9
-Message Number: 320852 Timestamp: 363.668278 Raw Data: 158 175 0 0 221 25 2 0 
-	Total_Engine_Hours:			2247.9
-Message Number: 323523 Timestamp: 366.556993 Raw Data: 158 175 0 0 221 25 2 0 
-	Total_Engine_Hours:			2247.9
-Message Number: 326454 Timestamp: 369.697037 Raw Data: 158 175 0 0 221 25 2 0 
-	Total_Engine_Hours:			2247.9
-Message Number: 329154 Timestamp: 372.606782 Raw Data: 158 175 0 0 222 25 2 0 
-	Total_Engine_Hours:			2247.9
-Message Number: 330073 Timestamp: 373.596742 Raw Data: 158 175 0 0 222 25 2 0 
-	Total_Engine_Hours:			2247.9
-Message Number: 335742 Timestamp: 379.706638 Raw Data: 158 175 0 0 222 25 2 0 
-	Total_Engine_Hours:			2247.9
-Message Number: 339278 Timestamp: 383.526485 Raw Data: 158 175 0 0 222 25 2 0 
-	Total_Engine_Hours:			2247.9
-Message Number: 345021 Timestamp: 389.686334 Raw Data: 158 175 0 0 222 25 2 0 
-	Total_Engine_Hours:			2247.9
-Message Number: 348515 Timestamp: 393.456436 Raw Data: 158 175 0 0 222 25 2 0 
-	Total_Engine_Hours:			2247.9
-Message Number: 354317 Timestamp: 399.686138 Raw Data: 158 175 0 0 222 25 2 0 
-	Total_Engine_Hours:			2247.9
-Message Number: 357029 Timestamp: 402.606224 Raw Data: 158 175 0 0 222 25 2 0 
-	Total_Engine_Hours:			2247.9
-Message Number: 357753 Timestamp: 403.386506 Raw Data: 158 175 0 0 222 25 2 0 
-	Total_Engine_Hours:			2247.9
-Message Number: 363618 Timestamp: 409.696611 Raw Data: 158 175 0 0 222 25 2 0 
-	Total_Engine_Hours:			2247.9
-Message Number: 366971 Timestamp: 413.316026 Raw Data: 158 175 0 0 222 25 2 0 
-	Total_Engine_Hours:			2247.9
-Message Number: 372892 Timestamp: 419.685855 Raw Data: 158 175 0 0 222 25 2 0 
-	Total_Engine_Hours:			2247.9
-Message Number: 376201 Timestamp: 423.245812 Raw Data: 158 175 0 0 222 25 2 0 
-	Total_Engine_Hours:			2247.9
-Message Number: 379260 Timestamp: 426.585761 Raw Data: 158 175 0 0 222 25 2 0 
-	Total_Engine_Hours:			2247.9
+Message Number: 1622 Timestamp: 9085.291729 Raw Data: 196 175 0 0 58 26 2 0 
+	Total_Engine_Hours:			2249.8
+Message Number: 4281 Timestamp: 9088.201556 Raw Data: 196 175 0 0 58 26 2 0 
+	Total_Engine_Hours:			2249.8
+Message Number: 4464 Timestamp: 9088.381636 Raw Data: 196 175 0 0 58 26 2 0 
+	Total_Engine_Hours:			2249.8
+Message Number: 13452 Timestamp: 9098.201397 Raw Data: 196 175 0 0 58 26 2 0 
+	Total_Engine_Hours:			2249.8
+Message Number: 13559 Timestamp: 9098.311375 Raw Data: 196 175 0 0 58 26 2 0 
+	Total_Engine_Hours:			2249.8
+Message Number: 21183 Timestamp: 9106.641474 Raw Data: 196 175 0 0 58 26 2 0 
+	Total_Engine_Hours:			2249.8
+Message Number: 22617 Timestamp: 9108.201239 Raw Data: 196 175 0 0 58 26 2 0 
+	Total_Engine_Hours:			2249.8
+Message Number: 22654 Timestamp: 9108.241386 Raw Data: 196 175 0 0 58 26 2 0 
+	Total_Engine_Hours:			2249.8
+Message Number: 31760 Timestamp: 9118.171427 Raw Data: 196 175 0 0 59 26 2 0 
+	Total_Engine_Hours:			2249.8
+Message Number: 31780 Timestamp: 9118.191209 Raw Data: 196 175 0 0 59 26 2 0 
+	Total_Engine_Hours:			2249.8
+Message Number: 40860 Timestamp: 9128.101053 Raw Data: 196 175 0 0 59 26 2 0 
+	Total_Engine_Hours:			2249.8
+Message Number: 40953 Timestamp: 9128.201057 Raw Data: 196 175 0 0 59 26 2 0 
+	Total_Engine_Hours:			2249.8
+Message Number: 48698 Timestamp: 9136.651938 Raw Data: 196 175 0 0 59 26 2 0 
+	Total_Engine_Hours:			2249.8
+Message Number: 49969 Timestamp: 9138.04138 Raw Data: 196 175 0 0 59 26 2 0 
+	Total_Engine_Hours:			2249.8
+Message Number: 50122 Timestamp: 9138.210723 Raw Data: 196 175 0 0 59 26 2 0 
+	Total_Engine_Hours:			2249.8
+Message Number: 56652 Timestamp: 9145.321907 Raw Data: 196 175 0 0 59 26 2 0 
+	Total_Engine_Hours:			2249.8
+Message Number: 59052 Timestamp: 9147.96057 Raw Data: 196 175 0 0 59 26 2 0 
+	Total_Engine_Hours:			2249.8
+Message Number: 59277 Timestamp: 9148.200587 Raw Data: 196 175 0 0 59 26 2 0 
+	Total_Engine_Hours:			2249.8
+Message Number: 68158 Timestamp: 9157.890451 Raw Data: 196 175 0 0 59 26 2 0 
+	Total_Engine_Hours:			2249.8
+Message Number: 68455 Timestamp: 9158.210382 Raw Data: 196 175 0 0 59 26 2 0 
+	Total_Engine_Hours:			2249.8
+Message Number: 76190 Timestamp: 9166.650482 Raw Data: 196 175 0 0 59 26 2 0 
+	Total_Engine_Hours:			2249.8
+Message Number: 77261 Timestamp: 9167.820883 Raw Data: 196 175 0 0 59 26 2 0 
+	Total_Engine_Hours:			2249.8
+Message Number: 77621 Timestamp: 9168.210477 Raw Data: 196 175 0 0 59 26 2 0 
+	Total_Engine_Hours:			2249.8
+Message Number: 86369 Timestamp: 9177.75057 Raw Data: 196 175 0 0 60 26 2 0 
+	Total_Engine_Hours:			2249.8
+Message Number: 86787 Timestamp: 9178.210056 Raw Data: 196 175 0 0 60 26 2 0 
+	Total_Engine_Hours:			2249.8
+Message Number: 95474 Timestamp: 9187.680108 Raw Data: 196 175 0 0 60 26 2 0 
+	Total_Engine_Hours:			2249.8
+Message Number: 95953 Timestamp: 9188.210415 Raw Data: 196 175 0 0 60 26 2 0 
+	Total_Engine_Hours:			2249.8
+Message Number: 103688 Timestamp: 9196.650917 Raw Data: 196 175 0 0 60 26 2 0 
+	Total_Engine_Hours:			2249.8
+Message Number: 104573 Timestamp: 9197.609817 Raw Data: 197 175 0 0 60 26 2 0 
+	Total_Engine_Hours:			2249.85
+Message Number: 105116 Timestamp: 9198.209805 Raw Data: 197 175 0 0 60 26 2 0 
+	Total_Engine_Hours:			2249.85
+Message Number: 111666 Timestamp: 9205.339727 Raw Data: 197 175 0 0 60 26 2 0 
+	Total_Engine_Hours:			2249.85
+Message Number: 113679 Timestamp: 9207.539691 Raw Data: 197 175 0 0 60 26 2 0 
+	Total_Engine_Hours:			2249.85
+Message Number: 114281 Timestamp: 9208.209552 Raw Data: 197 175 0 0 60 26 2 0 
+	Total_Engine_Hours:			2249.85
+Message Number: 122790 Timestamp: 9217.469981 Raw Data: 197 175 0 0 60 26 2 0 
+	Total_Engine_Hours:			2249.85
+Message Number: 123451 Timestamp: 9218.209457 Raw Data: 197 175 0 0 60 26 2 0 
+	Total_Engine_Hours:			2249.85
+Message Number: 131187 Timestamp: 9226.649524 Raw Data: 197 175 0 0 60 26 2 0 
+	Total_Engine_Hours:			2249.85
+Message Number: 131894 Timestamp: 9227.39931 Raw Data: 197 175 0 0 60 26 2 0 
+	Total_Engine_Hours:			2249.85
+Message Number: 132626 Timestamp: 9228.209835 Raw Data: 197 175 0 0 60 26 2 0 
+	Total_Engine_Hours:			2249.85
+Message Number: 140997 Timestamp: 9237.329582 Raw Data: 197 175 0 0 60 26 2 0 
+	Total_Engine_Hours:			2249.85
+Message Number: 141806 Timestamp: 9238.219185 Raw Data: 197 175 0 0 60 26 2 0 
+	Total_Engine_Hours:			2249.85
+Message Number: 150097 Timestamp: 9247.259176 Raw Data: 197 175 0 0 61 26 2 0 
+	Total_Engine_Hours:			2249.85
+Message Number: 150963 Timestamp: 9248.209901 Raw Data: 197 175 0 0 61 26 2 0 
+	Total_Engine_Hours:			2249.85
+Message Number: 158694 Timestamp: 9256.649574 Raw Data: 197 175 0 0 61 26 2 0 
+	Total_Engine_Hours:			2249.85
+Message Number: 159190 Timestamp: 9257.188914 Raw Data: 197 175 0 0 61 26 2 0 
+	Total_Engine_Hours:			2249.85
+Message Number: 160127 Timestamp: 9258.209289 Raw Data: 197 175 0 0 61 26 2 0 
+	Total_Engine_Hours:			2249.85
+Message Number: 166701 Timestamp: 9265.359029 Raw Data: 197 175 0 0 61 26 2 0 
+	Total_Engine_Hours:			2249.85
+Message Number: 168299 Timestamp: 9267.118626 Raw Data: 197 175 0 0 61 26 2 0 
+	Total_Engine_Hours:			2249.85
+Message Number: 169309 Timestamp: 9268.218878 Raw Data: 197 175 0 0 61 26 2 0 
+	Total_Engine_Hours:			2249.85
+Message Number: 177401 Timestamp: 9277.048401 Raw Data: 197 175 0 0 61 26 2 0 
+	Total_Engine_Hours:			2249.85
+Message Number: 178465 Timestamp: 9278.208921 Raw Data: 197 175 0 0 61 26 2 0 
+	Total_Engine_Hours:			2249.85
+Message Number: 186191 Timestamp: 9286.648274 Raw Data: 197 175 0 0 62 26 2 0 
+	Total_Engine_Hours:			2249.85
+Message Number: 186496 Timestamp: 9286.978238 Raw Data: 197 175 0 0 62 26 2 0 
+	Total_Engine_Hours:			2249.85
+Message Number: 187629 Timestamp: 9288.208552 Raw Data: 197 175 0 0 62 26 2 0 
+	Total_Engine_Hours:			2249.85
+Message Number: 195599 Timestamp: 9296.908076 Raw Data: 197 175 0 0 62 26 2 0 
+	Total_Engine_Hours:			2249.85
+Message Number: 196777 Timestamp: 9298.198323 Raw Data: 197 175 0 0 62 26 2 0 
+	Total_Engine_Hours:			2249.85
+Message Number: 204698 Timestamp: 9306.838015 Raw Data: 197 175 0 0 62 26 2 0 
+	Total_Engine_Hours:			2249.85
+Message Number: 205963 Timestamp: 9308.217904 Raw Data: 197 175 0 0 62 26 2 0 
+	Total_Engine_Hours:			2249.85
+Message Number: 213680 Timestamp: 9316.647835 Raw Data: 197 175 0 0 62 26 2 0 
+	Total_Engine_Hours:			2249.85
+Message Number: 213795 Timestamp: 9316.767857 Raw Data: 197 175 0 0 62 26 2 0 
+	Total_Engine_Hours:			2249.85
+Message Number: 215122 Timestamp: 9318.217811 Raw Data: 197 175 0 0 62 26 2 0 
+	Total_Engine_Hours:			2249.85
+Message Number: 221711 Timestamp: 9325.388193 Raw Data: 197 175 0 0 62 26 2 0 
+	Total_Engine_Hours:			2249.85
+Message Number: 222901 Timestamp: 9326.698189 Raw Data: 197 175 0 0 62 26 2 0 
+	Total_Engine_Hours:			2249.85
+Message Number: 224296 Timestamp: 9328.21766 Raw Data: 197 175 0 0 62 26 2 0 
+	Total_Engine_Hours:			2249.85
+Message Number: 232007 Timestamp: 9336.627497 Raw Data: 197 175 0 0 63 26 2 0 
+	Total_Engine_Hours:			2249.85
+Message Number: 233459 Timestamp: 9338.207834 Raw Data: 197 175 0 0 63 26 2 0 
+	Total_Engine_Hours:			2249.85
+Message Number: 241110 Timestamp: 9346.557403 Raw Data: 197 175 0 0 63 26 2 0 
+	Total_Engine_Hours:			2249.85
+Message Number: 241187 Timestamp: 9346.647492 Raw Data: 197 175 0 0 63 26 2 0 
+	Total_Engine_Hours:			2249.85
+Message Number: 242612 Timestamp: 9348.197588 Raw Data: 197 175 0 0 63 26 2 0 
+	Total_Engine_Hours:			2249.85
+Message Number: 250222 Timestamp: 9356.487096 Raw Data: 197 175 0 0 63 26 2 0 
+	Total_Engine_Hours:			2249.85
+Message Number: 251800 Timestamp: 9358.217089 Raw Data: 197 175 0 0 63 26 2 0 
+	Total_Engine_Hours:			2249.85
+Message Number: 259328 Timestamp: 9366.417148 Raw Data: 197 175 0 0 63 26 2 0 
+	Total_Engine_Hours:			2249.85
+Message Number: 260962 Timestamp: 9368.216923 Raw Data: 197 175 0 0 63 26 2 0 
+	Total_Engine_Hours:			2249.85
+Message Number: 268418 Timestamp: 9376.346938 Raw Data: 197 175 0 0 63 26 2 0 
+	Total_Engine_Hours:			2249.85
+Message Number: 268685 Timestamp: 9376.646998 Raw Data: 197 175 0 0 63 26 2 0 
+	Total_Engine_Hours:			2249.85
+Message Number: 270127 Timestamp: 9378.216773 Raw Data: 198 175 0 0 63 26 2 0 
+	Total_Engine_Hours:			2249.9
+Message Number: 276735 Timestamp: 9385.406611 Raw Data: 198 175 0 0 63 26 2 0 
+	Total_Engine_Hours:			2249.9
+Message Number: 277522 Timestamp: 9386.266725 Raw Data: 198 175 0 0 63 26 2 0 
+	Total_Engine_Hours:			2249.9
+Message Number: 279301 Timestamp: 9388.216843 Raw Data: 198 175 0 0 63 26 2 0 
+	Total_Engine_Hours:			2249.9
+Message Number: 286615 Timestamp: 9396.196922 Raw Data: 198 175 0 0 63 26 2 0 
+	Total_Engine_Hours:			2249.9
+Message Number: 288467 Timestamp: 9398.216545 Raw Data: 198 175 0 0 63 26 2 0 
+	Total_Engine_Hours:			2249.9
+Message Number: 295723 Timestamp: 9406.136868 Raw Data: 198 175 0 0 64 26 2 0 
+	Total_Engine_Hours:			2249.9
+Message Number: 296188 Timestamp: 9406.646259 Raw Data: 198 175 0 0 64 26 2 0 
+	Total_Engine_Hours:			2249.9
+Message Number: 297625 Timestamp: 9408.206274 Raw Data: 198 175 0 0 64 26 2 0 
+	Total_Engine_Hours:			2249.9
+Message Number: 304819 Timestamp: 9416.056491 Raw Data: 198 175 0 0 64 26 2 0 
+	Total_Engine_Hours:			2249.9
+Message Number: 306789 Timestamp: 9418.20642 Raw Data: 198 175 0 0 64 26 2 0 
+	Total_Engine_Hours:			2249.9
+Message Number: 313938 Timestamp: 9425.996329 Raw Data: 198 175 0 0 64 26 2 0 
+	Total_Engine_Hours:			2249.9
+Message Number: 315969 Timestamp: 9428.205947 Raw Data: 198 175 0 0 64 26 2 0 
+	Total_Engine_Hours:			2249.9
+Message Number: 323071 Timestamp: 9435.925803 Raw Data: 198 175 0 0 64 26 2 0 
+	Total_Engine_Hours:			2249.9
+Message Number: 323738 Timestamp: 9436.645774 Raw Data: 198 175 0 0 64 26 2 0 
+	Total_Engine_Hours:			2249.9
+Message Number: 325183 Timestamp: 9438.21629 Raw Data: 198 175 0 0 64 26 2 0 
+	Total_Engine_Hours:			2249.9
+Message Number: 331816 Timestamp: 9445.425641 Raw Data: 198 175 0 0 65 26 2 0 
+	Total_Engine_Hours:			2249.9
+Message Number: 332185 Timestamp: 9445.846478 Raw Data: 198 175 0 0 65 26 2 0 
+	Total_Engine_Hours:			2249.9
+Message Number: 334355 Timestamp: 9448.215619 Raw Data: 198 175 0 0 65 26 2 0 
+	Total_Engine_Hours:			2249.9
+Message Number: 341289 Timestamp: 9455.775624 Raw Data: 198 175 0 0 65 26 2 0 
+	Total_Engine_Hours:			2249.9
+Message Number: 343532 Timestamp: 9458.205659 Raw Data: 198 175 0 0 65 26 2 0 
+	Total_Engine_Hours:			2249.9

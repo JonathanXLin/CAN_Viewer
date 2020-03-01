@@ -27,6 +27,9 @@ namespace CAN_Viewer
         // Current timeslice to be displayed, arbitrarily set in constructor and updated in update_timeslice_data
         public Timeslice timeslice;
 
+        // Chart area width, initialized in constructor and updated on form resize event
+        public int chart_area_width;
+
         // NiceScale object whose methods are used to configure x axes to look nice
         public NiceScale nicescale; // NiceScale instance to configure nice looking axis values
 
@@ -54,6 +57,8 @@ namespace CAN_Viewer
                 default_series.Points.AddXY(i + 1, i + 1);
 
             add_signal_from_series(default_chart_area, default_series);
+
+            chart_area_width = Convert.ToInt32(chart.ChartAreas[0].Position.Width);
         }
         public int update_logfile(Logfile logfile_)
         {
@@ -65,32 +70,6 @@ namespace CAN_Viewer
                 return 1;
             }
         }
-        public void mouse_wheel_event(object sender, MouseEventArgs e)
-        {
-            // Timeslice bounds increased/decreased by 10% of edge of gui window to current mouse position when middle mouse wheel is moved
-            double timeslice_width = timeslice.end - timeslice.start;
-            double left_bound_adjustment_weight = (e.X - (chart.Location.X)) / Convert.ToDouble(chart.Width);
-            double right_bound_adjustment_weight = 1 - left_bound_adjustment_weight;
-
-            // Zoom in
-            if (e.Delta > 0)
-            {
-                // Update timeslice
-                timeslice.start += timeslice_width * 0.1 * left_bound_adjustment_weight;
-                timeslice.end -= timeslice_width * 0.1 * right_bound_adjustment_weight;
-            }
-            // Zoom out
-            else if (e.Delta < 0)
-            {
-                // Update timeslice
-                timeslice.start -= timeslice_width * 0.1 * left_bound_adjustment_weight;
-                timeslice.end += timeslice_width * 0.1 * right_bound_adjustment_weight;
-            }
-
-            update_timeslice_data(timeslice, checked_list_box);
-            //MessageBox.Show(timeslice.start.ToString() + " " + timeslice.end.ToString());
-        }
-        // Sets initial timeslice to be width of all data with 10% padding on each side
         public int set_initial_timeslice_data(CheckedListBox checked_list_box_initial)
         {
             // Set initial gui window to entire logfile timeslice, with some padding
@@ -196,15 +175,12 @@ namespace CAN_Viewer
             chart_area_.AxisX.MajorGrid.LineColor = Color.FromArgb(77, 77, 77);
             chart_area_.AxisX.LabelStyle.ForeColor = Color.White;
 
-            // Update each chart area to new timeslice
-            foreach (ChartArea current_chart_area in chart.ChartAreas)
-            {
-                nicescale.set_parameters(this);
+            // Find nice x axis parameters, need to do this after refresh because need new chart area width
+            nicescale.set_parameters(this);
 
-                current_chart_area.AxisX.Minimum = nicescale.get_nice_min();
-                current_chart_area.AxisX.Maximum = nicescale.get_nice_max();
-                current_chart_area.AxisX.Interval = nicescale.get_tick_spacing();
-            }
+            chart_area_.AxisX.Minimum = nicescale.get_nice_min();
+            chart_area_.AxisX.Maximum = nicescale.get_nice_max();
+            chart_area_.AxisX.Interval = nicescale.get_tick_spacing();
 
             // Y axis stylize
             chart_area_.AxisY.Enabled = AxisEnabled.True;
@@ -231,11 +207,53 @@ namespace CAN_Viewer
             chart.ChartAreas.Add(chart_area_);
             chart.Series.Add(series_);
 
+            //MessageBox.Show(chart_area_.AxisX.Minimum.ToString() + " " + chart_area_.AxisX.Maximum.ToString() + " " + chart_area_.AxisX.Interval.ToString());
+
             return 1; // Not yet used
         }
+        public void mouse_wheel_event(object sender, MouseEventArgs e)
+        {
+            // Timeslice bounds increased/decreased by 10% of edge of gui window to current mouse position when middle mouse wheel is moved
+            double timeslice_width = timeslice.end - timeslice.start;
+            double left_bound_adjustment_weight = (e.X - (chart.Location.X)) / Convert.ToDouble(chart.Width);
+            double right_bound_adjustment_weight = 1 - left_bound_adjustment_weight;
+
+            // Zoom in
+            if (e.Delta > 0)
+            {
+                // Update timeslice
+                timeslice.start += timeslice_width * 0.1 * left_bound_adjustment_weight;
+                timeslice.end -= timeslice_width * 0.1 * right_bound_adjustment_weight;
+            }
+            // Zoom out
+            else if (e.Delta < 0)
+            {
+                // Update timeslice
+                timeslice.start -= timeslice_width * 0.1 * left_bound_adjustment_weight;
+                timeslice.end += timeslice_width * 0.1 * right_bound_adjustment_weight;
+            }
+
+            update_timeslice_data(timeslice, checked_list_box);
+            //MessageBox.Show(timeslice.start.ToString() + " " + timeslice.end.ToString());
+        }
+        // Sets initial timeslice to be width of all data with 10% padding on each side
         public int initialize_mouse_wheel_event(Form form_)
         {
             form_.MouseWheel += new MouseEventHandler(mouse_wheel_event);
+
+            return 1; // Not yet used
+        }
+        public void form_resize_event(object sender, EventArgs e)
+        {
+            // Update chart area width
+            chart_area_width = Convert.ToInt32(chart.ChartAreas[0].Position.Width);
+
+            // Explicitly update timeslice data, which only changes x axis nice parameters
+            update_timeslice_data(timeslice, checked_list_box);
+        }
+        public int initialize_form_resize_event(Form form_)
+        {
+            form_.Resize += new EventHandler(form_resize_event);
 
             return 1; // Not yet used
         }
@@ -258,10 +276,12 @@ namespace CAN_Viewer
         private double niceMin;
         private double niceMax;
 
-        public NiceScale(Chart_GUI chart_gui_)
+        public NiceScale(Chart_GUI chart_gui_) // If there is a chart area to nice scale
         {
-            timeslice = chart_gui_.timeslice;
-            calculate(chart_gui_);
+            if (chart_gui_.chart.ChartAreas.Count != 0)
+            {
+                set_parameters(chart_gui_);
+            }
         }
 
         private void calculate(Chart_GUI chart_gui_)
@@ -270,8 +290,6 @@ namespace CAN_Viewer
             tickSpacing = nice_num(range / (maxTicks - 1), true);
             niceMin = Math.Floor(timeslice.start / tickSpacing) * tickSpacing;
             niceMax = Math.Ceiling(timeslice.end / tickSpacing) * tickSpacing;
-
-            maxTicks = Convert.ToInt32(chart_gui_.chart.ChartAreas[0].Position.Width) / 5; // Max number of ticks is one tick every 5 distance
         }
 
         private double nice_num(double range, bool round)
@@ -312,6 +330,8 @@ namespace CAN_Viewer
         public void set_parameters(Chart_GUI chart_gui_)
         {
             timeslice = chart_gui_.timeslice;
+            maxTicks = chart_gui_.chart_area_width / 5; // Max number of ticks is one tick every 5 distance
+
             calculate(chart_gui_);
         }
 
@@ -330,6 +350,4 @@ namespace CAN_Viewer
             return tickSpacing;
         }
     }
-
-
 }

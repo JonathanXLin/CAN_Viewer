@@ -35,7 +35,6 @@ namespace CAN_Viewer
         public CAN_Viewer_Main()
         {
             InitializeComponent();
-            //this.MouseWheel += new MouseEventHandler(canvas_MouseWheel);
         }
 
         private void CAN_Viewer_Main_Load(object sender, EventArgs e)
@@ -73,6 +72,9 @@ namespace CAN_Viewer
 
             // Initialize mouse wheel event in chart_gui
             chart_gui.initialize_mouse_wheel_event(this);
+
+            // Initialize form resize event in chart_gui
+            chart_gui.initialize_form_resize_event(this);
         }
 
         private void openToolStripMenuItem_logfile_Click(object sender, EventArgs e)
