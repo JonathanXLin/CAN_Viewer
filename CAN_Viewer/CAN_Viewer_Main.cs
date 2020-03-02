@@ -266,5 +266,11 @@ namespace CAN_Viewer
             //    message += checked_name + " ";
             //MessageBox.Show(message);
         }
+
+        // Sandbox area for testing/debugging stuff, not used
+        private void checkedListBox_signals_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CAN_Viewer_Main));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             this.statusStrip_status = new System.Windows.Forms.StatusStrip();
             this.checkedListBox_signals = new System.Windows.Forms.CheckedListBox();
             this.menuStrip_menu = new System.Windows.Forms.MenuStrip();
@@ -71,6 +71,7 @@
             this.checkedListBox_signals.Size = new System.Drawing.Size(230, 356);
             this.checkedListBox_signals.TabIndex = 1;
             this.checkedListBox_signals.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBox_signals_ItemCheck);
+            this.checkedListBox_signals.Click += new System.EventHandler(this.checkedListBox_signals_Click);
             // 
             // menuStrip_menu
             // 
@@ -192,9 +193,9 @@
             // 
             // chart
             // 
-            chartArea1.BackColor = System.Drawing.Color.Black;
-            chartArea1.Name = "ChartArea1";
-            this.chart.ChartAreas.Add(chartArea1);
+            chartArea3.BackColor = System.Drawing.Color.Black;
+            chartArea3.Name = "ChartArea1";
+            this.chart.ChartAreas.Add(chartArea3);
             this.chart.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chart.Location = new System.Drawing.Point(230, 24);
             this.chart.Name = "chart";
