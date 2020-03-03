@@ -32,7 +32,6 @@
             this.label_fileName = new System.Windows.Forms.Label();
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.button_Cancel = new System.Windows.Forms.Button();
-            this.parser = new System.ComponentModel.BackgroundWorker();
             this.label_Action = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -61,14 +60,6 @@
             this.button_Cancel.Text = "Cancel";
             this.button_Cancel.UseVisualStyleBackColor = true;
             this.button_Cancel.Click += new System.EventHandler(this.button_Cancel_Click);
-            // 
-            // parser
-            // 
-            this.parser.WorkerReportsProgress = true;
-            this.parser.WorkerSupportsCancellation = true;
-            this.parser.DoWork += new System.ComponentModel.DoWorkEventHandler(this.parser_DoWork);
-            this.parser.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.parser_ProgressChanged);
-            this.parser.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.parser_RunWorkerCompleted);
             // 
             // label_Action
             // 
@@ -102,7 +93,6 @@
         private System.Windows.Forms.Label label_fileName;
         private System.Windows.Forms.ProgressBar progressBar;
         private System.Windows.Forms.Button button_Cancel;
-        private System.ComponentModel.BackgroundWorker parser;
         private System.Windows.Forms.Label label_Action;
     }
 }
