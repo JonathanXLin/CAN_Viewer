@@ -81,31 +81,14 @@ namespace CAN_Viewer
                     series.Add(new_series);
                 }
 
-                //long num_points = logfile.point_list.Count;
-                //long curr_point = 0;
-
-                //// For every signal in every message, add the data to that signal's series
-                //foreach (Logfile_Point point in logfile.point_list)
-                //{
-                //    foreach (Logfile_Signal_Point signal_point in point.signal_point_list)
-                //    {
-                //        if (worker.CancellationPending == true)
-                //        {
-                //            e.Cancel = true;
-                //            break;
-                //        }
-                //        else
-                //        {
-                //            series.Find(x => !Convert.ToBoolean(string.Compare(signal_point.name, x.Name))).Points.AddXY(point.timestamp, signal_point.value);
-                //            //MessageBox.Show(series.Find(x => !Convert.ToBoolean(string.Compare(signal_point.name, x.Name))).Name);
-                //        }
-                //    }
-
-                //    curr_point++;
-
-                //    if (!Convert.ToBoolean(curr_point % 50))
-                //        worker.ReportProgress(Convert.ToInt32(100 * Convert.ToDouble(curr_point) / num_points));
-                //}
+                // For every signal in every message, add the data to that signal's series
+                foreach (Logfile_Point point in logfile.point_list)
+                {
+                    foreach (Logfile_Signal_Point signal_point in point.signal_point_list)
+                    {
+                        series.Find(x => !Convert.ToBoolean(string.Compare(signal_point.name, x.Name))).Points.AddXY(point.timestamp, signal_point.value);
+                    }
+                }
 
                 // Set timeslice initially to max width of logfile
                 Timeslice max_timeslice;
