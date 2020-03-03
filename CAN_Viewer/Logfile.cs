@@ -32,10 +32,9 @@ namespace CAN_Viewer
             unique_signals = new List<string>();
         }
 
-        public int parse(string file_path, Database_Set database_set)
+        public int parse(Database_Set database_set)
         {
             // Populate logfile object
-            path = file_path;
             num_points = 0;
             num_unique_signals = 0;
 

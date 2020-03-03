@@ -8,31 +8,35 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using System.IO;
 
 namespace CAN_Viewer
 {
     public partial class Logfile_Parser : Form
     {
-        private Logfile logfile;
-        public List<Series> series;
+        public Logfile logfile;
+        public Database_Set database_set;
+        public Chart_GUI chart_gui;
+        public CheckedListBox checked_list_box;
 
-        public Logfile_Parser(Logfile logfile_, List<Series> series_)
+        public Logfile_Parser(Chart_GUI chart_gui_, Database_Set database_set_, CheckedListBox checked_list_box_)
         {
             InitializeComponent();
 
-            logfile = logfile_;
-            series = series_;
+            chart_gui = chart_gui_;
+            database_set = database_set_;
+            checked_list_box = checked_list_box_;
 
             if (parser.IsBusy != true)
             {
-                // Start the asynchronous operation.
+                // Start the asynchronous operation
                 parser.RunWorkerAsync();
             }
         }
 
         private void Logfile_Parser_Load(object sender, EventArgs e)
         {
-            label_fileName.Text = logfile.path;
+            label_fileName.Text = Path.GetFileName(logfile.path);
             label_Action.Text = "Parsing...";
         }
 
@@ -40,7 +44,7 @@ namespace CAN_Viewer
         {
             if (parser.WorkerSupportsCancellation == true)
             {
-                // Cancel the asynchronous operation.
+                // Cancel the asynchronous operation
                 parser.CancelAsync();
             }
         }
@@ -49,29 +53,24 @@ namespace CAN_Viewer
         {
             BackgroundWorker worker = sender as BackgroundWorker;
 
-            long num_points = logfile.point_list.Count;
-            long curr_point = 0;
+            logfile.parse(database_set);
+            chart_gui.update_logfile(checked_list_box);
 
-            // For every signal in every message, add the data to that signal's series
-            foreach (Logfile_Point point in logfile.point_list)
+            /*
+            if (worker.CancellationPending == true)
             {
-                foreach (Logfile_Signal_Point signal_point in point.signal_point_list)
-                {
-                    if (worker.CancellationPending == true)
-                    {
-                        e.Cancel = true;
-                        break;
-                    }
-                    else
-                    {
-                        series.Find(x => !Convert.ToBoolean(string.Compare(signal_point.name, x.Name))).Points.AddXY(point.timestamp, signal_point.value);
-                        //MessageBox.Show(series.Find(x => !Convert.ToBoolean(string.Compare(signal_point.name, x.Name))).Name);
-                    }
-                }
-
-                curr_point++;
-                worker.ReportProgress(Convert.ToInt32(100 * Convert.ToDouble(curr_point)/num_points));
+                e.Cancel = true;
+                break;
             }
+            else
+            {
+                series.Find(x => !Convert.ToBoolean(string.Compare(signal_point.name, x.Name))).Points.AddXY(point.timestamp, signal_point.value);
+                //MessageBox.Show(series.Find(x => !Convert.ToBoolean(string.Compare(signal_point.name, x.Name))).Name);
+            }
+
+            if (!Convert.ToBoolean(curr_point % 50))
+                worker.ReportProgress(Convert.ToInt32(100 * Convert.ToDouble(curr_point) / num_points));
+            */
         }
 
         private void parser_ProgressChanged(object sender, ProgressChangedEventArgs e)

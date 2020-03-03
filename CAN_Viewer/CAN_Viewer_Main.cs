@@ -16,18 +16,8 @@ namespace CAN_Viewer
 {
     public partial class CAN_Viewer_Main : Form
     {
-        // Initial declarations of database set and logfile objects
-        Database_Set database_set;
-        Logfile logfile;
-
-        // Initial declaration of canvas object with time zero and width zero, populated when logfile is loaded
-        Canvas gui = new Canvas(0.0, 0.0);
-
         // Initial declaration of Chart_GUI object
         Chart_GUI chart_gui;
-
-        // Graphics object, initialized in main load
-        Graphics g;
 
         //Status strip label
         private ToolStripStatusLabel status_text = new ToolStripStatusLabel();
@@ -59,74 +49,14 @@ namespace CAN_Viewer
             TreeNode root_database = new TreeNode("CAN Databases");
             treeView_tree.Nodes.Add(root_database);
 
-            // Initialize graphics object
-            g = canvas.CreateGraphics();
-
-            // Initialize gui timeslice to be 10s
-            gui.time_start = -1.0;
-            gui.time_end = 9.0;
-            gui.update_time_tickmarks(canvas);
-
             // Set Chart_GUI chart instance to default chart in designer
-            chart_gui = new Chart_GUI(chart, null, checkedListBox_signals); // Logfile argument is null because no logfile yet, will be updated
+            chart_gui = new Chart_GUI(chart, checkedListBox_signals);
 
             // Initialize mouse wheel event in chart_gui
             chart_gui.initialize_mouse_wheel_event(this);
 
             // Initialize form resize event in chart_gui
             chart_gui.initialize_form_resize_event(this);
-
-            // Instantiate database set, this is not done in database open file dialog because multiple databases can be added into one database_set
-            database_set = new Database_Set();
-        }
-
-        private void openToolStripMenuItem_logfile_Click(object sender, EventArgs e)
-        {
-            // Open file dialog
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
-            {
-                openFileDialog.Filter = "txt files (*.txt)|*.txt";
-                openFileDialog.RestoreDirectory = true;
-
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    // Instantiate logfile
-                    logfile = new Logfile();
-
-                    // Parse logfile
-                    logfile.path = openFileDialog.FileName;
-                    logfile.parse(logfile.path, database_set);
-
-                    // Update status bar text
-                    status_text.Text = Path.GetFileName(logfile.path);
-
-                    // Add to treeview
-                    TreeNode new_logfile_node = new TreeNode(Path.GetFileName(logfile.path));
-                    treeView_tree.Nodes[0].Nodes.Add(new_logfile_node);
-                    treeView_tree.Nodes[0].Expand();
-
-                    // Populate checkedListBox with all logfile signals
-                    logfile.update_CheckedListBox(checkedListBox_signals);
-
-                    // Set initial chart to show timeslice of entire logfile
-                    chart_gui.set_initial_timeslice_data();
-
-                    // Update now updated logfile in chart_gui
-                    if (chart_gui.update_logfile(logfile, database_set, checkedListBox_signals) == 0)
-                        throw new ArgumentException("chart_gui cannot be updated with null logfile argument");
-                }
-            }
-
-            /*
-            // Set initial gui window to entire logfile timeslice, with some padding
-            if (logfile.num_points != 0)
-            {
-                gui.time_start = logfile.point_list[0].timestamp - 0.1 * (logfile.point_list[logfile.num_points - 1].timestamp - logfile.point_list[0].timestamp);
-                gui.time_end = logfile.point_list[logfile.num_points - 1].timestamp + 0.1 * (logfile.point_list[logfile.num_points - 1].timestamp - logfile.point_list[0].timestamp);
-            }
-            else
-                MessageBox.Show("Logfile empty");
-            */
         }
 
         private void openToolStripMenuItem_database_Click(object sender, EventArgs e)
@@ -144,7 +74,7 @@ namespace CAN_Viewer
                     new_database.path = openFileDialog.FileName;
                     new_database.parse(new_database.path);
 
-                    database_set.databases.Add(new_database);
+                    chart_gui.database_set.databases.Add(new_database);
 
                     // Add new database to treeview
                     TreeNode new_database_node = new TreeNode(Path.GetFileName(new_database.path));
@@ -154,58 +84,69 @@ namespace CAN_Viewer
             }
         }
 
-        private void canvas_Paint(object sender, PaintEventArgs e)
+        private void openToolStripMenuItem_logfile_Click(object sender, EventArgs e)
         {
-            
-        }
-
-        private void canvas_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void canvas_MouseWheel(object sender, MouseEventArgs e)
-        {
-            canvas.Focus();
-
-            // Timeslice bounds increased/decreased by 10% of edge of gui window to current mouse position when middle mouse wheel is moved
-            double timeslice_width = gui.time_end - gui.time_start;
-            double left_bound_adjustment_weight = e.X / canvas.Width;
-            double right_bound_adjustment_weight = 1 - left_bound_adjustment_weight;
-
-            if (e.Delta > 0)
+            // Open file dialog
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
-                gui.time_start += timeslice_width * 0.1 * left_bound_adjustment_weight;
-                gui.time_end -= timeslice_width * 0.1 * right_bound_adjustment_weight;
+                openFileDialog.Filter = "txt files (*.txt)|*.txt";
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    // Set logfile path, will be parsed in Logfile_Parser
+                    chart_gui.logfile.path = openFileDialog.FileName;
+                    
+                    // Update status bar text
+                    status_text.Text = Path.GetFileName(chart_gui.logfile.path);
+
+                    // Add to treeview
+                    TreeNode new_logfile_node = new TreeNode(Path.GetFileName(chart_gui.logfile.path));
+                    treeView_tree.Nodes[0].Nodes.Add(new_logfile_node);
+                    treeView_tree.Nodes[0].Expand();
+
+                    // Populate checkedListBox with all logfile signals
+                    chart_gui.logfile.update_CheckedListBox(checkedListBox_signals);
+
+                    //// Update now updated logfile in chart_gui
+                    //if (chart_gui.update_logfile(logfile, database_set, checkedListBox_signals) == 0)
+                    //    throw new ArgumentException("chart_gui cannot be updated with null logfile argument");
+
+                    //Logfile_Parser parser = new Logfile_Parser(chart_gui, database_set, checkedListBox_signals);
+                    //parser.Show();
+
+                    // Set checked list box
+                    chart_gui.checked_list_box = checkedListBox_signals;
+                    // Parse logfile
+                    chart_gui.logfile.parse(chart_gui.database_set);
+                    // Update logfile in chart
+                    chart_gui.update_logfile(chart_gui.checked_list_box);
+
+                    // Set initial chart to show timeslice of entire logfile
+                    chart_gui.set_initial_timeslice_data();
+                }
             }
-            else if (e.Delta < 0)
+
+            /*
+            // Set initial gui window to entire logfile timeslice, with some padding
+            if (logfile.num_points != 0)
             {
-                gui.time_start -= timeslice_width * 0.1 * left_bound_adjustment_weight;
-                gui.time_end += timeslice_width * 0.1 * right_bound_adjustment_weight;
+                gui.time_start = logfile.point_list[0].timestamp - 0.1 * (logfile.point_list[logfile.num_points - 1].timestamp - logfile.point_list[0].timestamp);
+                gui.time_end = logfile.point_list[logfile.num_points - 1].timestamp + 0.1 * (logfile.point_list[logfile.num_points - 1].timestamp - logfile.point_list[0].timestamp);
             }
-
-            //MessageBox.Show(gui.time_start.ToString() + " " + gui.time_end.ToString());
-
-            // Update gui tickmarkers
-            gui.update_time_tickmarks(canvas);
-        }
-
-        private void CAN_Viewer_Main_Resize(object sender, EventArgs e)
-        {
-            g.Clear(Color.Black);
-            this.Invalidate();
-
-            gui.update_time_tickmarks(canvas);
+            else
+                MessageBox.Show("Logfile empty");
+            */
         }
 
         // Sandbox area for testing/debugging stuff, not used
         private void chart_Click(object sender, EventArgs e)
         {
-            if (logfile != null)
+            if (chart_gui.logfile != null)
             {
                 Timeslice max_timeslice;
                 max_timeslice.start = 0;
-                max_timeslice.end = logfile.point_list[logfile.point_list.Count - 1].timestamp;
+                max_timeslice.end = chart_gui.logfile.point_list[chart_gui.logfile.point_list.Count - 1].timestamp;
 
                 chart_gui.update_timeslice_data(max_timeslice);
 
