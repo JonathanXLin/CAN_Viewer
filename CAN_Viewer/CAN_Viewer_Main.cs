@@ -118,8 +118,10 @@ namespace CAN_Viewer
                     // Set checked list box
                     chart_gui.checked_list_box = checkedListBox_signals;
 
-                    Logfile_Parser logfile_parser = new Logfile_Parser(chart_gui);
-                    logfile_parser.ShowDialog();
+                    // Parse logfile
+                    chart_gui.logfile.parse(chart_gui.database_set);
+                    // Update logfile in chart
+                    chart_gui.update_logfile(chart_gui.checked_list_box);
 
                     // Set initial chart to show timeslice of entire logfile
                     chart_gui.set_initial_timeslice_data();
