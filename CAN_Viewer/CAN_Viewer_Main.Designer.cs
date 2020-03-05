@@ -63,6 +63,7 @@
             // 
             // checkedListBox_signals
             // 
+            this.checkedListBox_signals.CheckOnClick = true;
             this.checkedListBox_signals.Dock = System.Windows.Forms.DockStyle.Fill;
             this.checkedListBox_signals.FormattingEnabled = true;
             this.checkedListBox_signals.Location = new System.Drawing.Point(0, 0);
