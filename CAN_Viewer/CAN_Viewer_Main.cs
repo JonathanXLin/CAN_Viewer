@@ -87,7 +87,7 @@ namespace CAN_Viewer
                         treeView_tree.Nodes[1].Expand();
 
                         // If logfile already exists, reparse logfile
-                        if (Convert.ToBoolean(string.Compare(chart_gui.logfile.path, "")))
+                        if (chart_gui.logfile.path != null)
                         {
                             // Parse logfile
                             chart_gui.logfile.parse(chart_gui.database_set);
@@ -98,7 +98,6 @@ namespace CAN_Viewer
                             chart_gui.set_initial_timeslice_data();
                         }
                     }
-                    
                 }
             }
         }
@@ -143,7 +142,12 @@ namespace CAN_Viewer
                         chart_gui.checked_list_box = checkedListBox_signals;
 
                         // Parse logfile
-                        chart_gui.logfile.parse(chart_gui.database_set);
+                        //chart_gui.logfile.parse(chart_gui.database_set);
+
+                        Loading_Bar_Parser parser = new Loading_Bar_Parser(chart_gui);
+                        parser.ShowDialog();
+                        chart_gui = parser.chart_gui;
+
                         // Update logfile in chart
                         chart_gui.update_logfile(chart_gui.checked_list_box);
 
