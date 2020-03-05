@@ -69,17 +69,24 @@ namespace CAN_Viewer
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    // Create new database and add to database_set
-                    Database new_database = new Database();
-                    new_database.path = openFileDialog.FileName;
-                    new_database.parse(new_database.path);
+                    // Check if duplicate
+                    if (chart_gui.database_set.databases.Exists(x => !Convert.ToBoolean(string.Compare(x.path, openFileDialog.FileName))))
+                        MessageBox.Show("Database already included!");
+                    else
+                    {
+                        // Create new database and add to database_set
+                        Database new_database = new Database();
+                        new_database.path = openFileDialog.FileName;
+                        new_database.parse(new_database.path);
 
-                    chart_gui.database_set.databases.Add(new_database);
+                        chart_gui.database_set.databases.Add(new_database);
 
-                    // Add new database to treeview
-                    TreeNode new_database_node = new TreeNode(Path.GetFileName(new_database.path));
-                    treeView_tree.Nodes[1].Nodes.Add(new_database_node);
-                    treeView_tree.Nodes[1].Expand();
+                        // Add new database to treeview
+                        TreeNode new_database_node = new TreeNode(Path.GetFileName(new_database.path));
+                        treeView_tree.Nodes[1].Nodes.Add(new_database_node);
+                        treeView_tree.Nodes[1].Expand();
+                    }
+                    
                 }
             }
         }

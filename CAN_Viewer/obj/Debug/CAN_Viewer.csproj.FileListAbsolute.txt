@@ -16,4 +16,3 @@ C:\Users\Jonathan\Documents\GitHub\CAN_Viewer\CAN_Viewer\obj\Debug\CAN_Viewer.cs
 C:\Users\Jonathan\Documents\GitHub\CAN_Viewer\CAN_Viewer\obj\Debug\CAN_Viewer.exe
 C:\Users\Jonathan\Documents\GitHub\CAN_Viewer\CAN_Viewer\obj\Debug\CAN_Viewer.pdb
 C:\Users\Jonathan\Documents\GitHub\CAN_Viewer\CAN_Viewer\obj\Debug\CAN_Viewer.CAN_Viewer_Main.resources
-C:\Users\Jonathan\Documents\GitHub\CAN_Viewer\CAN_Viewer\obj\Debug\CAN_Viewer.Logfile_Parser.resources
