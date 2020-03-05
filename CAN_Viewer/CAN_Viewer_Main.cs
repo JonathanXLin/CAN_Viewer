@@ -60,6 +60,9 @@ namespace CAN_Viewer
 
             // Set checked list box
             chart_gui.checked_list_box = checkedListBox_signals;
+
+            // Allows components to be accessed across threads
+            Control.CheckForIllegalCrossThreadCalls = false;
         }
 
         private void openToolStripMenuItem_database_Click(object sender, EventArgs e)
@@ -95,7 +98,7 @@ namespace CAN_Viewer
                             // Parse logfile
                             //chart_gui.logfile.parse(chart_gui.database_set);
                             // Experimental loading bar parser
-                            Loading_Bar_Parser parser = new Loading_Bar_Parser(chart_gui);
+                            Loading_Bar_Parser parser = new Loading_Bar_Parser(chart_gui, checkedListBox_signals);
                             parser.ShowDialog();
                             chart_gui = parser.chart_gui;
 
@@ -131,7 +134,7 @@ namespace CAN_Viewer
                         // Parse logfile
                         //chart_gui.logfile.parse(chart_gui.database_set);
                         // Experimental loading bar parser, if cancels, overwrites log file with new instantiation
-                        Loading_Bar_Parser parser = new Loading_Bar_Parser(chart_gui);
+                        Loading_Bar_Parser parser = new Loading_Bar_Parser(chart_gui, checkedListBox_signals);
                         parser.ShowDialog();
                         chart_gui = parser.chart_gui;
 
@@ -140,7 +143,7 @@ namespace CAN_Viewer
                             return;
 
                         // Update logfile in chart
-                        chart_gui.update_logfile(chart_gui.checked_list_box);
+                        //chart_gui.update_logfile(chart_gui.checked_list_box);
 
                         // Update status bar text
                         status_text.Text = Path.GetFileName(chart_gui.logfile.path);

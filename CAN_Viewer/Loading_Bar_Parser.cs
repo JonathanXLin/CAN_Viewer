@@ -10,18 +10,21 @@ using System.Windows.Forms;
 using System.IO;
 using System.Security;
 using System.Diagnostics;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace CAN_Viewer
 {
     public partial class Loading_Bar_Parser : Form
     {
         public Chart_GUI chart_gui;
+        public CheckedListBox checked_list_box;
 
-        public Loading_Bar_Parser(Chart_GUI chart_gui_)
+        public Loading_Bar_Parser(Chart_GUI chart_gui_, CheckedListBox checked_list_box_)
         {
             InitializeComponent();
 
             chart_gui = chart_gui_;
+            checked_list_box = checked_list_box_;
 
             label_FileName.Text = Path.GetFileName(chart_gui.logfile.path);
         }
@@ -167,7 +170,7 @@ namespace CAN_Viewer
                         chart_gui.logfile.num_points++;
 
                         // Track progress and update progress bar
-                        progress_percentage = (chart_gui.logfile.num_points) * 100 / num_messages;
+                        progress_percentage = (chart_gui.logfile.num_points) * 50 / num_messages; // Half of work done here, half done below
                         if (progress_percentage > progress_percentage_prev)
                             parser.ReportProgress(progress_percentage);
                         progress_percentage_prev = progress_percentage;
@@ -185,6 +188,65 @@ namespace CAN_Viewer
                     }
                 }
             }
+
+            // Chart_GUI update_logfile begin
+
+            // Populate list of series, one series for each unique signal
+            foreach (string unique_signal_name in chart_gui.logfile.unique_signals)
+            {
+                Series new_series = new Series(unique_signal_name);
+                //MessageBox.Show(new_series.Name);
+
+                // Stylize new series
+                new_series.Enabled = true;
+                new_series.ChartArea = ""; // Set to zero length string for it to not be plotted
+
+                new_series.ChartType = SeriesChartType.Line;
+                new_series.MarkerStyle = MarkerStyle.Square;
+                new_series.MarkerColor = Color.White;
+                new_series.Color = Color.White;
+                new_series.LabelBackColor = Color.White;
+
+                chart_gui.series.Add(new_series);
+            }
+
+            int point_num = 0;
+
+            // For every signal in every message, add the data to that signal's series
+            foreach (Logfile_Point point in chart_gui.logfile.point_list)
+            {
+                foreach (Logfile_Signal_Point signal_point in point.signal_point_list)
+                {
+                    chart_gui.series.Find(x => !Convert.ToBoolean(string.Compare(signal_point.name, x.Name))).Points.AddXY(point.timestamp, signal_point.value);
+                }
+
+                // Track progress and update progress bar
+                progress_percentage = (point_num) * 50 / num_messages + 50; // Other half of work done here
+                if (progress_percentage > progress_percentage_prev)
+                    parser.ReportProgress(progress_percentage);
+                progress_percentage_prev = progress_percentage;
+
+                point_num++;
+
+                // Checks if cancelled
+                if (parser.CancellationPending)
+                {
+                    e.Cancel = true;
+
+                    // Reverts all changes to logfile
+                    chart_gui.logfile = new Logfile();
+
+                    return;
+                }
+            }
+
+            // Set timeslice initially to max width of logfile
+            Timeslice max_timeslice;
+            max_timeslice.start = 0;
+            max_timeslice.end = Convert.ToInt32(chart_gui.logfile.point_list[chart_gui.logfile.point_list.Count - 1].timestamp * 1.1);
+
+            chart_gui.update_timeslice_data(max_timeslice);
+            chart_gui.logfile.update_CheckedListBox(checked_list_box);
         }
 
         private void parser_ProgressChanged(object sender, ProgressChangedEventArgs e)
