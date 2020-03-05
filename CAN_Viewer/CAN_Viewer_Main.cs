@@ -101,37 +101,43 @@ namespace CAN_Viewer
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    // Set logfile path, will be parsed in Logfile_Parser
-                    chart_gui.logfile.path = openFileDialog.FileName;
-                    
-                    // Update status bar text
-                    status_text.Text = Path.GetFileName(chart_gui.logfile.path);
+                    // Check if same as currently existing
+                    if (!Convert.ToBoolean(string.Compare(chart_gui.logfile.path, openFileDialog.FileName)))
+                        MessageBox.Show("Same logfile already loaded!");
+                    else
+                    {
+                        // Set logfile path, will be parsed in Logfile_Parser
+                        chart_gui.logfile.path = openFileDialog.FileName;
 
-                    // Add to treeview
-                    TreeNode new_logfile_node = new TreeNode(Path.GetFileName(chart_gui.logfile.path));
-                    treeView_tree.Nodes[0].Nodes.Add(new_logfile_node);
-                    treeView_tree.Nodes[0].Expand();
+                        // Update status bar text
+                        status_text.Text = Path.GetFileName(chart_gui.logfile.path);
 
-                    // Populate checkedListBox with all logfile signals
-                    chart_gui.logfile.update_CheckedListBox(checkedListBox_signals);
+                        // Add to treeview
+                        TreeNode new_logfile_node = new TreeNode(Path.GetFileName(chart_gui.logfile.path));
+                        treeView_tree.Nodes[0].Nodes.Add(new_logfile_node);
+                        treeView_tree.Nodes[0].Expand();
 
-                    //// Update now updated logfile in chart_gui
-                    //if (chart_gui.update_logfile(logfile, database_set, checkedListBox_signals) == 0)
-                    //    throw new ArgumentException("chart_gui cannot be updated with null logfile argument");
+                        // Populate checkedListBox with all logfile signals
+                        chart_gui.logfile.update_CheckedListBox(checkedListBox_signals);
 
-                    //Logfile_Parser parser = new Logfile_Parser(chart_gui, database_set, checkedListBox_signals);
-                    //parser.Show();
+                        //// Update now updated logfile in chart_gui
+                        //if (chart_gui.update_logfile(logfile, database_set, checkedListBox_signals) == 0)
+                        //    throw new ArgumentException("chart_gui cannot be updated with null logfile argument");
 
-                    // Set checked list box
-                    chart_gui.checked_list_box = checkedListBox_signals;
+                        //Logfile_Parser parser = new Logfile_Parser(chart_gui, database_set, checkedListBox_signals);
+                        //parser.Show();
 
-                    // Parse logfile
-                    chart_gui.logfile.parse(chart_gui.database_set);
-                    // Update logfile in chart
-                    chart_gui.update_logfile(chart_gui.checked_list_box);
+                        // Set checked list box
+                        chart_gui.checked_list_box = checkedListBox_signals;
 
-                    // Set initial chart to show timeslice of entire logfile
-                    chart_gui.set_initial_timeslice_data();
+                        // Parse logfile
+                        chart_gui.logfile.parse(chart_gui.database_set);
+                        // Update logfile in chart
+                        chart_gui.update_logfile(chart_gui.checked_list_box);
+
+                        // Set initial chart to show timeslice of entire logfile
+                        chart_gui.set_initial_timeslice_data();
+                    }
                 }
             }
 
