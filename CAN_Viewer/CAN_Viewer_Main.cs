@@ -57,6 +57,9 @@ namespace CAN_Viewer
 
             // Initialize form resize event in chart_gui
             chart_gui.initialize_form_resize_event(this);
+
+            // Set checked list box
+            chart_gui.checked_list_box = checkedListBox_signals;
         }
 
         private void openToolStripMenuItem_database_Click(object sender, EventArgs e)
@@ -90,7 +93,12 @@ namespace CAN_Viewer
                         if (chart_gui.logfile.path != null)
                         {
                             // Parse logfile
-                            chart_gui.logfile.parse(chart_gui.database_set);
+                            //chart_gui.logfile.parse(chart_gui.database_set);
+                            // Experimental loading bar parser
+                            Loading_Bar_Parser parser = new Loading_Bar_Parser(chart_gui);
+                            parser.ShowDialog();
+                            chart_gui = parser.chart_gui;
+
                             // Update logfile in chart
                             chart_gui.update_logfile(chart_gui.checked_list_box);
 
@@ -120,6 +128,20 @@ namespace CAN_Viewer
                         // Set logfile path, will be parsed in Logfile_Parser
                         chart_gui.logfile.path = openFileDialog.FileName;
 
+                        // Parse logfile
+                        //chart_gui.logfile.parse(chart_gui.database_set);
+                        // Experimental loading bar parser, if cancels, overwrites log file with new instantiation
+                        Loading_Bar_Parser parser = new Loading_Bar_Parser(chart_gui);
+                        parser.ShowDialog();
+                        chart_gui = parser.chart_gui;
+
+                        // Check if cancelled
+                        if (chart_gui.logfile.path == null)
+                            return;
+
+                        // Update logfile in chart
+                        chart_gui.update_logfile(chart_gui.checked_list_box);
+
                         // Update status bar text
                         status_text.Text = Path.GetFileName(chart_gui.logfile.path);
 
@@ -137,19 +159,6 @@ namespace CAN_Viewer
 
                         //Logfile_Parser parser = new Logfile_Parser(chart_gui, database_set, checkedListBox_signals);
                         //parser.Show();
-
-                        // Set checked list box
-                        chart_gui.checked_list_box = checkedListBox_signals;
-
-                        // Parse logfile
-                        //chart_gui.logfile.parse(chart_gui.database_set);
-
-                        Loading_Bar_Parser parser = new Loading_Bar_Parser(chart_gui);
-                        parser.ShowDialog();
-                        chart_gui = parser.chart_gui;
-
-                        // Update logfile in chart
-                        chart_gui.update_logfile(chart_gui.checked_list_box);
 
                         // Set initial chart to show timeslice of entire logfile
                         chart_gui.set_initial_timeslice_data();

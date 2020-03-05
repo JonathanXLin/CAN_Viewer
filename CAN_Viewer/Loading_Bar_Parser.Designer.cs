@@ -51,6 +51,7 @@
             this.button_Cancel.TabIndex = 1;
             this.button_Cancel.Text = "Cancel";
             this.button_Cancel.UseVisualStyleBackColor = true;
+            this.button_Cancel.Click += new System.EventHandler(this.button_Cancel_Click);
             // 
             // label_FileName
             // 
@@ -89,6 +90,7 @@
             this.Controls.Add(this.progressBar);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Loading_Bar_Parser";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Working...";
             this.Load += new System.EventHandler(this.Loading_Bar_Worker_Load);
             this.ResumeLayout(false);

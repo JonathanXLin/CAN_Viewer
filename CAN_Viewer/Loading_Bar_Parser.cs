@@ -22,6 +22,8 @@ namespace CAN_Viewer
             InitializeComponent();
 
             chart_gui = chart_gui_;
+
+            label_FileName.Text = Path.GetFileName(chart_gui.logfile.path);
         }
 
         private void Loading_Bar_Worker_Load(object sender, EventArgs e)
@@ -34,6 +36,15 @@ namespace CAN_Viewer
             // Populate logfile object
             chart_gui.logfile.num_points = 0;
             chart_gui.logfile.num_unique_signals = 0;
+
+            // Find number of messages in file
+            string[] lastLine = File.ReadLines(chart_gui.logfile.path).Last().Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            int num_bytes_last_line = int.Parse(lastLine[4]);
+            int num_messages = int.Parse(lastLine[5 + num_bytes_last_line]);
+
+            // Keep track of progress percentage
+            int progress_percentage = 0;
+            int progress_percentage_prev = 0;
 
             // Populates database_ object with database data
             using (StreamReader reader = new StreamReader(chart_gui.logfile.path))
@@ -112,9 +123,6 @@ namespace CAN_Viewer
                         }
                         else
                         {
-                            // Track parsing progress
-                            int progress_percentage = 0;
-
                             // Populate signal point list with all signals contained in logfile point
                             int num_signals = chart_gui.database_set.databases[new_point.database_index].message_list[new_point.database_message_index].num_signals; // Number of signals in current point
 
@@ -151,15 +159,29 @@ namespace CAN_Viewer
                                     chart_gui.logfile.unique_signals.Add(new_signal_point.name);
                                     chart_gui.logfile.num_unique_signals++;
                                 }
-
-                                progress_percentage = (i + 1) * 100 / num_signals;
-                                parser.ReportProgress(progress_percentage);
                             }
                         }
 
                         // Adds logfile point to point list
                         chart_gui.logfile.point_list.Add(new_point);
                         chart_gui.logfile.num_points++;
+
+                        // Track progress and update progress bar
+                        progress_percentage = (chart_gui.logfile.num_points) * 100 / num_messages;
+                        if (progress_percentage > progress_percentage_prev)
+                            parser.ReportProgress(progress_percentage);
+                        progress_percentage_prev = progress_percentage;
+
+                        // Checks if cancelled
+                        if (parser.CancellationPending)
+                        {
+                            e.Cancel = true;
+
+                            // Reverts all changes to logfile
+                            chart_gui.logfile = new Logfile();
+
+                            return;
+                        }
                     }
                 }
             }
@@ -168,11 +190,22 @@ namespace CAN_Viewer
         private void parser_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             progressBar.Value = e.ProgressPercentage;
+            label_Status.Text = e.ProgressPercentage.ToString() + "%";
         }
 
         private void parser_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             this.Close();
+        }
+
+        private void button_Cancel_Click(object sender, EventArgs e)
+        {
+            if (parser.WorkerSupportsCancellation)
+            {
+                parser.CancelAsync();
+                label_Status.Text = "Cancelled";
+                this.Enabled = false;
+            }
         }
     }
 }
