@@ -85,6 +85,18 @@ namespace CAN_Viewer
                         TreeNode new_database_node = new TreeNode(Path.GetFileName(new_database.path));
                         treeView_tree.Nodes[1].Nodes.Add(new_database_node);
                         treeView_tree.Nodes[1].Expand();
+
+                        // If logfile already exists, reparse logfile
+                        if (Convert.ToBoolean(string.Compare(chart_gui.logfile.path, "")))
+                        {
+                            // Parse logfile
+                            chart_gui.logfile.parse(chart_gui.database_set);
+                            // Update logfile in chart
+                            chart_gui.update_logfile(chart_gui.checked_list_box);
+
+                            // Set initial chart to show timeslice of entire logfile
+                            chart_gui.set_initial_timeslice_data();
+                        }
                     }
                     
                 }
